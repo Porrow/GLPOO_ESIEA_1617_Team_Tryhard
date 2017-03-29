@@ -10,8 +10,12 @@ public final class EggHunt {
 	private static int view = 0;
 
 	private EggHunt() {
-		containers.add(new Container());
+		load();
 		new Window();
+	}
+
+	private void load() {
+		containers.add(new Container());
 	}
 
 	public static ArrayList<Container> getContainers() {

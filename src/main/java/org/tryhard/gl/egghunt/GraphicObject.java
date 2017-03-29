@@ -17,9 +17,23 @@ public abstract class GraphicObject {
 		this.parent = parent;
 	}
 
-	// Dessine l'objet
-	public void paint(Graphics2D g) {
+	// Dessine l'objet et ses enfants
+	public final void paintAll(Graphics2D g) {
+		paint(g);
 		for (GraphicObject child : children)
-			child.paint(g);
+			child.paintAll(g);
 	}
+
+	// Dessine l'objet
+	protected abstract void paint(Graphics2D g);
+
+	// Calcule l'objet et ses enfants
+	public final void calculateAll() {
+		calculate();
+		for (GraphicObject child : children)
+			child.calculateAll();
+	}
+
+	// Calcule l'objet
+	protected abstract void calculate();
 }

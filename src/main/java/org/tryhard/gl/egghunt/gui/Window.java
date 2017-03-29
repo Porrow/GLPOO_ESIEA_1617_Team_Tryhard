@@ -33,7 +33,22 @@ public class Window extends JFrame {
 			}
 		};
 
-		getContentPane().add(pan);
+		setContentPane(pan);
+
+		new Thread(new Runnable() {
+			public void run() {
+				while (true) {
+					calculateObjects();
+					pan.repaint();
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						System.out.println(e.getMessage());
+					}
+				}
+			}
+		}).start();
+
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null); // Positionne la fenêtre au centre de l'écran
@@ -43,6 +58,11 @@ public class Window extends JFrame {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
 		Container cont = EggHunt.getContainers().get(EggHunt.getView()); // Conteneur à afficher
-		cont.paint(g2); // Affichage du conteneur
+		cont.paintAll(g2); // Affichage du conteneur
+	}
+
+	private void calculateObjects() {
+		Container cont = EggHunt.getContainers().get(EggHunt.getView()); // Conteneur à calculer
+		cont.calculateAll();
 	}
 }
