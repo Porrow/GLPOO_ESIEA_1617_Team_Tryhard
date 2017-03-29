@@ -1,8 +1,10 @@
 package org.tryhard.gl.egghunt;
 
-import java.util.ArrayList;
+public class Garden extends GraphicObject {
 
-public class Garden extends GraphicObject{
-	
-	private ArrayList<Child> children = new ArrayList<Child>();
+	public static final int WC = 50;
+
+	public Garden(Container c) {
+		super(0, 0, c);
+	}
 }

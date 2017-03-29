@@ -4,14 +4,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 //import org.apache.log4j.Logger;
-
+import org.tryhard.gl.egghunt.Container;
 import org.tryhard.gl.egghunt.EggHunt;
-import org.tryhard.gl.egghunt.GraphicObject;
 
 public class Window extends JFrame {
 
@@ -32,12 +29,7 @@ public class Window extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-				ArrayList<GraphicObject> objects = EggHunt.getInstance().getObjects();
-				for (GraphicObject o : objects) {
-					o.paint(g2);
-				}
+				paintObjects(g);
 			}
 		};
 
@@ -45,5 +37,12 @@ public class Window extends JFrame {
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null); // Positionne la fenêtre au centre de l'écran
+	}
+
+	private void paintObjects(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
+		Container cont = EggHunt.getContainers().get(EggHunt.getView()); // Conteneur à afficher
+		cont.paint(g2); // Affichage du conteneur
 	}
 }

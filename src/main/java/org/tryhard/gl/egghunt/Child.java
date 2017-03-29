@@ -2,23 +2,24 @@ package org.tryhard.gl.egghunt;
 
 import java.util.ArrayList;
 
-public class Child extends GraphicObject{
+public class Child extends GraphicObject {
 
-	private int x; // Coordonnée x en case
-	private int y; // Coordonnée y en case
+	private int xc; // Coordonnée x en case
+	private int yc; // Coordonnée y en case
 	private ArrayList<Egg> basket = new ArrayList<Egg>(); // Oeufs ramassés
 
-	public Child(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public Child(int xc, int yc, Garden g) {
+		super(xc * Garden.WC, yc * Garden.WC, g);
+		this.xc = xc;
+		this.yc = yc;
 	}
 
-	public int getX() {
-		return x;
+	public int getXC() {
+		return xc;
 	}
 
-	public int getY() {
-		return y;
+	public int getYC() {
+		return yc;
 	}
 
 	public ArrayList<Egg> getEggs() {

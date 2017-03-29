@@ -6,19 +6,20 @@ import java.util.ArrayList;
 public final class EggHunt {
 
 	private static EggHunt instance = null;
-
-	private ArrayList<GraphicObject> objects = new ArrayList<GraphicObject>();
+	private static ArrayList<Container> containers = new ArrayList<Container>();
+	private static int view = 0;
 
 	private EggHunt() {
+		containers.add(new Container());
 		new Window();
 	}
 
-	public ArrayList<GraphicObject> getObjects() {
-		return objects;
+	public static ArrayList<Container> getContainers() {
+		return containers;
 	}
 
-	public void addObject(GraphicObject object) {
-
+	public static int getView() {
+		return view;
 	}
 
 	public static final EggHunt getInstance() {
