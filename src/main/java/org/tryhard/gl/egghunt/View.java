@@ -3,13 +3,13 @@ package org.tryhard.gl.egghunt;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Container extends GraphicObject {
+public class View extends GraphicObject {
 
-	public Container() {
+	public View() {
 		super(0, 0, null);
 	}
 
-	public Container(String csv_garden, String csv_children) {
+	public View(String csv_garden, String csv_children) {
 		super(0, 0, null);
 		new Garden(this, csv_children);
 	}
