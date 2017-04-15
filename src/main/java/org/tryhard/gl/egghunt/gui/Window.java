@@ -7,14 +7,14 @@ import java.awt.RenderingHints;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 //import org.apache.log4j.Logger;
-import org.tryhard.gl.egghunt.Container;
+import org.tryhard.gl.egghunt.View;
 import org.tryhard.gl.egghunt.EggHunt;
 
 public class Window extends JFrame {
 
 	private static final long serialVersionUID = 6725603138216332687L;
 	private static final String TITLE = "Egg Hunt - V alpha"; // Titre de la fenêtre
-	private static final Dimension DIM = new Dimension(1280, 720); // Dimension de la fenêtre
+	private static final Dimension DIM = new Dimension(1280, 720); // Dimension de la fenêtre : HD
 
 	public Window() {
 		super();
@@ -57,12 +57,12 @@ public class Window extends JFrame {
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
-		Container cont = EggHunt.getContainers().get(EggHunt.getView()); // Conteneur à afficher
+		View cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur à afficher
 		cont.paintAll(g2); // Affichage du conteneur
 	}
 
 	private void calculateObjects() {
-		Container cont = EggHunt.getContainers().get(EggHunt.getView()); // Conteneur à calculer
+		View cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur à calculer
 		cont.calculateAll();
 	}
 }

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public final class EggHunt {
 
 	private static EggHunt instance = null;
-	private static ArrayList<Container> containers = new ArrayList<Container>();
-	private static int view = 0;
+	private static ArrayList<View> views = new ArrayList<View>();
+	private static int viewChoice = 0;
 
 	private EggHunt() {
 		load();
@@ -15,15 +15,19 @@ public final class EggHunt {
 	}
 
 	private void load() {
-		containers.add(new Container());
+		views.add(new View());
 	}
 
-	public static ArrayList<Container> getContainers() {
-		return containers;
+	public static ArrayList<View> getContainers() {
+		return views;
 	}
 
-	public static int getView() {
-		return view;
+	public static int getViewChoice() {
+		return viewChoice;
+	}
+
+	public static void setViewChoice(int nviewchoice) {
+		viewChoice = nviewchoice;
 	}
 
 	public static final EggHunt getInstance() {
