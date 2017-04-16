@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 
 public class Egg extends GraphicObject {
 
-	public Egg(int x, int y, Garden g) {
-		super(x, y, g);
+	public Egg(int x, int y) {
+		super(x, y);
 	}
 
 	@Override

@@ -4,10 +4,10 @@ import java.awt.Graphics2D;
 
 public class Garden extends GraphicObject {
 
-	public static final int WC = 50;
+	public static final int WC = 50; //Taille d'une case en pixel
 
-	public Garden(View c, String csv_child) {
-		super(0, 0, c);
+	public Garden(String csv_child) {
+		super(0, 0);
 	}
 
 	@Override

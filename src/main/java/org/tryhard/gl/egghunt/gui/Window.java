@@ -6,14 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.View;
 import org.tryhard.gl.egghunt.EggHunt;
 
 public class Window extends JFrame {
 
 	private static final long serialVersionUID = 6725603138216332687L;
-	private static final String TITLE = "Egg Hunt - V alpha"; // Titre de la fenêtre
+	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la fenêtre
 	private static final Dimension DIM = new Dimension(1280, 720); // Dimension de la fenêtre : HD
 
 	public Window() {

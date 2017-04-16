@@ -10,7 +10,7 @@ public class Child extends GraphicObject {
 	private ArrayList<Egg> basket = new ArrayList<Egg>(); // Oeufs ramassés
 
 	public Child(int xc, int yc, Garden g) {
-		super(xc * Garden.WC, yc * Garden.WC, g);
+		super(xc * Garden.WC, yc * Garden.WC);
 		this.xc = xc;
 		this.yc = yc;
 	}

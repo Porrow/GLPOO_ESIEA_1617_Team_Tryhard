@@ -6,12 +6,12 @@ import java.awt.Graphics2D;
 public class View extends GraphicObject {
 
 	public View() {
-		super(0, 0, null);
+		super(0, 0);
 	}
 
 	public View(String csv_garden, String csv_children) {
-		super(0, 0, null);
-		new Garden(this, csv_children);
+		super(0, 0);
+		new Garden(csv_children);
 	}
 
 	@Override
