@@ -1,9 +1,12 @@
 package org.tryhard.gl.egghunt;
 
+import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 import java.util.ArrayList;
 
 public final class EggHunt {
+	
+	private static final Logger LOGGER = Logger.getLogger(EggHunt.class);
 
 	private static EggHunt instance = null;
 	private static ArrayList<View> views = new ArrayList<View>();
@@ -42,6 +45,7 @@ public final class EggHunt {
 	}
 
 	public static void main(String[] args) {
+		LOGGER.info(Window.TITLE);
 		getInstance();
 	}
 }
