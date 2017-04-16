@@ -7,19 +7,31 @@ public abstract class GraphicObject {
 
 	protected int x; // Coordonnée x relative en pixels
 	protected int y; // Coordonnée y relative en pixels
-	private GraphicObject parent; // L'objet graphique qui le contient
-	private ArrayList<GraphicObject> children = new ArrayList<GraphicObject>(); // Les objets graphiques contenues
+	private ArrayList<GraphicObject> descendants = new ArrayList<GraphicObject>(); // Les objets graphiques contenues, descendants
 	// private BufferedImage img;
 
-	protected GraphicObject(int x, int y, GraphicObject parent) {
+	protected GraphicObject(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.parent = parent;
+	}
+
+	// Dessine l'objet et ses enfants
+	public final void paintAll(Graphics2D g) {
+		paint(g);
+		for (GraphicObject descendant : descendants)
+			descendant.paintAll(g);
 	}
 
 	// Dessine l'objet
-	public void paint(Graphics2D g) {
-		for (GraphicObject child : children)
-			child.paint(g);
+	protected abstract void paint(Graphics2D g);
+
+	// Calcule l'objet et ses enfants
+	public final void calculateAll() {
+		calculate();
+		for (GraphicObject descendant : descendants)
+			descendant.calculateAll();
 	}
+
+	// Calcule l'objet
+	protected abstract void calculate();
 }

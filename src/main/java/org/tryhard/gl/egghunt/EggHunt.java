@@ -1,25 +1,36 @@
 package org.tryhard.gl.egghunt;
 
+import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 import java.util.ArrayList;
 
 public final class EggHunt {
+	
+	private static final Logger LOGGER = Logger.getLogger(EggHunt.class);
 
 	private static EggHunt instance = null;
-	private static ArrayList<Container> containers = new ArrayList<Container>();
-	private static int view = 0;
+	private static ArrayList<View> views = new ArrayList<View>();
+	private static int viewChoice = 0;
 
 	private EggHunt() {
-		containers.add(new Container());
+		load();
 		new Window();
 	}
 
-	public static ArrayList<Container> getContainers() {
-		return containers;
+	private void load() {
+		views.add(new View());
 	}
 
-	public static int getView() {
-		return view;
+	public static ArrayList<View> getContainers() {
+		return views;
+	}
+
+	public static int getViewChoice() {
+		return viewChoice;
+	}
+
+	public static void setViewChoice(int nviewchoice) {
+		viewChoice = nviewchoice;
 	}
 
 	public static final EggHunt getInstance() {
@@ -34,6 +45,7 @@ public final class EggHunt {
 	}
 
 	public static void main(String[] args) {
+		LOGGER.info(Window.TITLE);
 		getInstance();
 	}
 }

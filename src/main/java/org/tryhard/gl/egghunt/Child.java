@@ -1,5 +1,6 @@
 package org.tryhard.gl.egghunt;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class Child extends GraphicObject {
@@ -9,7 +10,7 @@ public class Child extends GraphicObject {
 	private ArrayList<Egg> basket = new ArrayList<Egg>(); // Oeufs ramassés
 
 	public Child(int xc, int yc, Garden g) {
-		super(xc * Garden.WC, yc * Garden.WC, g);
+		super(xc * Garden.WC, yc * Garden.WC);
 		this.xc = xc;
 		this.yc = yc;
 	}
@@ -24,5 +25,17 @@ public class Child extends GraphicObject {
 
 	public ArrayList<Egg> getEggs() {
 		return basket;
+	}
+
+	@Override
+	protected void paint(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void calculate() {
+		// TODO Auto-generated method stub
+		
 	}
 }

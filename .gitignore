@@ -1,4 +1,5 @@
 target/*
 .classpath
 .settings/*
-/target/
+ClassDiagramV1.pdf
+ClassDiagramCodeV2
