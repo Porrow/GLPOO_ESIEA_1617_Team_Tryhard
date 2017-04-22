@@ -38,7 +38,7 @@ public class Window extends JFrame {
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
-					calculateObjects();
+					calculateObjects(); //met a jour le graphisme
 					pan.repaint();
 					try {
 						Thread.sleep(100);

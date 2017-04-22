@@ -2,3 +2,4 @@ target/*
 .settings/*
 ClassDiagramV1.pdf
 ClassDiagramCodeV2
+/target/
