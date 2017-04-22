@@ -34,6 +34,10 @@ public abstract class GraphicObject {
 		for (GraphicObject descendant : descendants)
 			descendant.paintAll(g);
 	}
+	
+	protected void addDescenant(GraphicObject g){
+		descendants.add(g);
+	}
 
 	/**
 	 * Dessine l'objet

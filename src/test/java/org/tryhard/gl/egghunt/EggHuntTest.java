@@ -25,10 +25,12 @@ public class EggHuntTest extends TestCase {
 		return new TestSuite(EggHuntTest.class);
 	}
 
+	
 	/**
 	 * Rigourous Test :-)
 	 */
-	public void testApp() {
+	public void testApp() 
+	{
 		assertTrue(true);
 	}
 }

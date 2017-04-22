@@ -29,7 +29,7 @@ public final class EggHunt
 	}
 
 	private void load() {
-		views.add(new View());
+		views.add(new View("data\\jardin.txt",""));
 	}
 
 	public static ArrayList<View> getContainers() {
@@ -64,6 +64,7 @@ public final class EggHunt
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		String cheminJardin = "\\data\\jardin.txt";
 		LOGGER.info(Window.TITLE);
 		getInstance(); //crée le singleton 
 	}
