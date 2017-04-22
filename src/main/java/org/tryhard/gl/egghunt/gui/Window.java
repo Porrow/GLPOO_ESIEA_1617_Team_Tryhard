@@ -10,12 +10,21 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.View;
 import org.tryhard.gl.egghunt.EggHunt;
 
+/**
+ * Classe déssinant la fênetre principale du programme
+ * @author menuiserie
+ *
+ */
 public class Window extends JFrame {
 
 	private static final long serialVersionUID = 6725603138216332687L;
 	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la fenêtre
 	private static final Dimension DIM = new Dimension(1280, 720); // Dimension de la fenêtre : HD
 
+	/**
+	 * Constructeur,
+	 * initialise le gaphisme de la fenêtre, et affiche la fenêtre
+	 */
 	public Window() {
 		super();
 		setTitle(TITLE);
@@ -54,6 +63,10 @@ public class Window extends JFrame {
 		setLocationRelativeTo(null); // Positionne la fenêtre au centre de l'écran
 	}
 
+	/**
+	 * Déssine les objets graphiques
+	 * @param g ContextGraphique sur lequel déssiner
+	 */
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
@@ -61,6 +74,9 @@ public class Window extends JFrame {
 		cont.paintAll(g2); // Affichage du conteneur
 	}
 
+	/**
+	 * Execute la fonction calculateAll sur le contenaire
+	 */
 	private void calculateObjects() {
 		View cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur à calculer
 		cont.calculateAll();

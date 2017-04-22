@@ -4,14 +4,25 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 import java.util.ArrayList;
 
-public final class EggHunt {
+
+/**
+ * 
+ * @author menuiserie
+ *
+ */
+public final class EggHunt 
+{
 	
 	private static final Logger LOGGER = Logger.getLogger(EggHunt.class);
 
 	private static EggHunt instance = null;
 	private static ArrayList<View> views = new ArrayList<View>();
 	private static int viewChoice = 0;
-
+	
+/**
+ * Constructeur de EggHung
+ * initialise le jeu et crée la fenêtre d'affichage
+ */
 	private EggHunt() {
 		load();
 		new Window();
@@ -33,6 +44,10 @@ public final class EggHunt {
 		viewChoice = nviewchoice;
 	}
 
+	/**
+	 * methode retournant le singleton d' EggHunt
+	 * @return
+	 */
 	public static final EggHunt getInstance() {
 		if (instance == null) {
 			synchronized (EggHunt.class) {
@@ -44,8 +59,12 @@ public final class EggHunt {
 		return EggHunt.instance;
 	}
 
+	/**
+	 * fonction principale du programme, créer le singleton EggHunt
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		LOGGER.info(Window.TITLE);
-		getInstance();
+		getInstance(); //crée le singleton 
 	}
 }

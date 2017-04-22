@@ -7,16 +7,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permetttant l'acces aux donnée d'un jardin
+ * @author menuiserie
+ *
+ */
 public class CsvGardenDao {
 
 	private File file;
 
+	/**
+	 * Constructeu de CsvGardenDao
+	 * @param path chemin d'accès du fichier contenant les informations d'un jardin
+	 */
 	public CsvGardenDao(String path) {
 		this.file = new File(path);
 		getLignesFromFile();
+		//[TODO]
 	}
 
-	//Copier-Coller de ce qu'on trouve dans le TD
+	/**
+	 * Lis les lignes du fichier texte représentant les informations d'un jardin
+	 * @return la liste des lignes du fichier
+	 */
 	private List<String> getLignesFromFile() {
 
 		// LOGGER.debug("getLignesFromFile");

@@ -3,6 +3,11 @@ package org.tryhard.gl.egghunt;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+/**
+ * 
+ * @author menuiserie
+ *
+ */
 public class View extends GraphicObject {
 
 	public View() {
