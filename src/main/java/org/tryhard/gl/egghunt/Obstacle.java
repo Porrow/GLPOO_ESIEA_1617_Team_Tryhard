@@ -7,9 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
-public class Rock extends GraphicObject 
+public class Obstacle extends GraphicObject 
 {
 	private static BufferedImage img;
 	
@@ -17,7 +16,7 @@ public class Rock extends GraphicObject
 	{
 		 try 
 		 {
-			img = ImageIO.read(new File("res\\Rock4.png"));
+			img = ImageIO.read(new File("res/Rock4.png"));
 			
 			int w = img.getWidth(null);
 			int h = img.getHeight(null);
@@ -37,7 +36,7 @@ public class Rock extends GraphicObject
 	}
 	
 	
-	protected Rock(int x, int y) 
+	protected Obstacle(int x, int y) 
 	{
 		super(x, y);
 		// TODO Auto-generated constructor stub

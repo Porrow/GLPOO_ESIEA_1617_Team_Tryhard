@@ -12,6 +12,7 @@ import org.tryhard.gl.egghunt.EggHunt;
 
 /**
  * Classe déssinant la fênetre principale du programme
+ * 
  * @author menuiserie
  *
  */
@@ -22,8 +23,7 @@ public class Window extends JFrame {
 	private static final Dimension DIM = new Dimension(1280, 720); // Dimension de la fenêtre : HD
 
 	/**
-	 * Constructeur,
-	 * initialise le gaphisme de la fenêtre, et affiche la fenêtre
+	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
 	 */
 	public Window() {
 		super();
@@ -47,8 +47,8 @@ public class Window extends JFrame {
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
-					calculateObjects(); //met a jour le graphisme
-					pan.repaint();
+					calculateObjects(); // Met à jour les calculs (de positions...)
+					pan.repaint(); // Met à jour les graphismes (s'execute sur le Thread principal !)
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
@@ -56,7 +56,7 @@ public class Window extends JFrame {
 					}
 				}
 			}
-		}).start();
+		}).start(); // Démarre un Thread chargé d'effectuer les calculs
 
 		pack();
 		setVisible(true);
@@ -65,7 +65,9 @@ public class Window extends JFrame {
 
 	/**
 	 * Déssine les objets graphiques
-	 * @param g ContextGraphique sur lequel déssiner
+	 * 
+	 * @param g
+	 *            ContextGraphique sur lequel déssiner
 	 */
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;

@@ -47,7 +47,7 @@ public class Garden extends GraphicObject {
 	}
 	
 	public void addRocks (int x, int y ){
-		Rock r = new Rock(x*WC,y*WC);
+		Obstacle r = new Obstacle(x*WC,y*WC);
 		tableau.get(x).set(y,r );
 		this.addDescenant(r);
 	}

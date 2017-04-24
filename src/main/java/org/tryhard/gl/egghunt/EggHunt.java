@@ -4,32 +4,30 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 import java.util.ArrayList;
 
-
 /**
  * 
  * @author menuiserie
  *
  */
-public final class EggHunt 
-{
-	
+public final class EggHunt {
+
 	private static final Logger LOGGER = Logger.getLogger(EggHunt.class);
+	private static final String GARDENPATH = "res/jardin.txt";
 
 	private static EggHunt instance = null;
 	private static ArrayList<View> views = new ArrayList<View>();
 	private static int viewChoice = 0;
-	
-/**
- * Constructeur de EggHung
- * initialise le jeu et crée la fenêtre d'affichage
- */
+
+	/**
+	 * Constructeur de EggHung initialise le jeu et crée la fenêtre d'affichage
+	 */
 	private EggHunt() {
 		load();
 		new Window();
 	}
 
 	private void load() {
-		views.add(new View("data\\jardin.txt",""));
+		views.add(new View(GARDENPATH, ""));
 	}
 
 	public static ArrayList<View> getContainers() {
@@ -46,6 +44,7 @@ public final class EggHunt
 
 	/**
 	 * methode retournant le singleton d' EggHunt
+	 * 
 	 * @return
 	 */
 	public static final EggHunt getInstance() {
@@ -61,11 +60,11 @@ public final class EggHunt
 
 	/**
 	 * fonction principale du programme, créer le singleton EggHunt
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String cheminJardin = "\\data\\jardin.txt";
 		LOGGER.info(Window.TITLE);
-		getInstance(); //crée le singleton 
+		getInstance(); // crée le singleton
 	}
 }
