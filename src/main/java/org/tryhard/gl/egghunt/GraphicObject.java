@@ -17,6 +17,7 @@ public abstract class GraphicObject {
 	protected int w; // Largeur en pixels
 	protected int h; // Hauteur en pixels
 	protected BufferedImage img; //Image associée
+	protected BufferedImage img2;
 	private ArrayList<GraphicObject> descendants = new ArrayList<GraphicObject>(); // Les objets graphiques contenues, descendants
 
 	// private BufferedImage img;

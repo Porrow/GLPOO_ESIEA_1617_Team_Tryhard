@@ -8,7 +8,7 @@ public class Menu extends GraphicObject {
 
 	public Menu() {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
-		img = Window.loadImage("res/OeufsMenu2.png");	
+		img = Window.loadImage("res/OeufsMenu.png");	
 	}
 	
 	@Override
