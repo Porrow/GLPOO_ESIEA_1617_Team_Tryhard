@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -41,14 +42,13 @@ public class Window extends JFrame {
 		final JPanel pan = new JPanel() {
 
 			private static final long serialVersionUID = 9015769097796805166L;
-
+			
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				paintObjects(g);
 			}
 		};
-
 		setContentPane(pan);
 
 		new Thread(new Runnable() {

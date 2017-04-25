@@ -10,13 +10,15 @@ import org.tryhard.gl.egghunt.io.CsvDao;
  * @author menuiserie
  *
  */
-public class View extends GraphicObject {
+public class Game extends GraphicObject {
+	
+	protected static int ID = 2;
 
-	public View() {
+	public Game() {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
 	}
 
-	public View(String csv_garden, String csv_children) {
+	public Game(String csv_garden, String csv_children) {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
 		CsvDao cd = new CsvDao();
 		addDescendant(cd.getGardenAndChilds(csv_garden, csv_children));

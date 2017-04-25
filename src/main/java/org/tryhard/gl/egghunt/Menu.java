@@ -6,6 +6,7 @@ import org.tryhard.gl.egghunt.gui.Window;
 
 public class Menu extends GraphicObject { 
 
+	protected static int ID = 0;
 	private Button jButton;
 	private Button qButton;
 	

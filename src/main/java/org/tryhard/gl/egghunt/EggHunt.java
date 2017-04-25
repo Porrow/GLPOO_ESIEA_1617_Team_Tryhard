@@ -17,7 +17,7 @@ public final class EggHunt {
 
 	private static EggHunt instance = null;
 	private static ArrayList<GraphicObject> views = new ArrayList<GraphicObject>();
-	private static int viewChoice = 0;
+	private static int viewChoice = Menu.ID;
 
 	/**
 	 * Constructeur de EggHung initialise le jeu et crée la fenêtre d'affichage
@@ -30,7 +30,7 @@ public final class EggHunt {
 	private void loadViews() {
 		LOGGER.debug("Chargement des vues...");
 		views.add(new Menu());
-		views.add(new View(GARDENPATH, ""));
+		views.add(new Game(GARDENPATH, CHILDRENPATH));
 	}
 
 	public static ArrayList<GraphicObject> getViews() {
