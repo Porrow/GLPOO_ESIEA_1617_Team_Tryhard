@@ -13,23 +13,24 @@ import org.tryhard.gl.egghunt.io.CsvGardenDao;
 public class View extends GraphicObject {
 
 	Garden garden;
+
 	public View() {
 		super(0, 0);
 	}
 
-	public View(String csv_garden, String csv_children) 
-	{
+	public View(String csv_garden, String csv_children) {
 		super(0, 0);
-		garden = CsvGardenDao.getGarden(csv_garden);
+		CsvGardenDao cd = new CsvGardenDao();
+		garden = cd.getGardenAndChilds(csv_garden, csv_children);
 	}
 
 	@Override
 	public void paint(Graphics2D g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(x, y, 50, 50);
-		if(garden!=null)
-		garden.paintAll(g);
-		
+		if (garden != null)
+			garden.paintAll(g);
+
 	}
 
 	@Override

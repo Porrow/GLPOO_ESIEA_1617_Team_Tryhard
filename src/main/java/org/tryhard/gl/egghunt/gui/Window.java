@@ -7,11 +7,11 @@ import java.awt.RenderingHints;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
-import org.tryhard.gl.egghunt.View;
+import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.EggHunt;
 
 /**
- * Classe déssinant la fênetre principale du programme
+ * Classe dessinant la fênetre principale du programme
  * 
  * @author menuiserie
  *
@@ -19,8 +19,12 @@ import org.tryhard.gl.egghunt.EggHunt;
 public class Window extends JFrame {
 
 	private static final long serialVersionUID = 6725603138216332687L;
-	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la fenêtre
-	private static final Dimension DIM = new Dimension(1280, 720); // Dimension de la fenêtre : HD
+	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la
+																	// fenêtre
+	private static final Dimension DIM = new Dimension(1280, 720); // Dimension
+																	// de la
+																	// fenêtre :
+																	// HD
 
 	/**
 	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
@@ -47,8 +51,10 @@ public class Window extends JFrame {
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
-					calculateObjects(); // Met à jour les calculs (de positions...)
-					pan.repaint(); // Met à jour les graphismes (s'execute sur le Thread principal !)
+					calculateObjects(); // Met à jour les calculs (de
+										// positions...)
+					pan.repaint(); // Met à jour les graphismes (s'execute sur
+									// le Thread principal !)
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
@@ -60,19 +66,22 @@ public class Window extends JFrame {
 
 		pack();
 		setVisible(true);
-		setLocationRelativeTo(null); // Positionne la fenêtre au centre de l'écran
+		setLocationRelativeTo(null); // Positionne la fenêtre au centre de
+										// l'écran
 	}
 
 	/**
-	 * Déssine les objets graphiques
+	 * Dessine les objets graphiques
 	 * 
 	 * @param g
-	 *            ContextGraphique sur lequel déssiner
+	 *            ContextGraphique sur lequel dessiner
 	 */
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
-		View cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur à afficher
+		GraphicObject cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur
+																					// à
+																					// afficher
 		cont.paintAll(g2); // Affichage du conteneur
 	}
 
@@ -80,7 +89,9 @@ public class Window extends JFrame {
 	 * Execute la fonction calculateAll sur le contenaire
 	 */
 	private void calculateObjects() {
-		View cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur à calculer
+		GraphicObject cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur
+																					// à
+																					// calculer
 		cont.calculateAll();
 	}
 }

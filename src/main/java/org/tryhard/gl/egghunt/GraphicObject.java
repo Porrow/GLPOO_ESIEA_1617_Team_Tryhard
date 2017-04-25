@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Classe de base pour les objets dessinables
+ * 
  * @author menuiserie
  *
  */
@@ -12,13 +13,20 @@ public abstract class GraphicObject {
 
 	protected int x; // Coordonnée x relative en pixels
 	protected int y; // Coordonnée y relative en pixels
-	private ArrayList<GraphicObject> descendants = new ArrayList<GraphicObject>(); // Les objets graphiques contenues, descendants
+	private ArrayList<GraphicObject> descendants = new ArrayList<GraphicObject>(); // Les
+																					// objets
+																					// graphiques
+																					// contenues,
+																					// descendants
 	// private BufferedImage img;
 
 	/**
 	 * Constructeur
-	 * @param x coordonnée en x
-	 * @param y coordonnée en y
+	 * 
+	 * @param x
+	 *            coordonnée en x
+	 * @param y
+	 *            coordonnée en y
 	 */
 	protected GraphicObject(int x, int y) {
 		this.x = x;
@@ -27,21 +35,25 @@ public abstract class GraphicObject {
 
 	/**
 	 * Dessine l'objet et ses enfants
-	 * @param g Context graphique dans lequel l'objet sera déssiné.
+	 * 
+	 * @param g
+	 *            Context graphique dans lequel l'objet sera déssiné.
 	 */
 	public final void paintAll(Graphics2D g) {
 		paint(g);
 		for (GraphicObject descendant : descendants)
 			descendant.paintAll(g);
 	}
-	
-	protected void addDescenant(GraphicObject g){
+
+	protected void addDescenant(GraphicObject g) {
 		descendants.add(g);
 	}
 
 	/**
 	 * Dessine l'objet
-	 * @param g Context graphique dans lequel l'objet sera déssiné.
+	 * 
+	 * @param g
+	 *            Context graphique dans lequel l'objet sera déssiné.
 	 */
 	protected abstract void paint(Graphics2D g);
 
@@ -55,7 +67,7 @@ public abstract class GraphicObject {
 	}
 
 	/**
-	 *  Calcule l'objet
+	 * Calcule l'objet
 	 */
 	protected abstract void calculate();
 }
