@@ -9,7 +9,7 @@ import org.tryhard.gl.egghunt.gui.Window;
 public class Button extends GraphicObject implements MouseListener {
 
 	private String path;
-	
+
 	public Button(int x, int y, int w, int h, String path) {
 		super(x, y, w, h);
 		this.path = path;
@@ -28,49 +28,46 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-	
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(isInside(e)){
-			if(EggHunt.getViewChoice()==Menu.ID){
-				switch(path){
-				case "res/Jouer.png":EggHunt.setViewChoice(Game.ID); break;
-				case "res/Quitter.png":System.exit(-1); break;
+		if (isInside(e)) {
+			if (EggHunt.getViewChoice() == Menu.ID) {
+				switch (path) {
+				case "res/Jouer.png":
+					EggHunt.setViewChoice(Game.ID);
+					break;
+				case "res/Quitter.png":
+					System.exit(-1);
+					break;
 				}
-			}else{
+			} else {
 				// A compléter une fois la classe "Selection" fini
 			}
 		}
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		System.out.println(e.getX()+";"+e.getY());
-		
+		System.out.println(e.getX() + ";" + e.getY());
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
-	
-	private boolean isInside(MouseEvent e){
-		
-		if(e.getX() > x && e.getX() < x+w && e.getY() > y && e.getY() < y+h ){
-			return true;
-		}
-		return false;
+
+	private boolean isInside(MouseEvent e) {
+		return e.getX() > x && e.getX() < x + w && e.getY() > y && e.getY() < y + h;
 	}
 
 }
