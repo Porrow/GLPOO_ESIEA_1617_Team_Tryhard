@@ -33,7 +33,7 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		
+
 	}
 
 	private boolean isInside(MouseEvent e) {

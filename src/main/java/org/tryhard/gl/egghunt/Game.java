@@ -14,14 +14,11 @@ public class Game extends GraphicObject {
 	
 	protected static int ID = 2;
 
-	public Game() {
-		super(0, 0, Window.WIDTH, Window.HEIGHT);
-	}
-
 	public Game(String csv_garden, String csv_children) {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
 		CsvDao cd = new CsvDao();
-		addDescendant(cd.getGardenAndChilds(csv_garden, csv_children));
+		Garden g = cd.getGardenAndChilds(csv_garden, csv_children);
+		addDescendant(g);
 	}
 
 	@Override

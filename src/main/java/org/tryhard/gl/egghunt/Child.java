@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 /**
  * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui
  * permet d'être "dessinable"
@@ -73,7 +75,8 @@ public class Child extends GraphicObject {
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
-
+		g.setColor(Color.BLUE);
+		g.fillRect(x, y, w, h);
 	}
 
 	/**

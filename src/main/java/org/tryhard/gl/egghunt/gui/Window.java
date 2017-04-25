@@ -4,18 +4,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
-import org.tryhard.gl.egghunt.Menu;
 import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
 
