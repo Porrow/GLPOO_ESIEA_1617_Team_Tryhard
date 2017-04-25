@@ -6,9 +6,17 @@ import org.tryhard.gl.egghunt.gui.Window;
 
 public class Menu extends GraphicObject { 
 
+	private Button jButton;
+	private Button qButton;
+	
 	public Menu() {
+			
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
-		img = Window.loadImage("res/OeufsMenu.png");	
+		img = Window.loadImage("res/OeufsMenu.png");
+		jButton = new Button(Window.WIDTH/2-200, 620, 200, 84, "res/Jouer.png");
+		qButton = new Button(Window.WIDTH/2, 620, 200, 84, "res/Quitter.png");
+		addDescendant(jButton);
+		addDescendant(qButton);
 	}
 	
 	@Override

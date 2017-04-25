@@ -6,16 +6,14 @@ import org.tryhard.gl.egghunt.gui.Window;
 
 public class Button extends GraphicObject {
 
-	protected Button(int x, int y, int w, int h) {
+	public Button(int x, int y, int w, int h, String path) {
 		super(x, y, w, h);
-		img = Window.loadImage("res/Jouer.png");
-		img2 = Window.loadImage("res/Quitter.png");
+		img = Window.loadImage(path);
 	}
 
 	@Override
 	protected void paint(Graphics2D g) {
-		g.drawImage(img, Window.WIDTH/2,Window.HEIGHT/2, null);
-		g.drawImage(img, Window.WIDTH/2,Window.HEIGHT/2 + 84, null);
+		g.drawImage(img, x, y, null);
 	}
 
 	@Override
