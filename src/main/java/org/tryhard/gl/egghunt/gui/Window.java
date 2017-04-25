@@ -8,12 +8,15 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.Menu;
+import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
 
 /**
@@ -50,6 +53,9 @@ public class Window extends JFrame {
 			}
 		};
 		setContentPane(pan);
+		ArrayList<GraphicObject> buttons = EggHunt.getViews().get(0).getDescendants();
+		for(GraphicObject o : buttons)
+			pan.addMouseListener((Button)o);
 
 		new Thread(new Runnable() {
 			public void run() {

@@ -51,6 +51,10 @@ public abstract class GraphicObject {
 	protected void addDescendant(GraphicObject g){
 		descendants.add(g);
 	}
+	
+	public final ArrayList<GraphicObject> getDescendants(){
+		return descendants;
+	}
 
 	/**
 	 * Dessine l'objet
