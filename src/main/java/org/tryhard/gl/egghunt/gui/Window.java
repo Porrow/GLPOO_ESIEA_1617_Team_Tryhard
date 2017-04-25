@@ -4,15 +4,19 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.Menu;
+import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
 
 /**
@@ -41,15 +45,17 @@ public class Window extends JFrame {
 		final JPanel pan = new JPanel() {
 
 			private static final long serialVersionUID = 9015769097796805166L;
-
+			
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				paintObjects(g);
 			}
 		};
-
 		setContentPane(pan);
+		ArrayList<GraphicObject> buttons = EggHunt.getViews().get(0).getDescendants();
+		for(GraphicObject o : buttons)
+			pan.addMouseListener((Button)o);
 
 		new Thread(new Runnable() {
 			public void run() {
