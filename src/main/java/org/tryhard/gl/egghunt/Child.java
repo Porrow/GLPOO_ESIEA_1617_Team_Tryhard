@@ -33,11 +33,15 @@ public class Child extends GraphicObject {
 	 *            définit le jardin dans lequel se trouve l'enfant
 	 * 
 	 */
-	public Child(int xc, int yc, Garden g) {
+	public Child(int xc, int yc, Character o, char[] inst, String name) {
 		super(xc * Garden.WC, yc * Garden.WC, Garden.WC, Garden.WC);
+		System.out.println("enfant créé");
 		this.xc = xc;
 		this.yc = yc;
 		this.etape = 0;
+		this.orientation = o;
+		this.instructions = inst;
+		this.name = name;
 	}
 
 	/**

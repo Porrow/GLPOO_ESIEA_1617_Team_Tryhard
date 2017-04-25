@@ -76,7 +76,7 @@ public class CsvDao {
 			Character o = sc[2].charAt(0);
 			char[] inst = sc[3].toCharArray();
 			String name = sc[4];
-			g.addChild(new Child(cx, cy, g));
+			g.addChild(new Child(cx, cy, o, inst, name));
 		}
 	}
 
