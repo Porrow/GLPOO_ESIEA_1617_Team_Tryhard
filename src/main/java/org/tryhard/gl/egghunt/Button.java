@@ -8,8 +8,11 @@ import org.tryhard.gl.egghunt.gui.Window;
 
 public class Button extends GraphicObject implements MouseListener {
 
+	private String path;
+	
 	public Button(int x, int y, int w, int h, String path) {
 		super(x, y, w, h);
+		this.path = path;
 		img = Window.loadImage(path);
 	}
 
@@ -25,9 +28,8 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println(e.getX());
-		System.out.println(e.getY());
 		
+	
 	}
 
 	@Override
@@ -38,13 +40,22 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(isInside(e)){
+			if(EggHunt.getViewChoice()==Menu.ID){
+				switch(path){
+				case "res/Jouer.png":EggHunt.setViewChoice(Game.ID); break;
+				case "res/Quitter.png":System.exit(-1); break;
+				}
+			}else{
+				// A compléter une fois la classe "Selection" fini
+			}
+		}
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println(e.getX()+";"+e.getY());
 		
 	}
 
@@ -52,6 +63,14 @@ public class Button extends GraphicObject implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private boolean isInside(MouseEvent e){
+		
+		if(e.getX() > x && e.getX() < x+w && e.getY() > y && e.getY() < y+h ){
+			return true;
+		}
+		return false;
 	}
 
 }
