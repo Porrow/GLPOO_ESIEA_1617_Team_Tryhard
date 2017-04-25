@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
+import org.tryhard.gl.egghunt.Menu;
 import org.tryhard.gl.egghunt.EggHunt;
 
 /**
@@ -36,7 +37,7 @@ public class Window extends JFrame {
 		setPreferredSize(DIM);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-
+		
 		final JPanel pan = new JPanel() {
 
 			private static final long serialVersionUID = 9015769097796805166L;
