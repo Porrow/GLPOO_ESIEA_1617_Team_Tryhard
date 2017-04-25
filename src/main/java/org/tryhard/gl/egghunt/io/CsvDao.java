@@ -30,7 +30,7 @@ public class CsvDao {
 		return g;
 	}
 
-	public static Garden getGardenFromTextLines(List<String> strs) {
+	public Garden getGardenFromTextLines(List<String> strs) {
 		Garden g = null;
 		for (String s : strs) {
 			String[] slt = s.split(" ");
@@ -59,7 +59,7 @@ public class CsvDao {
 		return g;
 	}
 
-	public static void getChildrenFromTextLines(Garden g, List<String> strs){
+	public void getChildrenFromTextLines(Garden g, List<String> strs){
 		for(String s : strs){
 			String[] sc = s.split(" ");
 			String[] sPos = sc[1].split("-");
@@ -77,7 +77,7 @@ public class CsvDao {
 	 * 
 	 * @return la liste des lignes du fichier
 	 */
-	private static List<String> getLignesFromFile(File file) {
+	private List<String> getLignesFromFile(File file) {
 
 		// LOGGER.debug("getLignesFromFile");
 

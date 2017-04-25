@@ -27,7 +27,7 @@ public final class EggHunt {
 		new Window();
 	}
 
-	private static void loadViews() {
+	private void loadViews() {
 		LOGGER.debug("Chargement des vues...");
 		views.add(new Menu());
 		views.add(new Selection());
