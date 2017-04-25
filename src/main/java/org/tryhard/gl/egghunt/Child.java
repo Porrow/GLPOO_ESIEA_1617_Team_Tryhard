@@ -2,11 +2,12 @@ package org.tryhard.gl.egghunt;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+
 /**
  * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
  * 
  * 
- * **/
+ **/
 public class Child extends GraphicObject {
 
 	private int xc; // Coordonnée x en case
@@ -16,18 +17,23 @@ public class Child extends GraphicObject {
 	/**
 	 * Constructeur d'un enfant
 	 * 
-	 * @param xc définit la coordonée X de l'enfant
-	 * @param yc définit la coordonée Y de l'enfant
-	 * @param g définit le jardin dans lequel se trouve l'enfant
+	 * @param xc
+	 *            définit la coordonée X de l'enfant sur la grille
+	 * @param yc
+	 *            définit la coordonée Y de l'enfant sur la grille
+	 * @param g
+	 *            définit le jardin dans lequel se trouve l'enfant
+	 * 
 	 */
 	public Child(int xc, int yc, Garden g) {
-		super(xc * Garden.WC, yc * Garden.WC);
+		super(xc * Garden.WC, yc * Garden.WC, Garden.WC, Garden.WC);
 		this.xc = xc;
 		this.yc = yc;
 	}
 
 	/**
 	 * Getter XC
+	 * 
 	 * @return xc
 	 */
 	public int getXC() {
@@ -36,6 +42,7 @@ public class Child extends GraphicObject {
 
 	/**
 	 * Getter YC
+	 * 
 	 * @return yc
 	 */
 	public int getYC() {
@@ -44,6 +51,7 @@ public class Child extends GraphicObject {
 
 	/**
 	 * renvoie le panier de l'enfant
+	 * 
 	 * @return panier de l'enfant
 	 */
 	public ArrayList<Egg> getEggs() {
@@ -54,18 +62,17 @@ public class Child extends GraphicObject {
 	 * Dessine la représentation graphique de l'enfant sur l'objet Graphics2D passé en paramètre
 	 **/
 	@Override
-	protected void paint(Graphics2D g) 
-	{
+	protected void paint(Graphics2D g) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	@Override
 	protected void calculate() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

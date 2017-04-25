@@ -22,15 +22,16 @@ public final class EggHunt {
 	 * Constructeur de EggHung initialise le jeu et crée la fenêtre d'affichage
 	 */
 	private EggHunt() {
-		load();
+		loadViews();
 		new Window();
 	}
 
-	private void load() {
+	private void loadViews() {
+		LOGGER.debug("Chargement des vues...");
 		views.add(new View(GARDENPATH, ""));
 	}
 
-	public static ArrayList<View> getContainers() {
+	public static ArrayList<View> getViews() {
 		return views;
 	}
 

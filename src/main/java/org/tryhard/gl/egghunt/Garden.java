@@ -2,8 +2,9 @@ package org.tryhard.gl.egghunt;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import org.tryhard.gl.egghunt.gui.Window;
 
 /**
  * Classe représentant un jardin. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
@@ -23,7 +24,7 @@ public class Garden extends GraphicObject {
 	 * @param csv_child chemin du fichier décrivant les enfants
 	 */
 	public Garden(String csv_child) {
-		super(0, 0);
+		super(0, 0, Window.WIDTH, Window.HEIGHT);
 	}
 	
 	/**
@@ -33,7 +34,7 @@ public class Garden extends GraphicObject {
 	 */
 	
 	public Garden(int largeur, int hauteur) {
-		super(0, 0);
+		super(0, 0, Window.WIDTH, Window.HEIGHT);
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.tableau = new ArrayList<ArrayList<GraphicObject>>();
@@ -47,13 +48,13 @@ public class Garden extends GraphicObject {
 	}
 	
 	public void addRocks (int x, int y ){
-		Obstacle r = new Obstacle(x*WC,y*WC);
+		Obstacle r = new Obstacle(x, y);
 		tableau.get(x).set(y,r );
-		this.addDescenant(r);
+		this.addDescendant(r);
 	}
 	
 	public void addEgg ( int x , int y, int nbEggs ){
-		tableau.get(x).set(y, new Egg(x*WC, y*WC, nbEggs));
+		tableau.get(x).set(y, new Egg(x, y));
 	}
 
 	@Override

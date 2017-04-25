@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
@@ -12,15 +16,16 @@ import org.tryhard.gl.egghunt.EggHunt;
 
 /**
  * Classe déssinant la fênetre principale du programme
- * 
- * @author menuiserie
  *
  */
 public class Window extends JFrame {
 
 	private static final long serialVersionUID = 6725603138216332687L;
+	private static final Logger LOGGER = Logger.getLogger(Window.class);
 	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la fenêtre
-	private static final Dimension DIM = new Dimension(1280, 720); // Dimension de la fenêtre : HD
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
+	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
 
 	/**
 	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
@@ -30,6 +35,7 @@ public class Window extends JFrame {
 		setTitle(TITLE);
 		setPreferredSize(DIM);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 
 		final JPanel pan = new JPanel() {
 
@@ -52,7 +58,7 @@ public class Window extends JFrame {
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
-						System.out.println(e.getMessage());
+						LOGGER.error(e.getMessage());
 					}
 				}
 			}
@@ -66,13 +72,12 @@ public class Window extends JFrame {
 	/**
 	 * Déssine les objets graphiques
 	 * 
-	 * @param g
-	 *            ContextGraphique sur lequel déssiner
+	 * @param g ContextGraphique sur lequel déssiner
 	 */
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
-		View cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur à afficher
+		View cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à afficher
 		cont.paintAll(g2); // Affichage du conteneur
 	}
 
@@ -80,7 +85,45 @@ public class Window extends JFrame {
 	 * Execute la fonction calculateAll sur le contenaire
 	 */
 	private void calculateObjects() {
-		View cont = EggHunt.getContainers().get(EggHunt.getViewChoice()); // Conteneur à calculer
+		View cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à calculer
 		cont.calculateAll();
+	}
+
+	/**
+	 * Charge l'image imgpath
+	 * 
+	 * @param imgpath Chemin de l'image à charger
+	 */
+	public static BufferedImage loadImage(String imgpath) {
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File(imgpath));
+			return img;
+		} catch (IOException ex) {
+			LOGGER.error("Impossible de charger l'image " + imgpath);
+			LOGGER.error("Le programme doit s'arrêter");
+			System.exit(-1);
+			return img;
+		}
+	}
+
+	/**
+	 * Extrait un tableau d'image à partir d'une image
+	 * 
+	 * @param img L'image à découper
+	 * @param nImg La taille du tableau de retour
+	 * @param wi La largeur des sous-images
+	 * @param he La hauteur des sous-images
+	 */
+	public static BufferedImage[] extraction(BufferedImage img, int nImg, int wi, int he) {
+		BufferedImage[] imgs = new BufferedImage[nImg];
+		for (int i = 0, j = 0, k = 0; k < nImg; i++, k++) {
+			if (k % (img.getWidth() / wi) == 0 && i != 0) {
+				j++;
+				i = 0;
+			}
+			imgs[k] = img.getSubimage(i * wi, j * he, wi, he);
+		}
+		return imgs;
 	}
 }

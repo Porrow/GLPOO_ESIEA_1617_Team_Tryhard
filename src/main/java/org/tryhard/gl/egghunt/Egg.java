@@ -8,16 +8,13 @@ import java.awt.Graphics2D;
  */
 public class Egg extends GraphicObject {
 
-	
-	private int nbEggs;
 	/**
 	 * Constructeur d'un oeuf
 	 * @param x définit la coordonée en x de l'oeuf
 	 * @param y définit la coordonée en y de l'oeuf
 	 */
-	public Egg(int x, int y,int nbEggs) {
-		super(x, y);
-		this.nbEggs = nbEggs;
+	public Egg(int x, int y) {
+		super(x, y, Garden.WC, Garden.WC);
 	}
 	
 	

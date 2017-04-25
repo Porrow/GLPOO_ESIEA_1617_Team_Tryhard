@@ -1,6 +1,7 @@
 package org.tryhard.gl.egghunt;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,9 @@ public abstract class GraphicObject {
 
 	protected int x; // Coordonnée x relative en pixels
 	protected int y; // Coordonnée y relative en pixels
+	protected int w; // Largeur en pixels
+	protected int h; // Hauteur en pixels
+	protected BufferedImage img; //Image associée
 	private ArrayList<GraphicObject> descendants = new ArrayList<GraphicObject>(); // Les objets graphiques contenues, descendants
 	// private BufferedImage img;
 
@@ -20,9 +24,11 @@ public abstract class GraphicObject {
 	 * @param x coordonnée en x
 	 * @param y coordonnée en y
 	 */
-	protected GraphicObject(int x, int y) {
+	protected GraphicObject(int x, int y, int w, int h) {
 		this.x = x;
 		this.y = y;
+		this.w = w;
+		this.h = h;
 	}
 
 	/**
@@ -35,7 +41,7 @@ public abstract class GraphicObject {
 			descendant.paintAll(g);
 	}
 	
-	protected void addDescenant(GraphicObject g){
+	protected void addDescendant(GraphicObject g){
 		descendants.add(g);
 	}
 
