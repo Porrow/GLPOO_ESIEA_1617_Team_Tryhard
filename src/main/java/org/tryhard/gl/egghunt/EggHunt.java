@@ -12,10 +12,11 @@ import java.util.ArrayList;
 public final class EggHunt {
 
 	private static final Logger LOGGER = Logger.getLogger(EggHunt.class);
-	private static final String GARDENPATH = "res/jardin.txt";
+	private static final String GARDENPATH = "res/garden.csv";
+	private static final String CHILDRENPATH = "res/children.csv";
 
 	private static EggHunt instance = null;
-	private static ArrayList<View> views = new ArrayList<View>();
+	private static ArrayList<GraphicObject> views = new ArrayList<GraphicObject>();
 	private static int viewChoice = 0;
 
 	/**
@@ -31,7 +32,7 @@ public final class EggHunt {
 		views.add(new View(GARDENPATH, ""));
 	}
 
-	public static ArrayList<View> getViews() {
+	public static ArrayList<GraphicObject> getViews() {
 		return views;
 	}
 

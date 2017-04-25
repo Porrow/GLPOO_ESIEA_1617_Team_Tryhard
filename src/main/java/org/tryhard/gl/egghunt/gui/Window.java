@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
-import org.tryhard.gl.egghunt.View;
+import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.EggHunt;
 
 /**
@@ -70,14 +70,15 @@ public class Window extends JFrame {
 	}
 
 	/**
-	 * Déssine les objets graphiques
+	 * Dessine les objets graphiques
 	 * 
-	 * @param g ContextGraphique sur lequel déssiner
+	 * @param g
+	 *            ContextGraphique sur lequel dessiner
 	 */
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
-		View cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à afficher
+		GraphicObject cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à afficher
 		cont.paintAll(g2); // Affichage du conteneur
 	}
 
@@ -85,14 +86,15 @@ public class Window extends JFrame {
 	 * Execute la fonction calculateAll sur le contenaire
 	 */
 	private void calculateObjects() {
-		View cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à calculer
+		GraphicObject cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à calculer
 		cont.calculateAll();
 	}
 
 	/**
 	 * Charge l'image imgpath
 	 * 
-	 * @param imgpath Chemin de l'image à charger
+	 * @param imgpath
+	 *            Chemin de l'image à charger
 	 */
 	public static BufferedImage loadImage(String imgpath) {
 		BufferedImage img = null;
@@ -110,10 +112,14 @@ public class Window extends JFrame {
 	/**
 	 * Extrait un tableau d'image à partir d'une image
 	 * 
-	 * @param img L'image à découper
-	 * @param nImg La taille du tableau de retour
-	 * @param wi La largeur des sous-images
-	 * @param he La hauteur des sous-images
+	 * @param img
+	 *            L'image à découper
+	 * @param nImg
+	 *            La taille du tableau de retour
+	 * @param wi
+	 *            La largeur des sous-images
+	 * @param he
+	 *            La hauteur des sous-images
 	 */
 	public static BufferedImage[] extraction(BufferedImage img, int nImg, int wi, int he) {
 		BufferedImage[] imgs = new BufferedImage[nImg];

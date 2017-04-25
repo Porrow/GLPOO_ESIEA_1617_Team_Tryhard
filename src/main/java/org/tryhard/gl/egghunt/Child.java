@@ -1,10 +1,12 @@
 package org.tryhard.gl.egghunt;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 /**
- * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
+ * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui
+ * permet d'être "dessinable"
  * 
  * 
  **/
@@ -13,6 +15,10 @@ public class Child extends GraphicObject {
 	private int xc; // Coordonnée x en case
 	private int yc; // Coordonnée y en case
 	private ArrayList<Egg> basket = new ArrayList<Egg>(); // Oeufs ramassés
+	private char[] instructions;
+	private int etape;
+	private Character orientation;
+	private String name;
 
 	/**
 	 * Constructeur d'un enfant
@@ -29,6 +35,7 @@ public class Child extends GraphicObject {
 		super(xc * Garden.WC, yc * Garden.WC, Garden.WC, Garden.WC);
 		this.xc = xc;
 		this.yc = yc;
+		this.etape = 0;
 	}
 
 	/**
@@ -58,12 +65,14 @@ public class Child extends GraphicObject {
 		return basket;
 	}
 
+	
+
 	/**
-	 * Dessine la représentation graphique de l'enfant sur l'objet Graphics2D passé en paramètre
+	 * Dessine la représentation graphique de l'enfant sur l'objet Graphics2D
+	 * passé en paramètre
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
-		// TODO Auto-generated method stub
 
 	}
 
