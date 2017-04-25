@@ -68,7 +68,8 @@ public class EggHuntTest extends TestCase {
 	public void testGardenAddChildren(){
 
 		Garden g = new Garden(8,10);
-		Child c = new Child(2, 3, g);
+		char[] inst = {'A','A','D','A'};
+		Child c = new Child(2, 3, 'N',inst,"RomainLeBG");
 		g.addChild(c);
 
 		try {
