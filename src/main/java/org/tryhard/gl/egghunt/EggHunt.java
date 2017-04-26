@@ -36,17 +36,22 @@ public final class EggHunt {
 	 * Constructeur de EggHung initialise le jeu et crée la fenêtre d'affichage
 	 */
 	private EggHunt() {
+		LOGGER.debug("Début de l'initialisation...");
 		loadViews();
+<<<<<<< HEAD
 		
 	}
 	
 
 	public Window getWin() {
 		return win;
+=======
+		new Window();
+		LOGGER.debug("Fin de l'initialisation");
+>>>>>>> refs/remotes/origin/master
 	}
 
 	private void loadViews() {
-		LOGGER.debug("Chargement des vues...");
 		views.add(new Menu());
 		select = new Selection();
 		views.add(select);

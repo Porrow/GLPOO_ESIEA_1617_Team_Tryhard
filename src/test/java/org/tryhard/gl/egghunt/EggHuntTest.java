@@ -1,12 +1,5 @@
 package org.tryhard.gl.egghunt;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.ArrayList;
-
-import org.tryhard.gl.egghunt.io.CsvDao;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -32,65 +25,53 @@ public class EggHuntTest extends TestCase {
 		return new TestSuite(EggHuntTest.class);
 	}
 
+	public void testGardenAddRocks() {
 
-	public void testGardenAddRocks(){
-
-		Garden g = new Garden(8,10);
-		g.addRocks(4, 4);
+		Garden g = new Garden(8, 10);
+		g.addRocks(4, 4, g);
 
 		try {
-			
+
 			assertNotNull(g.getDescendants().get(0));
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
-			
-		
-		
-	}
-	
-	public void testGardenAddEggs(){
 
-		Garden g = new Garden(8,10);
-		g.addEgg(6, 7);
+	}
+
+	public void testGardenAddEggs() {
+
+		Garden g = new Garden(8, 10);
+		g.addEgg(6, 7, g);
 
 		try {
-			
+
 			assertNotNull(g.getDescendants().get(0));
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
-			
-		
-		
-	}
-	
-	public void testGardenAddChildren(){
 
-		Garden g = new Garden(8,10);
-		char[] inst = {'A','A','D','A'};
-		Child c = new Child(2, 3, 'N',inst,"RomainLeBG");
-		g.addChild(c);
+	}
+
+	public void testGardenAddChildren() {
+
+		Garden g = new Garden(8, 10);
+		char[] inst = { 'A', 'A', 'D', 'A' };
+		g.addChild(2, 3, 'N', inst, "RomainLeBG", g);
 
 		try {
-			
+
 			assertNotNull(g.getDescendants().get(0));
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
-			
-		
-		
-	}
-	
-	
 
-	
+	}
+
 	/**
 	 * Rigourous Test :-)
 	 */
-	public void testApp() 
-	{
+	public void testApp() {
 		assertTrue(true);
 	}
 }

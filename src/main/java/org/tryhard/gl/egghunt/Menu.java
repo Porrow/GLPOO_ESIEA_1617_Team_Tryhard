@@ -13,7 +13,7 @@ public class Menu extends GraphicObject {
 	public Menu() {
 			
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
-		img = Window.loadImage("res/OeufsMenu.png");
+		loadImages("res/OeufsMenu.png", 1, Window.WIDTH, Window.HEIGHT);
 		jButton = new Button(Window.WIDTH/2-200, 620, 200, 84, "res/Jouer.png");
 		qButton = new Button(Window.WIDTH/2, 620, 200, 84, "res/Quitter.png");
 		addDescendant(jButton);
@@ -22,8 +22,7 @@ public class Menu extends GraphicObject {
 	
 	@Override
 	public void paint(Graphics2D g) {
-		//g.fillRect(20, 20, 20, 20);
-		g.drawImage(img, 0, 70, null);
+		g.drawImage(imgs[0], 0, 0, null);
 	}
 
 	@Override

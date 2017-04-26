@@ -18,12 +18,12 @@ public class Button extends GraphicObject implements MouseListener {
 	public Button(int x, int y, int w, int h, String path) {
 		super(x, y, w, h);
 		this.path = path;
-		img = Window.loadImage(path);
+		loadImages(path, 1, 200, 84);
 	}
 
 	@Override
 	protected void paint(Graphics2D g) {
-		g.drawImage(img, x, y, null);
+		g.drawImage(imgs[0], x, y, null);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		
+
 	}
 
 	private boolean isInside(MouseEvent e) {

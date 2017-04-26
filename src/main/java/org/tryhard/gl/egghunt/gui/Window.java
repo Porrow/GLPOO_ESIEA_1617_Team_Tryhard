@@ -1,8 +1,6 @@
 package org.tryhard.gl.egghunt.gui;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -11,16 +9,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
-import org.tryhard.gl.egghunt.Menu;
 import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
+import org.tryhard.gl.egghunt.Menu;
 
 /**
  * Classe déssinant la fênetre principale du programme
@@ -34,9 +30,8 @@ public class Window extends JFrame {
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
+	public static final int FPS = 50;
 	private final JPanel pan;
-
-	
 
 	/**
 	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
