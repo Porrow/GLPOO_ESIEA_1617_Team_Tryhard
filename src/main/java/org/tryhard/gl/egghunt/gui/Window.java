@@ -28,6 +28,7 @@ public class Window extends JFrame {
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
+	public static final int FPS = 50;
 
 	/**
 	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
@@ -60,7 +61,7 @@ public class Window extends JFrame {
 					calculateObjects(); // Met à jour les calculs (de positions...)
 					pan.repaint(); // Met à jour les graphismes (s'execute sur le Thread principal !)
 					try {
-						Thread.sleep(100);
+						Thread.sleep(1000/FPS);
 					} catch (InterruptedException e) {
 						LOGGER.error(e.getMessage());
 					}
