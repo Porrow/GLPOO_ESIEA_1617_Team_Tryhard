@@ -1,6 +1,8 @@
 package org.tryhard.gl.egghunt.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
@@ -31,6 +34,9 @@ public class Window extends JFrame {
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
+	private final JPanel pan;
+
+	
 
 	/**
 	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
@@ -42,7 +48,7 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		
-		final JPanel pan = new JPanel() {
+		pan = new JPanel() {
 
 			private static final long serialVersionUID = 9015769097796805166L;
 			
@@ -53,9 +59,13 @@ public class Window extends JFrame {
 			}
 		};
 		setContentPane(pan);
-		ArrayList<GraphicObject> buttons = EggHunt.getViews().get(0).getDescendants();
-		for(GraphicObject o : buttons)
+		ArrayList<GraphicObject> menuButtons = EggHunt.getInstance().getViews().get(0).getDescendants();
+		for(GraphicObject o : menuButtons)
 			pan.addMouseListener((Button)o);
+		ArrayList<GraphicObject> selectButtons = EggHunt.getInstance().getViews().get(1).getDescendants();
+		for(GraphicObject o : selectButtons)
+			pan.addMouseListener((Button)o);
+			pan.setLayout(new BorderLayout());
 
 		new Thread(new Runnable() {
 			public void run() {
@@ -85,7 +95,7 @@ public class Window extends JFrame {
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
-		GraphicObject cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à afficher
+		GraphicObject cont = EggHunt.getInstance().getViews().get(EggHunt.getInstance().getViewChoice()); // Conteneur à afficher
 		cont.paintAll(g2); // Affichage du conteneur
 	}
 
@@ -93,7 +103,7 @@ public class Window extends JFrame {
 	 * Execute la fonction calculateAll sur le contenaire
 	 */
 	private void calculateObjects() {
-		GraphicObject cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à calculer
+		GraphicObject cont = EggHunt.getInstance().getViews().get(EggHunt.getInstance().getViewChoice()); // Conteneur à calculer
 		cont.calculateAll();
 	}
 
@@ -138,5 +148,9 @@ public class Window extends JFrame {
 			imgs[k] = img.getSubimage(i * wi, j * he, wi, he);
 		}
 		return imgs;
+	}
+	
+	public JPanel getPan() {
+		return pan;
 	}
 }

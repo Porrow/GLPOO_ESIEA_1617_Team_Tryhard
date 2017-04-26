@@ -4,9 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JFileChooser;
+
+import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 
 public class Button extends GraphicObject implements MouseListener {
+	
+	private static final Logger LOGGER = Logger.getLogger(Button.class);
 
 	private String path;
 
@@ -39,19 +44,32 @@ public class Button extends GraphicObject implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (isInside(e)) {
-			if (EggHunt.getViewChoice() == Menu.ID) {
+			LOGGER.info("a button is pressed");
+			if (EggHunt.getInstance().getViewChoice() == Menu.ID) {
 				switch (path) {
 				case "res/Jouer.png":
-					EggHunt.setViewChoice(Game.ID);
+					EggHunt.getInstance().setViewChoice(Selection.ID);
 					break;
 				case "res/Quitter.png":
 					System.exit(-1);
 					break;
 				}
 			} else {
-				// A compléter une fois la classe "Selection" fini
+				switch (path) {
+				case "res/mapIcon.png":
+					LOGGER.info("map button pressed");
+					EggHunt.getInstance().getSelect().getCsvGF().setText(getPath());
+					
+					break;
+				case "res/kidIcon.png":
+					LOGGER.info("kid button pressed");
+					EggHunt.getInstance().getSelect().getCsvCF().setText(getPath());
+					break;
+				}
 			}
 		}
+		
+		if(path=="res/kidIcon.png") LOGGER.info(e.getX()+";"+e.getY());
 
 	}
 
@@ -67,7 +85,17 @@ public class Button extends GraphicObject implements MouseListener {
 	}
 
 	private boolean isInside(MouseEvent e) {
+		
 		return e.getX() > x && e.getX() < x + w && e.getY() > y && e.getY() < y + h;
+	}
+	
+	private String getPath(){
+		JFileChooser dialogue = new JFileChooser("./res");
+		
+		if (dialogue.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+		    return dialogue.getSelectedFile().getPath();
+		}
+		return null;
 	}
 
 }
