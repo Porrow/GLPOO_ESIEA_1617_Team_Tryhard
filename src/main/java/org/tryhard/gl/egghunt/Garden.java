@@ -2,11 +2,13 @@ package org.tryhard.gl.egghunt;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import org.tryhard.gl.egghunt.gui.Window;
 
 /**
- * Classe représentant un jardin. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
+ * Classe représentant un jardin. Cette classe hérite de GraphicObject ce qui
+ * lui permet d'être "dessinable"
  * 
  */
 public class Garden extends GraphicObject {
@@ -40,13 +42,13 @@ public class Garden extends GraphicObject {
 		addDescendant(r);
 	}
 
-	public void addEgg(int xc, int yc, Garden g) {
-		Egg e = new Egg(xc, yc, g);
+	public void addEgg(int xc, int yc, int nb, Garden g) {
+		Egg e = new Egg(xc, yc, nb, g);
 		tableau[xc][yc] = e;
 		addDescendant(e);
 	}
 
-	public void addChild(int cx, int cy, char o, char[] inst, String name, Garden g) {
+	public void addChild(int cx, int cy, char o, ArrayList<Character> inst, String name, Garden g) {
 		Child c = new Child(cx, cy, o, inst, name, g);
 		tableau[c.getXC()][c.getYC()] = c;
 		addDescendant(c);

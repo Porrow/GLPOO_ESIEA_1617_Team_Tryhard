@@ -17,8 +17,8 @@ public class Selection extends GraphicObject {
 
 	protected static int ID = 1;
 	private JPanel pan = new JPanel(new GridLayout(6,1,0,5));
-	private JTextField csvGF = new JTextField("");
-	private JTextField csvCF = new JTextField("");
+	private JTextField csvGF = new JTextField("res/garden.csv");
+	private JTextField csvCF = new JTextField("res/children.csv");
 	private Button gardenButton;
 	private Button childrenButton;
 	private Button quitButton;

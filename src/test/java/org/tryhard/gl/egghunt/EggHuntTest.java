@@ -1,5 +1,7 @@
 package org.tryhard.gl.egghunt;
 
+import java.util.ArrayList;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -42,7 +44,7 @@ public class EggHuntTest extends TestCase {
 	public void testGardenAddEggs() {
 
 		Garden g = new Garden(8, 10);
-		g.addEgg(6, 7, g);
+		g.addEgg(6, 7, 1, g);
 
 		try {
 
@@ -56,7 +58,8 @@ public class EggHuntTest extends TestCase {
 	public void testGardenAddChildren() {
 
 		Garden g = new Garden(8, 10);
-		char[] inst = { 'A', 'A', 'D', 'A' };
+		ArrayList<Character> inst = new ArrayList<Character>();
+		inst.add('A');inst.add('A');inst.add('D');inst.add('A');
 		g.addChild(2, 3, 'N', inst, "RomainLeBG", g);
 
 		try {

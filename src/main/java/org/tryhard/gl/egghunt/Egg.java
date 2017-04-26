@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
  */
 public class Egg extends GraphicObject {
 
+	private int nb;
 
 	/**
 	 * Constructeur d'un oeuf
@@ -20,8 +21,18 @@ public class Egg extends GraphicObject {
 	 * @param y
 	 *            définit la coordonée en y de l'oeuf
 	 */
-	public Egg(int x, int y, Garden g) {
-		super(x, y, Garden.WC, Garden.WC);
+	public Egg(int xc, int yc, int nb, Garden g) {
+		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
+		loadImages("res/egg1.png", 1, Garden.WC, Garden.WC);
+		this.nb = nb;
+	}
+
+	public int getNb() {
+		return nb;
+	}
+
+	public void setNb(int nb) {
+		this.nb = nb;
 	}
 
 	/**
@@ -30,7 +41,8 @@ public class Egg extends GraphicObject {
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
-
+		if (nb > 0)
+			g.drawImage(imgs[0], x, y, null);
 	}
 
 	/**

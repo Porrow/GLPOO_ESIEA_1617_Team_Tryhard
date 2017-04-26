@@ -3,20 +3,23 @@ package org.tryhard.gl.egghunt;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 
 /**
- * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
+ * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui
+ * permet d'être "dessinable"
  * 
  * 
  **/
 public class Child extends GraphicObject {
 
-	private String orientations = "NESW";
+	private static final Logger LOGGER = Logger.getLogger(Child.class);
+	private final String orientations = "NESW";
 	private int xc; // Coordonnée x en case
 	private int yc; // Coordonnée y en case
 	private ArrayList<Egg> basket = new ArrayList<Egg>(); // Oeufs ramassés
-	private char[] instructions;
+	private ArrayList<Character> instructions;
 	private int etape;
 	private Character orientation;
 	private String name;
@@ -36,7 +39,7 @@ public class Child extends GraphicObject {
 	 *            définit le jardin dans lequel se trouve l'enfant
 	 * 
 	 */
-	public Child(int xc, int yc, Character o, char[] inst, String name, Garden g) {
+	public Child(int xc, int yc, Character o, ArrayList<Character> inst, String name, Garden g) {
 		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
 		this.xc = xc;
 		this.yc = yc;
@@ -47,7 +50,7 @@ public class Child extends GraphicObject {
 		this.g = g;
 		this.timer = 0;
 		this.isMoving = false;
-		loadImages("res/Kid1_0.png", 1, Garden.WC, Garden.WC);
+		loadImages("res/Kid1.png", 20, Garden.WC, Garden.WC);
 	}
 
 	/**
@@ -86,6 +89,10 @@ public class Child extends GraphicObject {
 		isMoving = true;
 	}
 
+	public ArrayList<Character> getInstructions() {
+		return instructions;
+	}
+
 	public void anim() {
 		switch (orientation) {
 		case 'N':
@@ -101,7 +108,7 @@ public class Child extends GraphicObject {
 			x += dec;
 			break;
 		}
-		if(timer == Window.FPS -1){
+		if (timer == Window.FPS - 1) {
 			x = g.x + xc * Garden.WC;
 			y = g.y + yc * Garden.WC;
 			isMoving = false;
@@ -118,11 +125,15 @@ public class Child extends GraphicObject {
 	}
 
 	/**
-	 * Dessine la représentation graphique de l'enfant sur l'objet Graphics2D passé en paramètre
+	 * Dessine la représentation graphique de l'enfant sur l'objet Graphics2D
+	 * passé en paramètre
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
-		g.drawImage(imgs[0], x, y, null);
+		int e = orientations.indexOf(orientation) * 5;
+		if (timer < Window.FPS && isMoving)
+			e += timer * 5 / Window.FPS;
+		g.drawImage(imgs[e], x, y, null);
 	}
 
 	/**
@@ -131,11 +142,35 @@ public class Child extends GraphicObject {
 	@Override
 	protected void calculate() {
 		timer += 1;
-		if (timer >= Window.FPS && etape != instructions.length) { // Limite l'enfant à une action par seconde et à une seule exécution de ses
+		if (timer >= Window.FPS && etape != instructions.size()) { // Limite
+																	// l'enfant
+																	// à une
+																	// action
+																	// par
+																	// seconde
+																	// et à une
+																	// seule
+																	// exécution
+																	// de ses
 																	// instructions
 			timer = 0;
 			int ind;
-			switch (instructions[etape]) {
+
+			for (GraphicObject d : g.getDescendants()) {
+				if (d.getClass() == Egg.class && x == d.x && y == d.y) {
+					Egg e = (Egg) d;
+					if (e.getNb() > 0 && !basket.contains(e)) {
+						basket.add(e);
+						e.setNb(e.getNb() - 1);
+						g.getDescendants().set(g.getDescendants().indexOf(d), e);
+						LOGGER.info("oeuf trouvé!");
+						instructions.add(etape, 'R');
+					}
+
+				}
+			}
+			switch (instructions.get(etape)) {
+
 			case 'A':
 				move();
 				break;
@@ -153,11 +188,34 @@ public class Child extends GraphicObject {
 				else
 					orientation = orientations.charAt(orientations.length() - 1);
 				break;
+			default:
+				break;
 			}
-			if (etape < instructions.length)
+			if (etape < instructions.size())
 				etape += 1;
+			LOGGER.info("action!");
 		}
 		if (isMoving)
 			anim();
+	}
+
+	public int getEtape() {
+		return etape;
+	}
+
+	public void setTimer(int timer) {
+		this.timer = timer;
+	}
+
+	public int getTimer() {
+		return timer;
+	}
+
+	public ArrayList<Egg> getBasket() {
+		return basket;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

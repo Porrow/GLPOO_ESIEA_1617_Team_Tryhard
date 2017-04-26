@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 
 public class Button extends GraphicObject implements MouseListener {
-	
+
 	private static final Logger LOGGER = Logger.getLogger(Button.class);
 
 	private String path;
@@ -55,12 +55,12 @@ public class Button extends GraphicObject implements MouseListener {
 					System.exit(-1);
 					break;
 				}
-			} else {
+			} else if (EggHunt.getInstance().getViewChoice() == Selection.ID) {
 				switch (path) {
 				case "res/mapIcon.png":
 					LOGGER.info("map button pressed");
 					EggHunt.getInstance().getSelect().getCsvGF().setText(getPath());
-					
+
 					break;
 				case "res/kidIcon.png":
 					LOGGER.info("kid button pressed");
@@ -69,14 +69,17 @@ public class Button extends GraphicObject implements MouseListener {
 				case "res/Jouer.png":
 					LOGGER.info("play button pressed");
 					EggHunt.getInstance().getViews().remove(Game.ID);
-					EggHunt.getInstance().getViews().add(Game.ID, new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(),EggHunt.getInstance().getSelect().getCsvCF().getText()));
+					EggHunt.getInstance().getViews().add(Game.ID,
+							new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(),
+									EggHunt.getInstance().getSelect().getCsvCF().getText()));
 					EggHunt.getInstance().setViewChoice(Game.ID);
 					break;
 				}
 			}
 		}
-		
-		if(path=="res/kidIcon.png") LOGGER.info(e.getX()+";"+e.getY());
+
+		if (path == "res/kidIcon.png")
+			LOGGER.info(e.getX() + ";" + e.getY());
 
 	}
 
@@ -92,18 +95,18 @@ public class Button extends GraphicObject implements MouseListener {
 	}
 
 	private boolean isInside(MouseEvent e) {
-		
+
 		return e.getX() > x && e.getX() < x + w && e.getY() > y && e.getY() < y + h;
 	}
-	
-	private String getPath(){
+
+	private String getPath() {
 		JFileChooser dialogue = new JFileChooser("./res");
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers csv.", "csv");
-        dialogue.addChoosableFileFilter(filter);
-        dialogue.setAcceptAllFileFilterUsed(false);
-        dialogue.setFileFilter(filter);
+		dialogue.addChoosableFileFilter(filter);
+		dialogue.setAcceptAllFileFilterUsed(false);
+		dialogue.setFileFilter(filter);
 		if (dialogue.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-		    return dialogue.getSelectedFile().getPath();
+			return dialogue.getSelectedFile().getPath();
 		}
 		return null;
 	}

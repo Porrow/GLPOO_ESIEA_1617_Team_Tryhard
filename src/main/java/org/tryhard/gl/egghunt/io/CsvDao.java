@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.tryhard.gl.egghunt.Garden;
@@ -60,7 +61,8 @@ public class CsvDao {
 				String[] slc = slt[1].split("-");
 				int cx = Integer.parseInt(slc[0]);
 				int cy = Integer.parseInt(slc[1]);
-				g.addEgg(cx, cy, g);
+				int nb = Integer.parseInt(slt[2]);
+				g.addEgg(cx, cy, nb, g);
 				break;
 			}
 		}
@@ -74,10 +76,18 @@ public class CsvDao {
 			int cx = Integer.parseInt(sPos[0]);
 			int cy = Integer.parseInt(sPos[1]);
 			char o = sc[2].charAt(0);
-			char[] inst = sc[3].toCharArray();
+			ArrayList<Character> inst = stringToArrayListChar(sc[3]);
 			String name = sc[4];
 			g.addChild(cx, cy, o, inst, name, g);
 		}
+	}
+
+	private ArrayList<Character> stringToArrayListChar(String str) {
+		ArrayList<Character> list = new ArrayList<Character>();
+		for (int i = 0; i < str.length(); i++) {
+			list.add(str.charAt(i));
+		}
+		return list;
 	}
 
 	/**
