@@ -22,6 +22,7 @@ public class Menu extends GraphicObject {
 	
 	@Override
 	public void paint(Graphics2D g) {
+		
 		g.drawImage(imgs[0], 0, 0, null);
 	}
 

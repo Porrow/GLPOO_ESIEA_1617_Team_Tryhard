@@ -67,7 +67,6 @@ public final class EggHunt {
 		viewChoice = nviewchoice;
 		if(nviewchoice == Selection.ID){
 			LOGGER.debug("Chargement du panneau de sélection...");
-			win.getPan().setBackground(Color.GREEN);
 			win.getPan().add(select.getPan(), BorderLayout.NORTH);
 		win.getPan().validate();
 		

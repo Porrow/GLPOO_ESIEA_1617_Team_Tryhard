@@ -27,12 +27,13 @@ public class Selection extends GraphicObject {
 
 	protected Selection() {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
+		loadImages("res/OeufsMenu.png", 1, Window.WIDTH, Window.HEIGHT);
 		csvGF.setEditable(false);
 		csvGF.setFont(new Font("Serif",Font.BOLD, 20));
 		csvGF.setAlignmentX(100);
 		csvCF.setEditable(false);
 		csvCF.setFont(new Font("Serif",Font.BOLD, 20));
-		pan.setBackground(Color.GREEN);
+		pan.setBackground(new Color(0, 160, 255));
 		JLabel gLab = new JLabel("csv Garden:");
 		gLab.setFont(new Font("Serif",Font.BOLD, 20));
 		pan.add(new JLabel(""));
@@ -77,7 +78,7 @@ public class Selection extends GraphicObject {
 	@Override
 	protected void paint(Graphics2D g) {
 		// TODO Auto-generated method stub
-
+		//g.drawImage(imgs[0], 0, 0, null);
 	}
 
 	@Override

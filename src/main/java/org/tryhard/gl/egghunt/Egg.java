@@ -23,7 +23,7 @@ public class Egg extends GraphicObject {
 	 */
 	public Egg(int xc, int yc, int nb, Garden g) {
 		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
-		loadImages("res/egg1.png", 1, Garden.WC, Garden.WC);
+		loadImages("res/eggs.png", 3, Garden.WC, Garden.WC);
 		this.nb = nb;
 	}
 
@@ -42,7 +42,7 @@ public class Egg extends GraphicObject {
 	@Override
 	protected void paint(Graphics2D g) {
 		if (nb > 0)
-			g.drawImage(imgs[0], x, y, null);
+			g.drawImage(imgs[nb-1], x, y, null);
 	}
 
 	/**

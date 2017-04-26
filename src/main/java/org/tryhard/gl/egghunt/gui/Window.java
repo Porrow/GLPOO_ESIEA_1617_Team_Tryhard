@@ -1,6 +1,7 @@
 package org.tryhard.gl.egghunt.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -66,7 +67,7 @@ public class Window extends JFrame {
 		for (GraphicObject o : selectButtons)
 			pan.addMouseListener((Button) o);
 		pan.setLayout(new BorderLayout());
-
+		pan.setBackground(new Color(0, 160, 255));
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
