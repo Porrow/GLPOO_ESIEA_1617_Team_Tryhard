@@ -23,12 +23,13 @@ public final class EggHunt {
 	 * Constructeur de EggHung initialise le jeu et crée la fenêtre d'affichage
 	 */
 	private EggHunt() {
+		LOGGER.debug("Début de l'initialisation...");
 		loadViews();
 		new Window();
+		LOGGER.debug("Fin de l'initialisation");
 	}
 
 	private void loadViews() {
-		LOGGER.debug("Chargement des vues...");
 		views.add(new Menu());
 		views.add(new Selection());
 		views.add(new Game(GARDENPATH, CHILDRENPATH));

@@ -53,14 +53,14 @@ public class CsvDao {
 				String[] slr = slt[1].split("-");
 				int rx = Integer.parseInt(slr[0]);
 				int ry = Integer.parseInt(slr[1]);
-				g.addRocks(rx, ry);
+				g.addRocks(rx, ry, g);
 				break;
 
 			case "C":
 				String[] slc = slt[1].split("-");
 				int cx = Integer.parseInt(slc[0]);
 				int cy = Integer.parseInt(slc[1]);
-				g.addEgg(cx, cy);
+				g.addEgg(cx, cy, g);
 				break;
 			}
 		}
@@ -73,10 +73,10 @@ public class CsvDao {
 			String[] sPos = sc[1].split("-");
 			int cx = Integer.parseInt(sPos[0]);
 			int cy = Integer.parseInt(sPos[1]);
-			Character o = sc[2].charAt(0);
+			char o = sc[2].charAt(0);
 			char[] inst = sc[3].toCharArray();
 			String name = sc[4];
-			g.addChild(new Child(cx, cy, o, inst, name));
+			g.addChild(cx, cy, o, inst, name, g);
 		}
 	}
 

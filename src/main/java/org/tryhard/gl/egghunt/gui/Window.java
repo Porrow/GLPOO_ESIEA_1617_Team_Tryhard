@@ -38,11 +38,11 @@ public class Window extends JFrame {
 		setPreferredSize(DIM);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		
+
 		final JPanel pan = new JPanel() {
 
 			private static final long serialVersionUID = 9015769097796805166L;
-			
+
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
@@ -51,8 +51,8 @@ public class Window extends JFrame {
 		};
 		setContentPane(pan);
 		ArrayList<GraphicObject> buttons = EggHunt.getViews().get(0).getDescendants();
-		for(GraphicObject o : buttons)
-			pan.addMouseListener((Button)o);
+		for (GraphicObject o : buttons)
+			pan.addMouseListener((Button) o);
 
 		new Thread(new Runnable() {
 			public void run() {
@@ -82,58 +82,15 @@ public class Window extends JFrame {
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
-		GraphicObject cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à afficher
-		cont.paintAll(g2); // Affichage du conteneur
+		GraphicObject view = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à afficher
+		view.paintAll(g2); // Affichage du conteneur
 	}
 
 	/**
 	 * Execute la fonction calculateAll sur le contenaire
 	 */
 	private void calculateObjects() {
-		GraphicObject cont = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à calculer
-		cont.calculateAll();
-	}
-
-	/**
-	 * Charge l'image imgpath
-	 * 
-	 * @param imgpath
-	 *            Chemin de l'image à charger
-	 */
-	public static BufferedImage loadImage(String imgpath) {
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File(imgpath));
-			return img;
-		} catch (IOException ex) {
-			LOGGER.error("Impossible de charger l'image " + imgpath);
-			LOGGER.error("Le programme doit s'arrêter");
-			System.exit(-1);
-			return img;
-		}
-	}
-
-	/**
-	 * Extrait un tableau d'image à partir d'une image
-	 * 
-	 * @param img
-	 *            L'image à découper
-	 * @param nImg
-	 *            La taille du tableau de retour
-	 * @param wi
-	 *            La largeur des sous-images
-	 * @param he
-	 *            La hauteur des sous-images
-	 */
-	public static BufferedImage[] extraction(BufferedImage img, int nImg, int wi, int he) {
-		BufferedImage[] imgs = new BufferedImage[nImg];
-		for (int i = 0, j = 0, k = 0; k < nImg; i++, k++) {
-			if (k % (img.getWidth() / wi) == 0 && i != 0) {
-				j++;
-				i = 0;
-			}
-			imgs[k] = img.getSubimage(i * wi, j * he, wi, he);
-		}
-		return imgs;
+		GraphicObject view = EggHunt.getViews().get(EggHunt.getViewChoice()); // Conteneur à calculer
+		view.calculateAll();
 	}
 }

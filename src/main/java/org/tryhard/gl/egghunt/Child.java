@@ -1,10 +1,7 @@
 package org.tryhard.gl.egghunt;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-
-import org.apache.log4j.Logger;
 
 /**
  * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui
@@ -21,6 +18,7 @@ public class Child extends GraphicObject {
 	private int etape;
 	private Character orientation;
 	private String name;
+	private Garden g;
 
 	/**
 	 * Constructeur d'un enfant
@@ -33,15 +31,16 @@ public class Child extends GraphicObject {
 	 *            définit le jardin dans lequel se trouve l'enfant
 	 * 
 	 */
-	public Child(int xc, int yc, Character o, char[] inst, String name) {
-		super(xc * Garden.WC, yc * Garden.WC, Garden.WC, Garden.WC);
-		System.out.println("enfant créé");
+	public Child(int xc, int yc, Character o, char[] inst, String name, Garden g) {
+		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
 		this.xc = xc;
 		this.yc = yc;
 		this.etape = 0;
 		this.orientation = o;
 		this.instructions = inst;
 		this.name = name;
+		this.g = g;
+		loadImages("res/Kid1_0.png", 1, Garden.WC, Garden.WC);
 	}
 
 	/**
@@ -79,8 +78,7 @@ public class Child extends GraphicObject {
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(x, y, w, h);
+		g.drawImage(imgs[0], x, y, null);
 	}
 
 	/**

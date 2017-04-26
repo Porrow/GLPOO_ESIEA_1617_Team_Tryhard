@@ -20,7 +20,7 @@ public class Egg extends GraphicObject {
 	 * @param y
 	 *            définit la coordonée en y de l'oeuf
 	 */
-	public Egg(int x, int y) {
+	public Egg(int x, int y, Garden g) {
 		super(x, y, Garden.WC, Garden.WC);
 	}
 

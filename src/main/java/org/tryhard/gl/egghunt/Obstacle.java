@@ -6,15 +6,15 @@ import org.tryhard.gl.egghunt.gui.Window;
 
 public class Obstacle extends GraphicObject {
 	
-	protected Obstacle(int xc, int yc) {
-		super(xc * Garden.WC, yc * Garden.WC, Garden.WC, Garden.WC);
-		img = Window.loadImage("res/Rock4.png");
+	protected Obstacle(int xc, int yc, Garden g) {
+		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
+		loadImages("res/Rock4.png", 1, Garden.WC, Garden.WC);
 		
 	}
 
 	@Override
 	protected void paint(Graphics2D g) {
-		g.drawImage(img, x, y, null);
+		g.drawImage(imgs[0], x, y, null);
 
 	}
 
