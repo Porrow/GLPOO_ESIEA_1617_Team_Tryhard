@@ -50,8 +50,9 @@ public final class EggHunt {
 		views.add(new Menu());
 		select = new Selection();
 		views.add(select);
-		views.add(new Game(GARDENPATH, CHILDRENPATH));
+		views.add(new Game("res/garden.csv","res/children2.csv"));
 	}
+
 
 	public ArrayList<GraphicObject> getViews() {
 		return views;

@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
@@ -65,6 +66,12 @@ public class Button extends GraphicObject implements MouseListener {
 					LOGGER.info("kid button pressed");
 					EggHunt.getInstance().getSelect().getCsvCF().setText(getPath());
 					break;
+				case "res/Jouer.png":
+					LOGGER.info("play button pressed");
+					EggHunt.getInstance().getViews().remove(Game.ID);
+					EggHunt.getInstance().getViews().add(Game.ID, new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(),EggHunt.getInstance().getSelect().getCsvCF().getText()));
+					EggHunt.getInstance().setViewChoice(Game.ID);
+					break;
 				}
 			}
 		}
@@ -91,7 +98,10 @@ public class Button extends GraphicObject implements MouseListener {
 	
 	private String getPath(){
 		JFileChooser dialogue = new JFileChooser("./res");
-		
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers csv.", "csv");
+        dialogue.addChoosableFileFilter(filter);
+        dialogue.setAcceptAllFileFilterUsed(false);
+        dialogue.setFileFilter(filter);
 		if (dialogue.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 		    return dialogue.getSelectedFile().getPath();
 		}

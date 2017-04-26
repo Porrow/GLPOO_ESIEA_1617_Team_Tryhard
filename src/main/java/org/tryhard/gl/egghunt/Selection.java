@@ -46,9 +46,11 @@ public class Selection extends GraphicObject {
 		
 		childrenButton = new Button(1100, 266, 128, 128, "res/kidIcon.png");
 		gardenButton = new Button(900, 266, 128, 128, "res/mapIcon.png");
+		goButton = new Button(550, 550, 200, 84, "res/Jouer.png");
 		
 		addDescendant(gardenButton);
 		addDescendant(childrenButton);
+		addDescendant(goButton);
 		
 	}
 
