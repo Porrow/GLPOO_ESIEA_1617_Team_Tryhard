@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import org.tryhard.gl.egghunt.gui.Window;
 
 /**
- * Classe représentant un jardin. Cette classe hérite de GraphicObject ce qui
- * lui permet d'être "dessinable"
+ * Classe représentant un jardin. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
  * 
  */
 public class Garden extends GraphicObject {
