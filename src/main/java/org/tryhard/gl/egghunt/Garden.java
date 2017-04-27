@@ -86,7 +86,6 @@ public class Garden extends GraphicObject {
 		g.drawImage(imgs[5], x + xc * WC, y + yc * WC, null);
 		// Contour du jardin
 		g.drawRect(x, y, xc * WC, yc * WC);
-		g.drawRect(x - WC, y - WC, (xc + 2) * WC, (yc + 2) * WC);
 	}
 
 	@Override

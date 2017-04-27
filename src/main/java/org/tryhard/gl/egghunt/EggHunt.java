@@ -23,6 +23,7 @@ public final class EggHunt {
 	private static int viewChoice = Menu.ID;
 	private static Window win;
 	private Selection select;
+	private MapEditor editor;
 
 	/**
 	 * Constructeur de EggHung initialise le jeu et crée la fenêtre d'affichage
@@ -42,6 +43,8 @@ public final class EggHunt {
 		select = new Selection();
 		views.add(select);
 		views.add(new Game(GARDENPATH, CHILDRENPATH));
+		editor = new MapEditor();
+		views.add(editor);
 	}
 
 	public ArrayList<GraphicObject> getViews() {
@@ -58,6 +61,10 @@ public final class EggHunt {
 		if (nviewchoice == Selection.ID) {
 			LOGGER.debug("Chargement du panneau de sélection...");
 			win.getPan().add(select.getPan(), BorderLayout.NORTH);
+			win.getPan().validate();
+		}else if(nviewchoice == MapEditor.ID){
+			LOGGER.debug("Création fichiers CSV");
+			win.getPan().add(editor.getPan(), BorderLayout.NORTH);
 			win.getPan().validate();
 		}
 	}
