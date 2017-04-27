@@ -27,6 +27,7 @@ public class Child extends GraphicObject {
 	private Garden g;
 	private int timer;
 	private boolean isMoving; // Détermine si l'enfant est actuellement en mouvement
+	private boolean isPaused; // Détermine si l'enfant est en pause
 
 	/**
 	 * Constructeur d'un enfant
@@ -50,6 +51,7 @@ public class Child extends GraphicObject {
 		this.g = g;
 		this.timer = 0;
 		this.isMoving = false;
+		this.isPaused = false;
 		String pathImg;
 		if (name.length() % 2 == 0)
 			pathImg = "Kid2.png";
@@ -87,7 +89,15 @@ public class Child extends GraphicObject {
 		GraphicObject[][] array = g.getArray();
 		if (cx < 0 || cx >= array[0].length || cy <= 0 || cy >= array.length) // Collision avec la barrière
 			return true;
-		return array[cy][cx] instanceof Obstacle;
+		if (array[cy][cx] instanceof Obstacle)
+			return true;
+		if (array[cy][cx] instanceof Child) {
+			isPaused = true;
+			return true;
+		}
+		array[yc][xc] = null; // On supprime l'enfant de son ancienne position
+		array[cy][cx] = this; // On le met sur la nouvelle
+		return false;
 	}
 
 	/**
@@ -116,7 +126,6 @@ public class Child extends GraphicObject {
 			xc += 1;
 			break;
 		}
-		// else if (g.getArray()[yc][xc] instanceof Child)
 		return true;
 	}
 
@@ -175,10 +184,10 @@ public class Child extends GraphicObject {
 		switch (instructions.get(etape)) {
 
 		case 'A':
-			if (move())  // S'il n'y a pas eu de collision
+			if (move()) // S'il n'y a pas eu de collision
 				isMoving = true;
-			else
-				while(etape+1 < instructions.size() && instructions.get(etape+1) == 'A') // On saute les instructions qui font avancer
+			else if (!isPaused)
+				while (etape + 1 < instructions.size() && instructions.get(etape + 1) == 'A') // On saute les instructions qui font avancer
 					etape++;
 			break;
 		case 'D':
@@ -222,11 +231,12 @@ public class Child extends GraphicObject {
 			timer = 0;
 			pickupEgg();
 			treatInstructions();
-			if (etape < instructions.size())
+			if (etape < instructions.size() && !isPaused)
 				etape += 1;
 		}
 		if (isMoving)
 			anim();
+		isPaused = false;
 	}
 
 	public int getEtape() {
