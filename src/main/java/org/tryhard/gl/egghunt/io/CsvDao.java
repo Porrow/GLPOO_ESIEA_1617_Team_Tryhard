@@ -5,12 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.tryhard.gl.egghunt.Garden;
 import org.apache.log4j.Logger;
-import org.tryhard.gl.egghunt.Child;
 import org.tryhard.gl.egghunt.EggHunt;
 
 /**

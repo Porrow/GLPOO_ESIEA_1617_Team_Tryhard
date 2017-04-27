@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +17,6 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
-import org.tryhard.gl.egghunt.Menu;
 
 /**
  * Classe déssinant la fênetre principale du programme
@@ -36,7 +34,7 @@ public class Window extends JFrame {
 																		// de la
 																		// fenêtre
 																		// : HD
-	public static final int FPS = 50;
+	public static final int FPS = 25;
 	private final JPanel pan;
 
 	/**
@@ -113,49 +111,6 @@ public class Window extends JFrame {
 																											// à
 																											// calculer
 		cont.calculateAll();
-	}
-
-	/**
-	 * Charge l'image imgpath
-	 * 
-	 * @param imgpath
-	 *            Chemin de l'image à charger
-	 */
-	public static BufferedImage loadImage(String imgpath) {
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File(imgpath));
-			return img;
-		} catch (IOException ex) {
-			LOGGER.error("Impossible de charger l'image " + imgpath);
-			LOGGER.error("Le programme doit s'arrêter");
-			System.exit(-1);
-			return img;
-		}
-	}
-
-	/**
-	 * Extrait un tableau d'image à partir d'une image
-	 * 
-	 * @param img
-	 *            L'image à découper
-	 * @param nImg
-	 *            La taille du tableau de retour
-	 * @param wi
-	 *            La largeur des sous-images
-	 * @param he
-	 *            La hauteur des sous-images
-	 */
-	public static BufferedImage[] extraction(BufferedImage img, int nImg, int wi, int he) {
-		BufferedImage[] imgs = new BufferedImage[nImg];
-		for (int i = 0, j = 0, k = 0; k < nImg; i++, k++) {
-			if (k % (img.getWidth() / wi) == 0 && i != 0) {
-				j++;
-				i = 0;
-			}
-			imgs[k] = img.getSubimage(i * wi, j * he, wi, he);
-		}
-		return imgs;
 	}
 
 	public JPanel getPan() {

@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 /**
  * 
- * @author menuiserie
  *
  */
 public final class EggHunt {
@@ -25,7 +24,7 @@ public final class EggHunt {
 	private static final Logger LOGGER = Logger.getLogger(EggHunt.class);
 	private static final String GARDENPATH = "res/garden.csv";
 	private static final String CHILDRENPATH = "res/children.csv";
-	
+
 	private static EggHunt instance = null;
 	private static ArrayList<GraphicObject> views = new ArrayList<GraphicObject>();
 	private static int viewChoice = Menu.ID;
@@ -38,9 +37,8 @@ public final class EggHunt {
 	private EggHunt() {
 		LOGGER.debug("Début de l'initialisation...");
 		loadViews();
-		
+
 	}
-	
 
 	public Window getWin() {
 		return win;
@@ -50,9 +48,8 @@ public final class EggHunt {
 		views.add(new Menu());
 		select = new Selection();
 		views.add(select);
-		views.add(new Game("res/garden.csv","res/children2.csv"));
+		views.add(new Game("res/garden.csv", "res/children2.csv"));
 	}
-
 
 	public ArrayList<GraphicObject> getViews() {
 		return views;
@@ -65,21 +62,16 @@ public final class EggHunt {
 	public void setViewChoice(int nviewchoice) {
 		win.getPan().removeAll();
 		viewChoice = nviewchoice;
-		if(nviewchoice == Selection.ID){
+		if (nviewchoice == Selection.ID) {
 			LOGGER.debug("Chargement du panneau de sélection...");
 			win.getPan().add(select.getPan(), BorderLayout.NORTH);
-		win.getPan().validate();
-		
-		
-		
-		
+			win.getPan().validate();
 		}
 	}
 
 	public Selection getSelect() {
 		return select;
 	}
-
 
 	/**
 	 * methode retournant le singleton d' EggHunt
@@ -106,6 +98,5 @@ public final class EggHunt {
 		LOGGER.info(Window.TITLE);
 		getInstance(); // crée le singleton
 		win = new Window();
-	
 	}
 }

@@ -7,15 +7,15 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 
 /**
- * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui
- * permet d'être "dessinable"
+ * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
  * 
  * 
  **/
 public class Child extends GraphicObject {
 
 	private static final Logger LOGGER = Logger.getLogger(Child.class);
-	private final String orientations = "NESW";
+	private static final String orientations = "NESW";
+	private static final int dec = Garden.WC / Window.FPS; // Indique le nombre de pixel dont se déplace un enfant à chaque frame
 	private int xc; // Coordonnée x en case
 	private int yc; // Coordonnée y en case
 	private ArrayList<Egg> basket = new ArrayList<Egg>(); // Oeufs ramassés
@@ -25,8 +25,7 @@ public class Child extends GraphicObject {
 	private String name;
 	private Garden g;
 	private int timer;
-	private boolean isMoving;
-	private final int dec = Garden.WC / Window.FPS;
+	private boolean isMoving; // Détermine si l'enfant est actuellement en mouvement
 
 	/**
 	 * Constructeur d'un enfant
@@ -124,15 +123,55 @@ public class Child extends GraphicObject {
 		return basket;
 	}
 
+	public void pickupEgg() {
+		for (GraphicObject d : g.getDescendants()) {
+			if (d instanceof Egg && d.x == x && d.y == y) {
+				Egg e = (Egg) d;
+				if (e.getNb() > 0 && !basket.contains(e)) {
+					basket.add(e);
+					e.setNb(e.getNb() - 1);
+					g.getDescendants().set(g.getDescendants().indexOf(d), e);
+					LOGGER.info("oeuf trouvé!");
+					instructions.add(etape, 'R');
+				}
+			}
+		}
+	}
+
+	public void treatInstructions() {
+		int ind;
+		switch (instructions.get(etape)) {
+
+		case 'A':
+			move();
+			break;
+		case 'D':
+			ind = orientations.indexOf(orientation) + 1;
+			if (ind < orientations.length())
+				orientation = orientations.charAt(ind);
+			else
+				orientation = orientations.charAt(0);
+			break;
+		case 'G':
+			ind = orientations.indexOf(orientation) - 1;
+			if (ind >= 0)
+				orientation = orientations.charAt(ind);
+			else
+				orientation = orientations.charAt(orientations.length() - 1);
+			break;
+		default:
+			break;
+		}
+	}
+
 	/**
-	 * Dessine la représentation graphique de l'enfant sur l'objet Graphics2D
-	 * passé en paramètre
+	 * Dessine la représentation graphique de l'enfant sur l'objet Graphics2D passé en paramètre
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
 		int e = orientations.indexOf(orientation) * 5;
 		if (timer < Window.FPS && isMoving)
-			e += timer * 5 / Window.FPS;
+			e += timer * 5 / Window.FPS; //
 		g.drawImage(imgs[e], x, y, null);
 	}
 
@@ -141,56 +180,11 @@ public class Child extends GraphicObject {
 	 */
 	@Override
 	protected void calculate() {
-		timer += 1;
-		if (timer >= Window.FPS && etape != instructions.size()) { // Limite
-																	// l'enfant
-																	// à une
-																	// action
-																	// par
-																	// seconde
-																	// et à une
-																	// seule
-																	// exécution
-																	// de ses
-																	// instructions
+		timer ++;
+		if (timer >= Window.FPS && etape != instructions.size()) { // Limite l'enfant à une action par seconde et à une seule exécution de ses instructions
 			timer = 0;
-			int ind;
-
-			for (GraphicObject d : g.getDescendants()) {
-				if (d.getClass() == Egg.class && x == d.x && y == d.y) {
-					Egg e = (Egg) d;
-					if (e.getNb() > 0 && !basket.contains(e)) {
-						basket.add(e);
-						e.setNb(e.getNb() - 1);
-						g.getDescendants().set(g.getDescendants().indexOf(d), e);
-						LOGGER.info("oeuf trouvé!");
-						instructions.add(etape, 'R');
-					}
-
-				}
-			}
-			switch (instructions.get(etape)) {
-
-			case 'A':
-				move();
-				break;
-			case 'D':
-				ind = orientations.indexOf(orientation) + 1;
-				if (ind < orientations.length())
-					orientation = orientations.charAt(ind);
-				else
-					orientation = orientations.charAt(0);
-				break;
-			case 'G':
-				ind = orientations.indexOf(orientation) - 1;
-				if (ind >= 0)
-					orientation = orientations.charAt(ind);
-				else
-					orientation = orientations.charAt(orientations.length() - 1);
-				break;
-			default:
-				break;
-			}
+			pickupEgg();
+			treatInstructions();
 			if (etape < instructions.size())
 				etape += 1;
 			LOGGER.info("action!");

@@ -8,7 +8,6 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.log4j.Logger;
-import org.tryhard.gl.egghunt.gui.Window;
 
 public class Button extends GraphicObject implements MouseListener {
 
@@ -85,17 +84,13 @@ public class Button extends GraphicObject implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		System.out.println(e.getX() + ";" + e.getY());
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-
 	}
 
 	private boolean isInside(MouseEvent e) {
-
 		return e.getX() > x && e.getX() < x + w && e.getY() > y && e.getY() < y + h;
 	}
 

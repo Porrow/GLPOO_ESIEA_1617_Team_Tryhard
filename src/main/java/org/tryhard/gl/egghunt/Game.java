@@ -8,7 +8,6 @@ import org.tryhard.gl.egghunt.io.CsvDao;
 
 /**
  * 
- * @author menuiserie
  *
  */
 public class Game extends GraphicObject {
@@ -33,7 +32,7 @@ public class Game extends GraphicObject {
 				Child c = (Child)d;
 				String str = c.getName()+" : "+c.getBasket().size();
 				g.drawString(str, 1000, 100 + 50*gd.getDescendants().indexOf(d));
-				g.drawString(String.valueOf(timer/50), 500, 50);
+				g.drawString(String.valueOf(timer/Window.FPS), 500, 50);
 			}
 		}
 	}

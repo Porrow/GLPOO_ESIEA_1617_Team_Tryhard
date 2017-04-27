@@ -2,8 +2,6 @@ package org.tryhard.gl.egghunt;
 
 import java.awt.Graphics2D;
 
-import org.tryhard.gl.egghunt.gui.Window;
-
 public class Obstacle extends GraphicObject {
 	
 	protected Obstacle(int xc, int yc, Garden g) {
