@@ -1,7 +1,6 @@
 package org.tryhard.gl.egghunt;
 
 import java.awt.Graphics2D;
-import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 
 public class Menu extends GraphicObject {

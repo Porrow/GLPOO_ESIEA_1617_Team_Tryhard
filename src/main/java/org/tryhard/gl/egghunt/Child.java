@@ -10,7 +10,6 @@ import org.tryhard.gl.egghunt.gui.Window;
 /**
  * Classe reprsentant un enfant. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
  * 
- * 
  **/
 public class Child extends GraphicObject {
 
@@ -28,6 +27,7 @@ public class Child extends GraphicObject {
 	private Garden g;
 	private int timer;
 	private boolean isMoving; // Détermine si l'enfant est actuellement en mouvement
+	private boolean isPaused; // Détermine si l'enfant est en pause
 
 	/**
 	 * Constructeur d'un enfant
@@ -51,10 +51,16 @@ public class Child extends GraphicObject {
 		this.g = g;
 		this.timer = 0;
 		this.isMoving = false;
-		loadImages(EggHunt.IMGP + "Kid2.png", nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientationss
+		this.isPaused = false;
+		String pathImg;
+		if (name.length() % 2 == 0)
+			pathImg = "Kid2.png";
+		else
+			pathImg = "Kid3.png";
+		loadImages(EggHunt.IMGP + pathImg, nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientations
 	}
-	
-	public boolean getIsMoving(){
+
+	public boolean getIsMoving() {
 		return isMoving;
 	}
 
@@ -66,8 +72,7 @@ public class Child extends GraphicObject {
 	public int getXC() {
 		return xc;
 	}
-	
-	
+
 	/**
 	 * Getter YC
 	 * 
@@ -77,22 +82,51 @@ public class Child extends GraphicObject {
 		return yc;
 	}
 
-	public void move() {
+	/**
+	 * Renvoie true si une collision avec la barrière ou avec un obstacle est détectée
+	 */
+	public boolean checkCollision(int cx, int cy) {
+		GraphicObject[][] array = g.getArray();
+		if (cx < 0 || cx >= array[0].length || cy <= 0 || cy >= array.length) // Collision avec la barrière
+			return true;
+		if (array[cy][cx] instanceof Obstacle)
+			return true;
+		if (array[cy][cx] instanceof Child) {
+			isPaused = true;
+			return true;
+		}
+		array[yc][xc] = null; // On supprime l'enfant de son ancienne position
+		array[cy][cx] = this; // On le met sur la nouvelle
+		return false;
+	}
+
+	/**
+	 * Détermine si l'enfant doit se déplacer (renvoie true dans ce cas) et de quelle manière
+	 */
+	public boolean move() {
 		switch (orientation) {
 		case 'N':
+			if (checkCollision(xc, yc - 1))
+				return false;
 			yc -= 1;
 			break;
 		case 'S':
+			if (checkCollision(xc, yc + 1))
+				return false;
 			yc += 1;
 			break;
 		case 'W':
+			if (checkCollision(xc - 1, yc))
+				return false;
 			xc -= 1;
 			break;
 		case 'E':
+			if (checkCollision(xc + 1, yc))
+				return false;
 			xc += 1;
 			break;
 		}
-		isMoving = true;
+		return true;
 	}
 
 	public ArrayList<Character> getInstructions() {
@@ -150,7 +184,11 @@ public class Child extends GraphicObject {
 		switch (instructions.get(etape)) {
 
 		case 'A':
-			move();
+			if (move()) // S'il n'y a pas eu de collision
+				isMoving = true;
+			else if (!isPaused)
+				while (etape + 1 < instructions.size() && instructions.get(etape + 1) == 'A') // On saute les instructions qui font avancer
+					etape++;
 			break;
 		case 'D':
 			ind = orientations.indexOf(orientation) + 1;
@@ -183,7 +221,7 @@ public class Child extends GraphicObject {
 	}
 
 	/**
-	 * 
+	 * Calcule la position et l'animation de l'enfant
 	 */
 	@Override
 	protected void calculate() {
@@ -193,11 +231,12 @@ public class Child extends GraphicObject {
 			timer = 0;
 			pickupEgg();
 			treatInstructions();
-			if (etape < instructions.size())
+			if (etape < instructions.size() && !isPaused)
 				etape += 1;
 		}
 		if (isMoving)
 			anim();
+		isPaused = false;
 	}
 
 	public int getEtape() {

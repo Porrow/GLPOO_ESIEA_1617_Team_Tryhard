@@ -54,8 +54,6 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (isInside(e)) {
-
-			LOGGER.info("a button is pressed");
 			switch (EggHunt.getInstance().getViewChoice()) {
 			case Menu.ID:
 				treatMenuButtons();

@@ -25,21 +25,19 @@ public abstract class GraphicObject {
 	protected int w; // Largeur en pixels
 	protected int h; // Hauteur en pixels
 	protected BufferedImage[] imgs; // Images associées
-	private ArrayList<GraphicObject> descendants = new ArrayList<GraphicObject>(); // Les
-																					// objets
-																					// graphiques
-																					// contenues,
-																					// descendants
-
-	// private BufferedImage img;
+	private ArrayList<GraphicObject> descendants = new ArrayList<GraphicObject>(); // Les objets graphiques contenues, descendants
 
 	/**
 	 * Constructeur
 	 * 
 	 * @param x
-	 *            coordonnée en x
+	 *            Coordonnée x en pixels
 	 * @param y
-	 *            coordonnée en y
+	 *            Coordonnée y en pixels
+	 * @param w
+	 *            Largeur en pixels
+	 * @param h
+	 *            Hauteur en pixels
 	 */
 	protected GraphicObject(int x, int y, int w, int h) {
 		this.x = x;
@@ -139,5 +137,10 @@ public abstract class GraphicObject {
 			}
 			imgs[k] = img.getSubimage(i * wi, j * he, wi, he);
 		}
+	}
+
+	public void loadImages(String imgpath) {
+		BufferedImage img = loadImage(imgpath);
+		loadImages(imgpath, 1, img.getWidth(), img.getHeight());
 	}
 }

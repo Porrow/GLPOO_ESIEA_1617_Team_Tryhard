@@ -25,10 +25,12 @@ public class Game extends GraphicObject {
 		timer = 0;
 		returnButton = new Button(Window.WIDTH / 2 + 400, 620, 200, 84, EggHunt.IMGP + "QuitterGame.png");
 		addDescendant(returnButton);
+		loadImages(EggHunt.IMGP + "background.png");
 	}
 
 	@Override
 	public void paint(Graphics2D g) {
+		g.drawImage(imgs[0], 0, 0, null);
 		int i = 0;
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
 		for (GraphicObject d : gd.getDescendants()) {
