@@ -67,6 +67,10 @@ public abstract class GraphicObject {
 	protected void addDescendant(GraphicObject g) {
 		descendants.add(g);
 	}
+	
+	protected void removeDescendant(GraphicObject g){
+		descendants.remove(g);
+	}
 
 	/**
 	 * Dessine l'objet

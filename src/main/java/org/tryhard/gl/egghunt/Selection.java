@@ -44,7 +44,6 @@ public class Selection extends GraphicObject {
 		gardenButton = new Button(900, 266, 128, 128, EggHunt.IMGP + "mapIcon.png");
 		goButton = new Button(Window.WIDTH / 2 + 200, 620, 200, 84, EggHunt.IMGP + "JouerSelect.png");
 		quitButton = new Button(Window.WIDTH / 2 + 400, 620, 200, 84, EggHunt.IMGP + "QuitterSelect.png");
-
 		addDescendant(gardenButton);
 		addDescendant(childrenButton);
 		addDescendant(goButton);

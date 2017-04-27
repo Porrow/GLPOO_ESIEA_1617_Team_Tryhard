@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
-
+import org.tryhard.gl.egghunt.MapEditor;
 /**
  * Classe déssinant la fênetre principale du programme
  *
@@ -71,6 +71,18 @@ public class Window extends JFrame {
 				pan.addMouseMotionListener((Button) o);
 			}
 		}
+		
+		ArrayList<GraphicObject> mapEditorButtons = EggHunt.getInstance().getViews().get(3).getDescendants();
+		for (GraphicObject o : mapEditorButtons) {
+			if (o instanceof Button){
+				pan.addMouseListener((Button) o);
+				pan.addMouseMotionListener((Button) o);
+			}
+		}
+		MapEditor e = (MapEditor)EggHunt.getInstance().getViews().get(3);
+		pan.addMouseListener(e);
+		pan.addMouseMotionListener(e);
+		
 		pan.setLayout(new BorderLayout());
 		pan.setBackground(new Color(0, 160, 255));
 		new Thread(new Runnable() {

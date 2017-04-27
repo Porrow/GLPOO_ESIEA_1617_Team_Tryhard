@@ -15,15 +15,24 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 	private String path;
 	private Integer etat = 0;
+	private boolean visible = true; 
 
 	public Button(int x, int y, int w, int h, String path) {
 		super(x, y, w, h);
 		this.path = path;
 		loadImages(path, 2, w, h);
 	}
+	
+	public Button(int x, int y, int w, int h, String path, boolean visible) {
+		super(x, y, w, h);
+		this.path = path;
+		this.visible = visible;
+		loadImages(path, 2, w, h);
+	}
 
 	@Override
 	protected void paint(Graphics2D g) {
+		if(visible)
 		g.drawImage(imgs[etat], x, y, null);
 	}
 
@@ -59,6 +68,9 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 			case Game.ID:
 				treatGameButtons();
 				break;
+			case MapEditor.ID:
+				treatMapEditorButtons();
+				break;
 			default:
 				break;
 			}
@@ -69,8 +81,53 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 			LOGGER.info(e.getX() + ";" + e.getY());
 
 	}
-	
-	private void treatMenuButtons(){
+
+	private void treatMapEditorButtons() {
+		switch(MapEditor.getEtape()){
+		case 1:
+			switch (path) {
+			case EggHunt.IMGP + "egg1.png":
+				MapEditor.setSelection("egg1");
+				break;
+			case EggHunt.IMGP + "egg2.png":
+				MapEditor.setSelection("egg2");
+				break;
+			case EggHunt.IMGP + "egg3.png":
+				MapEditor.setSelection("egg3");
+				break;
+
+			case EggHunt.IMGP + "rock.png":
+				MapEditor.setSelection("rock");
+				break;
+
+			}
+			break;
+			
+		case 2:
+			switch (path) {
+			case EggHunt.IMGP + "kidN.png":
+				MapEditor.setSelection("kidN");
+				break;
+
+			case EggHunt.IMGP + "kidE.png":
+				MapEditor.setSelection("kidE");
+				break;
+
+			case EggHunt.IMGP + "kidS.png":
+				MapEditor.setSelection("kidS");
+				break;
+
+			case EggHunt.IMGP + "kidW.png":
+				MapEditor.setSelection("kidW");
+				break;
+			
+			}
+			break;
+		}
+		LOGGER.info(MapEditor.getSelection());
+	}
+
+	private void treatMenuButtons() {
 		switch (path) {
 		case EggHunt.IMGP + "JouerMenu.png":
 			EggHunt.getInstance().setViewChoice(Selection.ID);
@@ -85,8 +142,8 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 			break;
 		}
 	}
-	
-	private void treatSelectionButtons(){
+
+	private void treatSelectionButtons() {
 		switch (path) {
 		case EggHunt.IMGP + "mapIcon.png":
 			LOGGER.info("map button pressed");
@@ -99,7 +156,9 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 		case EggHunt.IMGP + "JouerSelect.png":
 			LOGGER.info("play button pressed");
 			EggHunt.getInstance().getViews().remove(Game.ID);
-			EggHunt.getInstance().getViews().add(Game.ID, new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(), EggHunt.getInstance().getSelect().getCsvCF().getText()));
+			EggHunt.getInstance().getViews().add(Game.ID,
+					new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(),
+							EggHunt.getInstance().getSelect().getCsvCF().getText()));
 			EggHunt.getInstance().setViewChoice(Game.ID);
 			break;
 		case EggHunt.IMGP + "QuitterSelect.png":
@@ -109,8 +168,8 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 			break;
 		}
 	}
-	
-	private void treatGameButtons(){
+
+	private void treatGameButtons() {
 		switch (path) {
 		case EggHunt.IMGP + "QuitterGame.png":
 			EggHunt.getInstance().setViewChoice(Menu.ID);
@@ -147,20 +206,25 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		LOGGER.info("mouse dragged");
-		
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		LOGGER.info("mouse moved");
-		if(isInside(e)){
+		if (isInside(e)) {
 			etat = 1;
-		}else{
+		} else {
 			etat = 0;
 		}
-		
+
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 }
