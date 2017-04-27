@@ -44,17 +44,25 @@ public class Button extends GraphicObject implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (isInside(e)) {
+
 			LOGGER.info("a button is pressed");
-			if (EggHunt.getInstance().getViewChoice() == Menu.ID) {
+			switch (EggHunt.getInstance().getViewChoice()) {
+
+			case Menu.ID:
 				switch (path) {
-				case "res/Jouer.png":
+				case "res/JouerMenu.png":
 					EggHunt.getInstance().setViewChoice(Selection.ID);
 					break;
-				case "res/Quitter.png":
+				case "res/QuitterMenu.png":
 					System.exit(-1);
 					break;
+				default:
+					break;
 				}
-			} else if (EggHunt.getInstance().getViewChoice() == Selection.ID) {
+				LOGGER.info("menu ID");
+				break;
+
+			case Selection.ID:
 				switch (path) {
 				case "res/mapIcon.png":
 					LOGGER.info("map button pressed");
@@ -65,7 +73,7 @@ public class Button extends GraphicObject implements MouseListener {
 					LOGGER.info("kid button pressed");
 					EggHunt.getInstance().getSelect().getCsvCF().setText(getPath());
 					break;
-				case "res/Jouer.png":
+				case "res/JouerSelect.png":
 					LOGGER.info("play button pressed");
 					EggHunt.getInstance().getViews().remove(Game.ID);
 					EggHunt.getInstance().getViews().add(Game.ID,
@@ -73,11 +81,29 @@ public class Button extends GraphicObject implements MouseListener {
 									EggHunt.getInstance().getSelect().getCsvCF().getText()));
 					EggHunt.getInstance().setViewChoice(Game.ID);
 					break;
-				case "res/Quitter.png":
+				case "res/QuitterSelect.png":
 					EggHunt.getInstance().setViewChoice(Menu.ID);
 					break;
+				default:
+					break;
 				}
+				LOGGER.info("select ID");
+				break;
+
+			case Game.ID:
+				switch (path) {
+				case "res/QuitterGame.png":
+					EggHunt.getInstance().setViewChoice(Menu.ID);
+					LOGGER.info("game ID");
+					break;
+				default:
+					break;
+				}
+				break;
+			default:
+				break;
 			}
+
 		}
 
 		if (path == "res/kidIcon.png")

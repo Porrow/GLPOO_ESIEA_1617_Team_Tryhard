@@ -3,8 +3,7 @@ package org.tryhard.gl.egghunt;
 import java.awt.Graphics2D;
 
 /**
- * Classe représentant un Oeuf. Cette classe hérite de GraphicObject ce qui lui
- * permet d'être "dessinable"
+ * Classe représentant un Oeuf. Cette classe hérite de GraphicObject ce qui lui permet d'être "dessinable"
  * 
  * @author menuiserie
  *
@@ -36,13 +35,12 @@ public class Egg extends GraphicObject {
 	}
 
 	/**
-	 * Dessine la représentation graphique de l'oeuf sur l'objet Graphics2D
-	 * passé en paramètre
+	 * Dessine la représentation graphique de l'oeuf sur l'objet Graphics2D passé en paramètre
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
 		if (nb > 0)
-			g.drawImage(imgs[nb-1], x, y, null);
+			g.drawImage(imgs[nb - 1], x, y, null);
 	}
 
 	/**

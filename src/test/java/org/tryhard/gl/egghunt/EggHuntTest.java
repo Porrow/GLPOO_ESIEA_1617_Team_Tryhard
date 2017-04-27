@@ -22,8 +22,7 @@ public class EggHuntTest extends TestCase {
 
 	/**
 	 * @return the suite of tests being tested
-	 */
-	public static Test suite() {
+	 */  static Test suite() {
 		return new TestSuite(EggHuntTest.class);
 	}
 

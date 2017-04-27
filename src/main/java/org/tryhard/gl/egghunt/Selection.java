@@ -15,46 +15,45 @@ import org.tryhard.gl.egghunt.gui.Window;
 
 public class Selection extends GraphicObject {
 
-	protected static int ID = 1;
-	private JPanel pan = new JPanel(new GridLayout(6,1,0,5));
+	protected static final int ID = 1;
+	private JPanel pan = new JPanel(new GridLayout(6, 1, 0, 5));
 	private JTextField csvGF = new JTextField("res/garden.csv");
 	private JTextField csvCF = new JTextField("res/children.csv");
 	private Button gardenButton;
 	private Button childrenButton;
 	private Button quitButton;
 	private Button goButton;
-	
 
 	protected Selection() {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
 		loadImages("res/OeufsMenu.png", 1, Window.WIDTH, Window.HEIGHT);
 		csvGF.setEditable(false);
-		csvGF.setFont(new Font("Serif",Font.BOLD, 20));
+		csvGF.setFont(new Font("Serif", Font.BOLD, 20));
 		csvGF.setAlignmentX(100);
 		csvCF.setEditable(false);
-		csvCF.setFont(new Font("Serif",Font.BOLD, 20));
+		csvCF.setFont(new Font("Serif", Font.BOLD, 20));
 		pan.setBackground(new Color(0, 160, 255));
 		JLabel gLab = new JLabel("csv Garden:");
-		gLab.setFont(new Font("Serif",Font.BOLD, 20));
+		gLab.setFont(new Font("Serif", Font.BOLD, 20));
 		pan.add(new JLabel(""));
 		pan.add(gLab);
 		pan.add(csvGF);
 		pan.add(new JLabel(""));
 		JLabel cLab = new JLabel("csv Children:");
-		cLab.setFont(new Font("Serif",Font.BOLD, 20));
+		cLab.setFont(new Font("Serif", Font.BOLD, 20));
 		pan.add(cLab);
 		pan.add(csvCF);
-		
+
 		childrenButton = new Button(1100, 266, 128, 128, "res/kidIcon.png");
 		gardenButton = new Button(900, 266, 128, 128, "res/mapIcon.png");
-		goButton = new Button(550, 550, 200, 84, "res/Jouer.png");
-		quitButton = new Button(750, 550, 200, 84, "res/Quitter.png");
-		
+		goButton = new Button(Window.WIDTH / 2 + 200, 620, 200, 84, "res/JouerSelect.png");
+		quitButton = new Button(Window.WIDTH / 2 + 400, 620, 200, 84, "res/QuitterSelect.png");
+
 		addDescendant(gardenButton);
 		addDescendant(childrenButton);
 		addDescendant(goButton);
 		addDescendant(quitButton);
-		
+
 	}
 
 	public JTextField getCsvGF() {
@@ -80,7 +79,7 @@ public class Selection extends GraphicObject {
 	@Override
 	protected void paint(Graphics2D g) {
 		// TODO Auto-generated method stub
-		//g.drawImage(imgs[0], 0, 0, null);
+		// g.drawImage(imgs[0], 0, 0, null);
 	}
 
 	@Override

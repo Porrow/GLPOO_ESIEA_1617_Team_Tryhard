@@ -180,8 +180,9 @@ public class Child extends GraphicObject {
 	 */
 	@Override
 	protected void calculate() {
-		timer ++;
-		if (timer >= Window.FPS && etape != instructions.size()) { // Limite l'enfant à une action par seconde et à une seule exécution de ses instructions
+		timer++;
+		if (timer >= Window.FPS && etape != instructions.size()) { // Limite l'enfant à une action par seconde et à une seule exécution de ses
+																	// instructions
 			timer = 0;
 			pickupEgg();
 			treatInstructions();
