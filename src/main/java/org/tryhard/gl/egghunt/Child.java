@@ -49,7 +49,7 @@ public class Child extends GraphicObject {
 		this.g = g;
 		this.timer = 0;
 		this.isMoving = false;
-		loadImages("res/Kid1.png", 20, Garden.WC, Garden.WC);
+		loadImages("res/Kid2.png", 32, Garden.WC, Garden.WC);
 	}
 
 	/**
@@ -169,9 +169,9 @@ public class Child extends GraphicObject {
 	 **/
 	@Override
 	protected void paint(Graphics2D g) {
-		int e = orientations.indexOf(orientation) * 5;
+		int e = orientations.indexOf(orientation) * 8;
 		if (timer < Window.FPS && isMoving)
-			e += timer * 5 / Window.FPS; //
+			e += timer * 8 / Window.FPS; //
 		g.drawImage(imgs[e], x, y, null);
 	}
 

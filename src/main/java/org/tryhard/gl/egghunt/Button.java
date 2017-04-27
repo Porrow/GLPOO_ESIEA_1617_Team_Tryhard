@@ -73,6 +73,9 @@ public class Button extends GraphicObject implements MouseListener {
 									EggHunt.getInstance().getSelect().getCsvCF().getText()));
 					EggHunt.getInstance().setViewChoice(Game.ID);
 					break;
+				case "res/Quitter.png":
+					EggHunt.getInstance().setViewChoice(Menu.ID);
+					break;
 				}
 			}
 		}
