@@ -4,16 +4,7 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.gui.Window;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 
 /**
  * 
@@ -22,8 +13,10 @@ import javax.swing.JPanel;
 public final class EggHunt {
 
 	private static final Logger LOGGER = Logger.getLogger(EggHunt.class);
-	private static final String GARDENPATH = "res/garden.csv";
-	private static final String CHILDRENPATH = "res/children.csv";
+	public static final String IMGP = "res/img/";
+	public static final String CSVP = "res/csv/";
+	public static final String GARDENPATH = "res/csv/garden.csv";
+	public static final String CHILDRENPATH = "res/csv/children.csv";
 
 	private static EggHunt instance = null;
 	private static ArrayList<GraphicObject> views = new ArrayList<GraphicObject>();
@@ -48,7 +41,7 @@ public final class EggHunt {
 		views.add(new Menu());
 		select = new Selection();
 		views.add(select);
-		views.add(new Game("res/garden.csv", "res/children2.csv"));
+		views.add(new Game(GARDENPATH, CHILDRENPATH));
 	}
 
 	public ArrayList<GraphicObject> getViews() {

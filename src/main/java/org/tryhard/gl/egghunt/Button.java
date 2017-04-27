@@ -3,10 +3,8 @@ package org.tryhard.gl.egghunt;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import org.apache.log4j.Logger;
 
 public class Button extends GraphicObject implements MouseListener {
@@ -47,37 +45,35 @@ public class Button extends GraphicObject implements MouseListener {
 			LOGGER.info("a button is pressed");
 			if (EggHunt.getInstance().getViewChoice() == Menu.ID) {
 				switch (path) {
-				case "res/Jouer.png":
+				case EggHunt.IMGP + "Jouer.png":
 					EggHunt.getInstance().setViewChoice(Selection.ID);
 					break;
-				case "res/Quitter.png":
+				case EggHunt.IMGP + "Quitter.png":
 					System.exit(-1);
 					break;
 				}
 			} else if (EggHunt.getInstance().getViewChoice() == Selection.ID) {
 				switch (path) {
-				case "res/mapIcon.png":
+				case EggHunt.IMGP + "mapIcon.png":
 					LOGGER.info("map button pressed");
 					EggHunt.getInstance().getSelect().getCsvGF().setText(getPath());
 
 					break;
-				case "res/kidIcon.png":
+				case EggHunt.IMGP + "kidIcon.png":
 					LOGGER.info("kid button pressed");
 					EggHunt.getInstance().getSelect().getCsvCF().setText(getPath());
 					break;
-				case "res/Jouer.png":
+				case EggHunt.IMGP + "Jouer.png":
 					LOGGER.info("play button pressed");
 					EggHunt.getInstance().getViews().remove(Game.ID);
-					EggHunt.getInstance().getViews().add(Game.ID,
-							new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(),
-									EggHunt.getInstance().getSelect().getCsvCF().getText()));
+					EggHunt.getInstance().getViews().add(Game.ID, new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(), EggHunt.getInstance().getSelect().getCsvCF().getText()));
 					EggHunt.getInstance().setViewChoice(Game.ID);
 					break;
 				}
 			}
 		}
 
-		if (path == "res/kidIcon.png")
+		if (path == EggHunt.IMGP + "kidIcon.png")
 			LOGGER.info(e.getX() + ";" + e.getY());
 
 	}
@@ -95,7 +91,7 @@ public class Button extends GraphicObject implements MouseListener {
 	}
 
 	private String getPath() {
-		JFileChooser dialogue = new JFileChooser("./res");
+		JFileChooser dialogue = new JFileChooser("./" + EggHunt.CSVP);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers csv.", "csv");
 		dialogue.addChoosableFileFilter(filter);
 		dialogue.setAcceptAllFileFilterUsed(false);

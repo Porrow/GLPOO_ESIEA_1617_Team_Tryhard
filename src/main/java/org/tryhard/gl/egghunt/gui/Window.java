@@ -6,11 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
@@ -26,14 +22,10 @@ public class Window extends JFrame {
 
 	private static final long serialVersionUID = 6725603138216332687L;
 	private static final Logger LOGGER = Logger.getLogger(Window.class);
-	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la
-																	// fenêtre
+	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la fenêtre
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
-	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension
-																		// de la
-																		// fenêtre
-																		// : HD
+	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
 	public static final int FPS = 25;
 	private final JPanel pan;
 
@@ -69,10 +61,8 @@ public class Window extends JFrame {
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
-					calculateObjects(); // Met à jour les calculs (de
-										// positions...)
-					pan.repaint(); // Met à jour les graphismes (s'execute sur
-									// le Thread principal !)
+					calculateObjects(); // Met à jour les calculs (de positions...)
+					pan.repaint(); // Met à jour les graphismes (s'execute sur le Thread principal !)
 					try {
 						Thread.sleep(1000 / FPS);
 					} catch (InterruptedException e) {
@@ -84,8 +74,7 @@ public class Window extends JFrame {
 
 		pack();
 		setVisible(true);
-		setLocationRelativeTo(null); // Positionne la fenêtre au centre de
-										// l'écran
+		setLocationRelativeTo(null); // Positionne la fenêtre au centre de l'écran
 	}
 
 	/**
@@ -97,9 +86,7 @@ public class Window extends JFrame {
 	private void paintObjects(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Anti-aliasing
-		GraphicObject cont = EggHunt.getInstance().getViews().get(EggHunt.getInstance().getViewChoice()); // Conteneur
-																											// à
-																											// afficher
+		GraphicObject cont = EggHunt.getInstance().getViews().get(EggHunt.getInstance().getViewChoice()); // Conteneur à afficher
 		cont.paintAll(g2); // Affichage du conteneur
 	}
 
@@ -107,9 +94,7 @@ public class Window extends JFrame {
 	 * Execute la fonction calculateAll sur le contenaire
 	 */
 	private void calculateObjects() {
-		GraphicObject cont = EggHunt.getInstance().getViews().get(EggHunt.getInstance().getViewChoice()); // Conteneur
-																											// à
-																											// calculer
+		GraphicObject cont = EggHunt.getInstance().getViews().get(EggHunt.getInstance().getViewChoice()); // Conteneur à calculer
 		cont.calculateAll();
 	}
 

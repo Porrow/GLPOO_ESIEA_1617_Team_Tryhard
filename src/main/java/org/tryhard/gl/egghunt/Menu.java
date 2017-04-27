@@ -13,9 +13,9 @@ public class Menu extends GraphicObject {
 	public Menu() {
 			
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
-		loadImages("res/OeufsMenu.png", 1, Window.WIDTH, Window.HEIGHT);
-		jButton = new Button(Window.WIDTH/2-200, 620, 200, 84, "res/Jouer.png");
-		qButton = new Button(Window.WIDTH/2, 620, 200, 84, "res/Quitter.png");
+		loadImages(EggHunt.IMGP + "OeufsMenu.png", 1, Window.WIDTH, Window.HEIGHT);
+		jButton = new Button(Window.WIDTH/2-200, 620, 200, 84, EggHunt.IMGP + "Jouer.png");
+		qButton = new Button(Window.WIDTH/2, 620, 200, 84, EggHunt.IMGP + "Quitter.png");
 		addDescendant(jButton);
 		addDescendant(qButton);
 	}

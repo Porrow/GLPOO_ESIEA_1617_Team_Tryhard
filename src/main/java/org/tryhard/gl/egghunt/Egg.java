@@ -23,7 +23,7 @@ public class Egg extends GraphicObject {
 	 */
 	public Egg(int xc, int yc, int nb, Garden g) {
 		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
-		loadImages("res/eggs.png", 3, Garden.WC, Garden.WC);
+		loadImages(EggHunt.IMGP + "eggs.png", 3, Garden.WC, Garden.WC);
 		this.nb = nb;
 	}
 

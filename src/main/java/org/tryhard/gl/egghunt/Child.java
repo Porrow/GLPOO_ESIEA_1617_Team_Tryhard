@@ -16,6 +16,7 @@ public class Child extends GraphicObject {
 	private static final Logger LOGGER = Logger.getLogger(Child.class);
 	private static final String orientations = "NESW";
 	private static final int dec = Garden.WC / Window.FPS; // Indique le nombre de pixel dont se déplace un enfant à chaque frame
+	private static final int nAnimImgs = 5; // Le nombre d'images utilisés pour l'animation d'un déplacement
 	private int xc; // Coordonnée x en case
 	private int yc; // Coordonnée y en case
 	private ArrayList<Egg> basket = new ArrayList<Egg>(); // Oeufs ramassés
@@ -49,7 +50,7 @@ public class Child extends GraphicObject {
 		this.g = g;
 		this.timer = 0;
 		this.isMoving = false;
-		loadImages("res/Kid1.png", 20, Garden.WC, Garden.WC);
+		loadImages(EggHunt.IMGP + "Kid1.png", nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientationss
 	}
 
 	/**
@@ -171,7 +172,7 @@ public class Child extends GraphicObject {
 	protected void paint(Graphics2D g) {
 		int e = orientations.indexOf(orientation) * 5;
 		if (timer < Window.FPS && isMoving)
-			e += timer * 5 / Window.FPS; //
+			e += timer * nAnimImgs / Window.FPS;
 		g.drawImage(imgs[e], x, y, null);
 	}
 
@@ -180,14 +181,14 @@ public class Child extends GraphicObject {
 	 */
 	@Override
 	protected void calculate() {
-		timer ++;
-		if (timer >= Window.FPS && etape != instructions.size()) { // Limite l'enfant à une action par seconde et à une seule exécution de ses instructions
+		timer++;
+		if (timer >= Window.FPS && etape != instructions.size()) { // Limite l'enfant à une action par seconde et à une seule exécution de ses
+																	// instructions
 			timer = 0;
 			pickupEgg();
 			treatInstructions();
 			if (etape < instructions.size())
 				etape += 1;
-			LOGGER.info("action!");
 		}
 		if (isMoving)
 			anim();

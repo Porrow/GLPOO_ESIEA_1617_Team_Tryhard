@@ -33,7 +33,7 @@ public class Garden extends GraphicObject {
 		this.xc = xc;
 		this.yc = yc;
 		this.tableau = new GraphicObject[xc][yc];
-		loadImages("res/terrain.png", 1, Garden.WC, Garden.WC);
+		loadImages(EggHunt.IMGP + "terrain.png", 1, Garden.WC, Garden.WC);
 	}
 
 	public void addRocks(int xc, int yc, Garden g) {

@@ -17,8 +17,8 @@ public class Selection extends GraphicObject {
 
 	protected static int ID = 1;
 	private JPanel pan = new JPanel(new GridLayout(6,1,0,5));
-	private JTextField csvGF = new JTextField("res/garden.csv");
-	private JTextField csvCF = new JTextField("res/children.csv");
+	private JTextField csvGF = new JTextField(EggHunt.GARDENPATH);
+	private JTextField csvCF = new JTextField(EggHunt.CHILDRENPATH);
 	private Button gardenButton;
 	private Button childrenButton;
 	private Button quitButton;
@@ -27,7 +27,6 @@ public class Selection extends GraphicObject {
 
 	protected Selection() {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
-		loadImages("res/OeufsMenu.png", 1, Window.WIDTH, Window.HEIGHT);
 		csvGF.setEditable(false);
 		csvGF.setFont(new Font("Serif",Font.BOLD, 20));
 		csvGF.setAlignmentX(100);
@@ -45,9 +44,9 @@ public class Selection extends GraphicObject {
 		pan.add(cLab);
 		pan.add(csvCF);
 		
-		childrenButton = new Button(1100, 266, 128, 128, "res/kidIcon.png");
-		gardenButton = new Button(900, 266, 128, 128, "res/mapIcon.png");
-		goButton = new Button(550, 550, 200, 84, "res/Jouer.png");
+		childrenButton = new Button(1100, 266, 128, 128, EggHunt.IMGP + "kidIcon.png");
+		gardenButton = new Button(900, 266, 128, 128, EggHunt.IMGP + "mapIcon.png");
+		goButton = new Button(550, 550, 200, 84, EggHunt.IMGP + "Jouer.png");
 		
 		addDescendant(gardenButton);
 		addDescendant(childrenButton);
@@ -77,14 +76,10 @@ public class Selection extends GraphicObject {
 
 	@Override
 	protected void paint(Graphics2D g) {
-		// TODO Auto-generated method stub
-		//g.drawImage(imgs[0], 0, 0, null);
 	}
 
 	@Override
 	protected void calculate() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
