@@ -25,7 +25,7 @@ public class CsvDao {
 
 		File fg = new File(gardenFilePath);
 		File fc = new File(childrenFilePath);
-		if (!fg.exists() | !fc.exists()) {
+		if (!fg.exists() || !fc.exists()) {
 			LOGGER.error("Impossible de trouver certains CSV");
 			System.exit(-1);
 		}
