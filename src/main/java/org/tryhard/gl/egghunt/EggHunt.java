@@ -37,14 +37,6 @@ public final class EggHunt {
 		return win;
 	}
 	
-	public static  String getGARDENPATH(){
-		return GARDENPATH;
-	}
-	
-	public static String getCHILDRENPATH(){
-		return CHILDRENPATH;
-	}
-
 	private void loadViews() {
 		views.add(new Menu());
 		select = new Selection();

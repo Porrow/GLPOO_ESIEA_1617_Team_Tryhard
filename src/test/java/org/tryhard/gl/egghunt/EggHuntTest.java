@@ -26,7 +26,7 @@ public class EggHuntTest extends TestCase {
 	public static Test suite() {
 		return new TestSuite(EggHuntTest.class);
 	}
-	
+
 	public void testChildisMovingBoolean() {
 		int x = 10;
 		int y = 10;
@@ -34,77 +34,66 @@ public class EggHuntTest extends TestCase {
 		int yc = 5;
 		Character o = new Character('a');
 		ArrayList<Character> inst = new ArrayList<Character>();
-		Garden g = new Garden(x,y);
-		Child c = new Child(xc,yc,o,inst,"",g);
+		Garden g = new Garden(x, y);
+		Child c = new Child(xc, yc, o, inst, "", g);
 
 		try {
-			
+
 			c.move();
 			assertTrue(c.getIsMoving());
 
-			
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
-	
 
 	public void testChildTreatInstructions() {
-		
-		try {
-			
 
-			
+		try {
+
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
-	
-public void testChildPickUp() {
+
+	public void testChildPickUp() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
 		Character o = new Character('A');
 		ArrayList<Character> inst = new ArrayList<Character>();
-		Garden g = new Garden(x,y);
+		Garden g = new Garden(x, y);
 		g.addEgg(5, 5, 1, g);
-		Child c = new Child(xc,yc,o,inst,"",g);
-		
+		Child c = new Child(xc, yc, o, inst, "", g);
+
 		try {
 			c.pickupEgg();
 			assertNotNull(c.getInstructions().get(0));
-			
+
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
-	
-	/*public void testChildisMoving() {
-		int x = 10;
-		int y = 10;
-		int xc = 5;
-		int yc = 5;
-		
-		Character o = new Character('a');
-		ArrayList<Character> inst = new ArrayList<Character>();
-		Garden g = new Garden(x,y);
-		Child c = new Child(xc,yc,o,inst,"",g);
 
-		try {
-			
-			c.move();
-			assertTrue(c.getXC()!= xc || c.getYC() != yc);
-
-			
-		} catch (Exception ex) {
-			fail("erreur lors de l'execution du test " + ex);
-		}
-
-	}*/
+	/*
+	 * public void testChildisMoving() { int x = 10; int y = 10; int xc = 5; int yc = 5;
+	 * 
+	 * Character o = new Character('a'); ArrayList<Character> inst = new ArrayList<Character>(); Garden g = new Garden(x,y); Child c = new
+	 * Child(xc,yc,o,inst,"",g);
+	 * 
+	 * try {
+	 * 
+	 * c.move(); assertTrue(c.getXC()!= xc || c.getYC() != yc);
+	 * 
+	 * 
+	 * } catch (Exception ex) { fail("erreur lors de l'execution du test " + ex); }
+	 * 
+	 * }
+	 */
 
 	public void testGardenAddRocks() {
 
@@ -138,7 +127,10 @@ public void testChildPickUp() {
 
 		Garden g = new Garden(8, 10);
 		ArrayList<Character> inst = new ArrayList<Character>();
-		inst.add('A');inst.add('A');inst.add('D');inst.add('A');
+		inst.add('A');
+		inst.add('A');
+		inst.add('D');
+		inst.add('A');
 		g.addChild(2, 3, 'N', inst, "RomainLeBG", g);
 
 		try {

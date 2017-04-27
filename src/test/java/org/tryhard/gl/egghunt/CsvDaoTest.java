@@ -8,26 +8,24 @@ import org.junit.Test;
 import org.tryhard.gl.egghunt.io.CsvDao;
 
 public class CsvDaoTest {
-	
+
 	CsvDao cv = new CsvDao();
-	
+
 	@Test
 	public void test_getGardenFromTextLines() {
-		
+
 		ArrayList<String> strs = new ArrayList<String>();
 		strs.add("J 6 5");
 		strs.add("C 4-2 1");
 		strs.add("C 1-4 3");
 		strs.add("R 5-3");
 		try {
-			Garden g =cv.getGardenFromTextLines(strs);
+			Garden g = cv.getGardenFromTextLines(strs);
 			assertEquals(g.getDescendants().size(), 3);
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
-
 	}
-
 
 	@Test
 	public void test_getChildrenFromTextLines() {
@@ -37,7 +35,7 @@ public class CsvDaoTest {
 		strs_garden.add("C 4-2 1");
 		strs_garden.add("C 1-4 3");
 		strs_garden.add("R 5-3");
-		
+
 		strs_children.add("E 1-1 E AADADAGA Julien");
 
 		try {
@@ -49,11 +47,5 @@ public class CsvDaoTest {
 		}
 
 	}
-	
-
-	
-	
-	
-	
 
 }
