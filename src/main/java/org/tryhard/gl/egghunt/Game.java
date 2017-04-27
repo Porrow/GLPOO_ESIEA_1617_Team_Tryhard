@@ -29,13 +29,15 @@ public class Game extends GraphicObject {
 
 	@Override
 	public void paint(Graphics2D g) {
+		int i = 0;
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
 		for (GraphicObject d : gd.getDescendants()) {
 			if (d.getClass() == Child.class) {
 				Child c = (Child) d;
 				String str = c.getName() + " : " + c.getBasket().size();
-				g.drawString(str, 1000, 100 + 50 * gd.getDescendants().indexOf(d));
+				g.drawString(str, 1000, 100 + 50 * i);
 				g.drawString(String.valueOf(timer / Window.FPS), 500, 50);
+				i++;
 			}
 		}
 	}

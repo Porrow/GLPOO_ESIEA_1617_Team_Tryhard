@@ -52,18 +52,24 @@ public class Window extends JFrame {
 		setContentPane(pan);
 		ArrayList<GraphicObject> menuButtons = EggHunt.getInstance().getViews().get(0).getDescendants();
 		for (GraphicObject o : menuButtons) {
-			if (o instanceof Button)
+			if (o instanceof Button){
 				pan.addMouseListener((Button) o);
+				pan.addMouseMotionListener((Button) o);
+			}
 		}
 		ArrayList<GraphicObject> selectButtons = EggHunt.getInstance().getViews().get(1).getDescendants();
 		for (GraphicObject o : selectButtons) {
-			if (o instanceof Button)
+			if (o instanceof Button){
 				pan.addMouseListener((Button) o);
+				pan.addMouseMotionListener((Button) o);
+			}
 		}
 		ArrayList<GraphicObject> gameButtons = EggHunt.getInstance().getViews().get(2).getDescendants();
 		for (GraphicObject o : gameButtons) {
-			if (o instanceof Button)
+			if (o instanceof Button){
 				pan.addMouseListener((Button) o);
+				pan.addMouseMotionListener((Button) o);
+			}
 		}
 		pan.setLayout(new BorderLayout());
 		pan.setBackground(new Color(0, 160, 255));
