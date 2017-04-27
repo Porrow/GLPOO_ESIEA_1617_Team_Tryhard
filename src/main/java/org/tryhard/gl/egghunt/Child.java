@@ -51,7 +51,12 @@ public class Child extends GraphicObject {
 		this.g = g;
 		this.timer = 0;
 		this.isMoving = false;
-		loadImages(EggHunt.IMGP + "Kid2.png", nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientationss
+		String pathImg;
+		if(name.length() % 2 == 0)
+			pathImg = "Kid2.png";
+		else
+			pathImg = "Kid3.png";
+		loadImages(EggHunt.IMGP + pathImg, nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientations
 	}
 	
 	public boolean getIsMoving(){

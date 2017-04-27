@@ -16,7 +16,7 @@ public class Button extends GraphicObject implements MouseListener {
 	public Button(int x, int y, int w, int h, String path) {
 		super(x, y, w, h);
 		this.path = path;
-		loadImages(path, 1, 200, 84);
+		loadImages(path);
 	}
 
 	@Override

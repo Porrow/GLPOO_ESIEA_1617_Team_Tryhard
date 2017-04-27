@@ -28,11 +28,11 @@ public class Garden extends GraphicObject {
 	 */
 
 	public Garden(int xc, int yc) {
-		super((Window.WIDTH - xc * WC) / 2, (Window.HEIGHT - yc * WC) / 2, xc * WC, yc * WC);
+		super((Window.WIDTH - (xc+1) * WC) / 2, (Window.HEIGHT - (yc+1) * WC) / 2, (xc+1) * WC, (yc+1) * WC);
 		this.xc = xc;
 		this.yc = yc;
 		this.tableau = new GraphicObject[xc][yc];
-		loadImages(EggHunt.IMGP + "terrain.png", 1, Garden.WC, Garden.WC);
+		loadImages(EggHunt.IMGP + "terrain.png", 7, Garden.WC, Garden.WC);
 	}
 
 	public void addRocks(int xc, int yc, Garden g) {
