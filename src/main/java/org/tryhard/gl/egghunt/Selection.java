@@ -1,12 +1,9 @@
 package org.tryhard.gl.egghunt;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -47,10 +44,12 @@ public class Selection extends GraphicObject {
 		childrenButton = new Button(1100, 266, 128, 128, EggHunt.IMGP + "kidIcon.png");
 		gardenButton = new Button(900, 266, 128, 128, EggHunt.IMGP + "mapIcon.png");
 		goButton = new Button(550, 550, 200, 84, EggHunt.IMGP + "Jouer.png");
+		quitButton = new Button(750, 550, 200, 84, EggHunt.IMGP + "Quitter.png");
 		
 		addDescendant(gardenButton);
 		addDescendant(childrenButton);
 		addDescendant(goButton);
+		addDescendant(quitButton);
 		
 	}
 
