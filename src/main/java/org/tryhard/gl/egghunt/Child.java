@@ -1,6 +1,7 @@
 package org.tryhard.gl.egghunt;
 
 import java.awt.Graphics2D;
+
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -52,6 +53,10 @@ public class Child extends GraphicObject {
 		this.isMoving = false;
 		loadImages(EggHunt.IMGP + "Kid2.png", nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientationss
 	}
+	
+	public boolean getIsMoving(){
+		return isMoving;
+	}
 
 	/**
 	 * Getter XC
@@ -61,7 +66,8 @@ public class Child extends GraphicObject {
 	public int getXC() {
 		return xc;
 	}
-
+	
+	
 	/**
 	 * Getter YC
 	 * 
