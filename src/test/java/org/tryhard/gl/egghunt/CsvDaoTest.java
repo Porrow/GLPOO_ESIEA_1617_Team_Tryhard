@@ -50,17 +50,7 @@ public class CsvDaoTest {
 
 	}
 	
-	@Test
-	public void test_getGardenAndChilds() {
-		
-		try {
-			assertEquals(cv.getGardenAndChilds(EggHunt.getGARDENPATH(), EggHunt.getCHILDRENPATH()).getDescendants().size(), 5);
-		} catch (Exception ex) {
-			fail("erreur lors de l'execution du test " + ex);
-		}
 
-	}
-	
 	
 	
 	
