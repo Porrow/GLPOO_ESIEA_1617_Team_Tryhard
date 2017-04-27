@@ -20,8 +20,8 @@ public class CsvDaoTest {
 		strs.add("C 1-4 3");
 		strs.add("R 5-3");
 		try {
-			cv.getGardenFromTextLines(strs);
-			assertTrue(true);
+			Garden g =cv.getGardenFromTextLines(strs);
+			assertEquals(g.getDescendants().size(), 3);
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
@@ -43,12 +43,24 @@ public class CsvDaoTest {
 		try {
 			Garden g = cv.getGardenFromTextLines(strs_garden);
 			cv.getChildrenFromTextLines(g, strs_children);
-			assertTrue(true);
+			assertEquals(g.getDescendants().size(), 4);
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
+	
+	@Test
+	public void test_getGardenAndChilds() {
+		
+		try {
+			assertEquals(cv.getGardenAndChilds(EggHunt.getGARDENPATH(), EggHunt.getCHILDRENPATH()).getDescendants().size(), 5);
+		} catch (Exception ex) {
+			fail("erreur lors de l'execution du test " + ex);
+		}
+
+	}
+	
 	
 	
 	

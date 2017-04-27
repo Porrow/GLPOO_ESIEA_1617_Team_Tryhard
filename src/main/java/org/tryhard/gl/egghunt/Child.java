@@ -1,6 +1,7 @@
 package org.tryhard.gl.egghunt;
 
 import java.awt.Graphics2D;
+
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -51,6 +52,10 @@ public class Child extends GraphicObject {
 		this.isMoving = false;
 		loadImages("res/Kid2.png", 32, Garden.WC, Garden.WC);
 	}
+	
+	public boolean getIsMoving(){
+		return isMoving;
+	}
 
 	/**
 	 * Getter XC
@@ -60,7 +65,8 @@ public class Child extends GraphicObject {
 	public int getXC() {
 		return xc;
 	}
-
+	
+	
 	/**
 	 * Getter YC
 	 * 
