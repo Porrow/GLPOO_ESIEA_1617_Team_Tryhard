@@ -43,6 +43,14 @@ public final class EggHunt {
 	public Window getWin() {
 		return win;
 	}
+	
+	public static  String getGARDENPATH(){
+		return GARDENPATH;
+	}
+	
+	public static String getCHILDRENPATH(){
+		return CHILDRENPATH;
+	}
 
 	private void loadViews() {
 		views.add(new Menu());
