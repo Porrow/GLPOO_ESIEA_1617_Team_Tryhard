@@ -37,7 +37,7 @@ public class Game extends GraphicObject {
 			if (d.getClass() == Child.class) {
 				Child c = (Child) d;
 				String str = c.getName() + " : " + c.getBasket().size();
-				g.drawString(str, 1000, 100 + 50 * i);
+				g.drawString(str, 1050, 100 + 50 * i);
 				g.drawString(String.valueOf(timer / Window.FPS), 500, 50);
 				i++;
 			}
