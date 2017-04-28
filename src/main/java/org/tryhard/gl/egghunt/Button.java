@@ -169,9 +169,18 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 	private void treatGameButtons() {
 		switch (path) {
-		case EggHunt.IMGP + "QuitterGame.png":
+		case EggHunt.IMGP + "QuitGame.png":
+			EggHunt.getInstance().getWin().setPaused(false); // On sort le jeu de la pause
 			EggHunt.getInstance().setViewChoice(Menu.ID);
-			LOGGER.info("game ID");
+			LOGGER.debug("Retour au menu de sélection");
+			break;
+		case EggHunt.IMGP + "PauseGame.png":
+			EggHunt.getInstance().getWin().setPaused(true);
+			LOGGER.debug("Jeu en pause");
+			break;
+		case EggHunt.IMGP + "ScoreGame.png":
+			
+			LOGGER.debug("Affichage des scores");
 			break;
 		default:
 			break;

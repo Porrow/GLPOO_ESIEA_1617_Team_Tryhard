@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
@@ -14,6 +16,7 @@ import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
 import org.tryhard.gl.egghunt.MapEditor;
+
 /**
  * Classe déssinant la fênetre principale du programme
  *
@@ -22,12 +25,13 @@ public class Window extends JFrame {
 
 	private static final long serialVersionUID = 6725603138216332687L;
 	private static final Logger LOGGER = Logger.getLogger(Window.class);
-	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la fenêtre
+	public static final String TITLE = "Egg Hunt - V1.0"; // Titre de la fenêtre
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
 	public static final int FPS = 25;
 	private final JPanel pan;
+	private boolean paused = false; // Indique si le jeu est en pause
 
 	/**
 	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
@@ -37,7 +41,8 @@ public class Window extends JFrame {
 		setTitle(TITLE);
 		setPreferredSize(DIM);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
+		setResizable(false); // Interdiction de redimensionner
+		setIconImage(new ImageIcon(EggHunt.IMGP + "icon.png").getImage()); // Modification de l'icone
 
 		pan = new JPanel() {
 
@@ -52,43 +57,45 @@ public class Window extends JFrame {
 		setContentPane(pan);
 		ArrayList<GraphicObject> menuButtons = EggHunt.getInstance().getViews().get(0).getDescendants();
 		for (GraphicObject o : menuButtons) {
-			if (o instanceof Button){
+			if (o instanceof Button) {
 				pan.addMouseListener((Button) o);
 				pan.addMouseMotionListener((Button) o);
 			}
 		}
 		ArrayList<GraphicObject> selectButtons = EggHunt.getInstance().getViews().get(1).getDescendants();
 		for (GraphicObject o : selectButtons) {
-			if (o instanceof Button){
+			if (o instanceof Button) {
 				pan.addMouseListener((Button) o);
 				pan.addMouseMotionListener((Button) o);
 			}
 		}
 		ArrayList<GraphicObject> gameButtons = EggHunt.getInstance().getViews().get(2).getDescendants();
 		for (GraphicObject o : gameButtons) {
-			if (o instanceof Button){
+			if (o instanceof Button) {
 				pan.addMouseListener((Button) o);
 				pan.addMouseMotionListener((Button) o);
 			}
 		}
-		
+
 		ArrayList<GraphicObject> mapEditorButtons = EggHunt.getInstance().getViews().get(3).getDescendants();
 		for (GraphicObject o : mapEditorButtons) {
-			if (o instanceof Button){
+			if (o instanceof Button) {
 				pan.addMouseListener((Button) o);
 				pan.addMouseMotionListener((Button) o);
 			}
 		}
-		MapEditor e = (MapEditor)EggHunt.getInstance().getViews().get(3);
+		MapEditor e = (MapEditor) EggHunt.getInstance().getViews().get(3);
 		pan.addMouseListener(e);
 		pan.addMouseMotionListener(e);
-		
+
 		pan.setLayout(new BorderLayout());
 		pan.setBackground(new Color(0, 160, 255));
+		
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
-					calculateObjects(); // Met à jour les calculs (de positions...)
+					if (!paused) // On recalcule uniquement si le jeu n'est pas en pause
+						calculateObjects(); // Met à jour les calculs (de positions...)
 					pan.repaint(); // Met à jour les graphismes (s'execute sur le Thread principal !)
 					try {
 						Thread.sleep(1000 / FPS);
@@ -125,6 +132,15 @@ public class Window extends JFrame {
 		cont.calculateAll();
 	}
 
+	public void setPaused(boolean nState) {
+		paused = nState;
+	}
+
+	/**
+	 * Getter pan
+	 * 
+	 * @return pan
+	 */
 	public JPanel getPan() {
 		return pan;
 	}

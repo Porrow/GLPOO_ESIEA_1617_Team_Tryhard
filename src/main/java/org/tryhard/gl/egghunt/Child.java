@@ -60,28 +60,6 @@ public class Child extends GraphicObject {
 		loadImages(EggHunt.IMGP + pathImg, nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientations
 	}
 
-	public boolean getIsMoving() {
-		return isMoving;
-	}
-
-	/**
-	 * Getter XC
-	 * 
-	 * @return xc
-	 */
-	public int getXC() {
-		return xc;
-	}
-
-	/**
-	 * Getter YC
-	 * 
-	 * @return yc
-	 */
-	public int getYC() {
-		return yc;
-	}
-
 	/**
 	 * Renvoie true si une collision avec la barrière ou avec un obstacle est détectée
 	 */
@@ -239,6 +217,11 @@ public class Child extends GraphicObject {
 		isPaused = false;
 	}
 
+	/**
+	 * Getter etape
+	 * 
+	 * @return etape
+	 */
 	public int getEtape() {
 		return etape;
 	}
@@ -247,15 +230,57 @@ public class Child extends GraphicObject {
 		this.timer = timer;
 	}
 
+	/**
+	 * Getter timer
+	 * 
+	 * @return timer
+	 */
 	public int getTimer() {
 		return timer;
 	}
 
+	/**
+	 * Getter basket
+	 * 
+	 * @return basket
+	 */
 	public ArrayList<Egg> getBasket() {
 		return basket;
 	}
 
+	/**
+	 * Getter name
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
+	}
+	
+	/**
+	 * Getter isMoving
+	 * 
+	 * @return isMoving
+	 */
+	public boolean getIsMoving() {
+		return isMoving;
+	}
+
+	/**
+	 * Getter xc
+	 * 
+	 * @return xc
+	 */
+	public int getXC() {
+		return xc;
+	}
+
+	/**
+	 * Getter yc
+	 * 
+	 * @return yc
+	 */
+	public int getYC() {
+		return yc;
 	}
 }
