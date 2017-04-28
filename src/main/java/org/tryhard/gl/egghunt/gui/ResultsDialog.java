@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.*;
 
 public class ResultsDialog extends JDialog {
 
 	private static final long serialVersionUID = 4398087483922446754L;
 
-	private static final Logger LOGGER = Logger.getLogger(ResultsDialog.class);
 	private JTable table;
 	private ResultsTableModel model;
 

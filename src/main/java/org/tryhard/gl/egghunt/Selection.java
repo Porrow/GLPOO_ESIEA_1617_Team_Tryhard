@@ -1,6 +1,5 @@
 package org.tryhard.gl.egghunt;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -33,6 +32,9 @@ public class Selection extends GraphicObject {
 		JLabel gLab = new JLabel("csv Garden:");
 		gLab.setFont(new Font("Serif", Font.BOLD, 20));
 		pan = new JPanel(new GridLayout(6, 1, 0, 5)){
+			
+			private static final long serialVersionUID = -4263486111341297625L;
+
 			@Override
 			protected void paintComponent(Graphics g) {
 			    super.paintComponent(g); 

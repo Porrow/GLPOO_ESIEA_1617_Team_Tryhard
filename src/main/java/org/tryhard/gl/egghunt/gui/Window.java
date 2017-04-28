@@ -10,8 +10,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -141,13 +139,11 @@ public class Window extends JFrame {
 	}
 	
 	public void setCursor(String s){
-		MapEditor me = (MapEditor)EggHunt.getInstance().getViews().get(MapEditor.ID);
 		LOGGER.info("set cursor");
 		for(int i = 0; i < selections.length; i++){
 			if(EggHunt.IMGP.concat(selections[i]).equals(s)){
-				if((me.getEtape()==1 && i>0 && i<5) || (me.getEtape()==2 && i>4 && i<9) || i==0)
+				if((MapEditor.getEtape()==1 && i>0 && i<5) || (MapEditor.getEtape()==2 && i>4 && i<9) || i==0)
 				setCursor(cursors[i]);
-			
 			}
 		}
 	}
