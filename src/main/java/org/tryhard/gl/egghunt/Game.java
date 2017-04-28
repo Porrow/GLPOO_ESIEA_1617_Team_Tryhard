@@ -52,6 +52,10 @@ public class Game extends GraphicObject {
 			}
 		}
 	}
+	
+	public int getTimer(){
+		return timer;
+	}
 
 	@Override
 	protected void calculate() {

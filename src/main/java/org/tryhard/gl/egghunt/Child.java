@@ -256,7 +256,7 @@ public class Child extends GraphicObject {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Getter isMoving
 	 * 
@@ -282,5 +282,14 @@ public class Child extends GraphicObject {
 	 */
 	public int getYC() {
 		return yc;
+	}
+
+	/**
+	 * Getter dec
+	 * 
+	 * @return dec
+	 */
+	public int getDec() {
+		return dec;
 	}
 }
