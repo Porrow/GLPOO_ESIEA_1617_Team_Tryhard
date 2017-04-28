@@ -39,6 +39,7 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 	int mx;
 	int my;
 	
+	
 	protected MapEditor() {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
 		fl = new FlowLayout();
@@ -54,7 +55,9 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 		topPan.add(gardenHeightField);
 		validButton.addActionListener(this);
 		topPan.add(validButton);
+		
 		topPan.add(new JLabel("(10x10 max)"));
+		
 		instanciateButtons();
 	}
 	

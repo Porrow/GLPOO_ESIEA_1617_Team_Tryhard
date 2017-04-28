@@ -38,6 +38,8 @@ public class ChildTest extends TestCase {
 
 	}
 	
+	
+	
 	public void testCheckCollisionWithObstacle() {
 		int x = 10;
 		int y = 10;
@@ -46,12 +48,9 @@ public class ChildTest extends TestCase {
 		Character o = new Character('A');
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
 		g.addRocks(xc, yc, g);
 		Child c = new Child(xc, yc, o, inst, "", g);
-
 		try {
-			
 			assertEquals(c.checkCollision(xc, yc), true);
 
 		} catch (Exception ex) {
@@ -59,6 +58,8 @@ public class ChildTest extends TestCase {
 		}
 
 	}
+	
+	
 	
 	public void testCheckCollisionOutOfBorder() {
 		int x = 10;
@@ -68,20 +69,16 @@ public class ChildTest extends TestCase {
 		Character o = new Character('A');
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
 		Child c = new Child(xc, yc, o, inst, "", g);
-		
-
 		try {
-			
 			assertEquals(c.checkCollision(g.getArray().length+1, g.getArray().length+1), true);
-
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
+	
+	
 	
 	public void testCheckCollisionWithChild() {
 		int x = 10;
@@ -91,60 +88,47 @@ public class ChildTest extends TestCase {
 		Character o = new Character('A');
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
 		g.addChild(xc, yc, o, inst, "", g);
 		Child c = new Child(xc, yc, o, inst, "", g);
-		
-
 		try {
-			
 			assertEquals(c.checkCollision(xc,yc), true);
-
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
+	
+	
 	
 	public void testMoveWithFreeMovement() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
 		g.addRocks(x-1, y-1, g);
 		Child c = new Child(xc, yc, 'N', inst, "", g);
-		
-
 		try {
-			
 			assertEquals(c.move(), true);
-
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
+	
+	
 	
 	public void testMoveWithoutFreeMovementToNorth() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
 		g.addRocks(xc, yc-1, g);
 		Child c = new Child(xc, yc, 'N', inst, "", g);
-		
-
 		try {
-			
 			assertEquals(c.move(), false);
 
 		} catch (Exception ex) {
@@ -152,49 +136,38 @@ public class ChildTest extends TestCase {
 		}
 
 	}
+	
+	
 	
 	public void testMoveWithoutFreeMovementToSouth() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
 		g.addRocks(xc, yc+1, g);
-	
 		Child c = new Child(xc, yc, 'S', inst, "", g);
-		
-
 		try {
-			
 			assertEquals(c.move(), false);
-
 		} catch (Exception ex) {
 			fail("erreur lors de l'execution du test " + ex);
 		}
 
 	}
+	
+	
 	
 	public void testMoveWithoutFreeMovementToWest() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
 		g.addRocks(xc-1, yc, g);
-		
 		Child c = new Child(xc, yc, 'W', inst, "", g);
-		
-
 		try {
-			
 			assertEquals(c.move(), false);
 
 		} catch (Exception ex) {
@@ -202,23 +175,19 @@ public class ChildTest extends TestCase {
 		}
 
 	}
+	
+	
 	
 	public void testMoveWithoutFreeMovementToEast() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
 		g.addRocks(xc+1, yc, g);
-		
 		Child c = new Child(xc, yc, 'E', inst, "", g);
-		
-
 		try {
-			
 			assertEquals(c.move(), false);
 
 		} catch (Exception ex) {
@@ -227,17 +196,15 @@ public class ChildTest extends TestCase {
 
 	}
 	
+	
+	
 	public void testAnimOrientationEast() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
-		
 		Child c = new Child(xc, yc, 'E', inst, "", g);
 		int xa = c.getX();
 		//int ya = c.getY();
@@ -252,21 +219,18 @@ public class ChildTest extends TestCase {
 
 	}
 	
+	
+	
 	public void testAnimOrientationWest() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
-		
 		Child c = new Child(xc, yc, 'W', inst, "", g);
 		int xa = c.getX();
 		//int ya = c.getY();
-
 		try {
 			c.anim();
 			assertEquals(xa, c.getX()+c.getDec());
@@ -277,17 +241,15 @@ public class ChildTest extends TestCase {
 
 	}
 	
+	
+	
 	public void testAnimOrientationSouth() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
-		
 		Child c = new Child(xc, yc, 'S', inst, "", g);
 		//int xa = c.getX();
 		int ya = c.getY();
@@ -302,21 +264,18 @@ public class ChildTest extends TestCase {
 
 	}
 	
+	
+	
 	public void testAnimOrientationNorth() {
 		int x = 10;
 		int y = 10;
 		int xc = 5;
 		int yc = 5;
-		
 		ArrayList<Character> inst = new ArrayList<Character>();
 		Garden g = new Garden(x, y);
-		
-		
-		
 		Child c = new Child(xc, yc, 'N', inst, "", g);
 		//int xa = c.getX();
 		int ya = c.getY();
-
 		try {
 			c.anim();
 			assertEquals(ya, c.getY()+c.getDec());

@@ -19,7 +19,7 @@ public class GameTest extends TestCase {
 
 	}
 	
-public void testGameTimer() {
+	public void testGameTimer() {
 		
 		
 		try {
