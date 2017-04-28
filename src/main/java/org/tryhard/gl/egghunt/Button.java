@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.log4j.Logger;
+import org.tryhard.gl.egghunt.gui.Window;
 
 public class Button extends GraphicObject implements MouseListener, MouseMotionListener {
 
@@ -115,9 +116,7 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 		case EggHunt.IMGP + "JouerSelect.png":
 			LOGGER.info("play button pressed");
 			EggHunt.getInstance().getViews().remove(Game.ID);
-			EggHunt.getInstance().getViews().add(Game.ID,
-					new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(),
-							EggHunt.getInstance().getSelect().getCsvCF().getText()));
+			EggHunt.getInstance().getViews().add(Game.ID, new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(), EggHunt.getInstance().getSelect().getCsvCF().getText()));
 			EggHunt.getInstance().setViewChoice(Game.ID);
 			break;
 		case EggHunt.IMGP + "QuitterSelect.png":
@@ -130,13 +129,31 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 	private void treatGameButtons() {
 		switch (path) {
-		case EggHunt.IMGP + "QuitterGame.png":
+		case EggHunt.IMGP + "QuitGame.png":
+			EggHunt.getInstance().getWin().setPaused(false); // On sort le jeu de la pause
 			EggHunt.getInstance().setViewChoice(Menu.ID);
-			LOGGER.info("game ID");
+			LOGGER.debug("Retour au menu de sélection");
+			break;
+		case EggHunt.IMGP + "PauseGame.png":
+			if (etat == 0) {
+				etat = 1;
+				EggHunt.getInstance().getWin().setPaused(true);
+				LOGGER.debug("Jeu en pause");
+			} else {
+				etat = 0;
+				EggHunt.getInstance().getWin().setPaused(false);
+				LOGGER.debug("Reprise");
+			}
+
+			break;
+		case EggHunt.IMGP + "ScoreGame.png":
+			Window.dialog.setVisible(true);
+			LOGGER.debug("Affichage des scores");
 			break;
 		default:
 			break;
 		}
+
 	}
 
 	@Override
@@ -170,11 +187,9 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if (isInside(e)) {
-			etat = 1;
-		} else {
-			etat = 0;
-		}
+		/*
+		 * if (isInside(e)) { etat = 1; } else { etat = 0; }
+		 */
 
 	}
 

@@ -1,0 +1,13 @@
+Membres du groupe : 
+
+AISSANI Karim 33
+BOUSHABA Oualid 33
+COURAULT Florian 33
+DJELASSI Hakim 33
+HUET Vincent 33
+ROJAT Thomas 33
+SEUSSE Romain 33
+
+Lien du repository : 
+
+https://github.com/courault/GLPOO_ESIEA_1617_Team_Tryhard

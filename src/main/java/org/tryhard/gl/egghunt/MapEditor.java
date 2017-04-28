@@ -43,6 +43,7 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 	int my;
 	private Child newChild = null;
 	
+	
 	protected MapEditor() {
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
 		loadImages(EggHunt.IMGP + "background.png");
@@ -56,7 +57,9 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 		validButton.addActionListener(this);
 		finishButton.addActionListener(this);
 		topPan.add(validButton);
+		
 		topPan.add(new JLabel("(10x10 max)"));
+		
 		instanciateButtons();
 	}
 	
@@ -150,10 +153,12 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 					newChild = null;
 					mapField1.setText("");
 					mapField2.setText("");
+					EggHunt.getInstance().getWin().setCursor(EggHunt.IMGP.concat("Curseur par défaut.png"));
 					
 				}
 				break;
 			case "finish":
+				if(newChild == null){
 				etape++;
 				topPan.removeAll();
 				mapField1.setText("map file");
@@ -165,12 +170,13 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 				validButton.setText("save");
 				topPan.add(validButton);
 				topPan.validate();
+				EggHunt.getInstance().getWin().setCursor(EggHunt.IMGP.concat("Curseur par défaut.png"));
+				}
 				break;
 	
 			}
 			break;
 		case 3:
-			LOGGER.info("création fichiers CSV");
 			if(!mapField1.getText().isEmpty() && !mapField1.getText().equals("map name") 
 			&& !mapField2.getText().isEmpty() && !mapField2.getText().equals("kid name")
 			){
@@ -179,6 +185,7 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 				LOGGER.info("fichiers CSV créés");
 				EggHunt.getInstance().setViewChoice(Menu.ID);
 				JOptionPane.showMessageDialog(EggHunt.getInstance().getWin(), "Fichiers CSVs crées");
+				EggHunt.getInstance().getWin().setCursor(EggHunt.IMGP.concat("Curseur par défaut.png"));
 			}
 			break;
 		}

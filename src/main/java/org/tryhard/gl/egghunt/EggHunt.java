@@ -31,7 +31,6 @@ public final class EggHunt {
 	private EggHunt() {
 		LOGGER.debug("Début de l'initialisation...");
 		loadViews();
-
 	}
 
 	public Window getWin() {

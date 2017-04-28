@@ -28,6 +28,7 @@ public class Child extends GraphicObject {
 	private int timer;
 	private boolean isMoving; // Détermine si l'enfant est actuellement en mouvement
 	private boolean isPaused; // Détermine si l'enfant est en pause
+	private int distance;
 
 	/**
 	 * Constructeur d'un enfant
@@ -52,6 +53,7 @@ public class Child extends GraphicObject {
 		this.timer = 0;
 		this.isMoving = false;
 		this.isPaused = false;
+		this.distance = 0;
 		String pathImg;
 		pathImg = "Kid2.png";
 		if(name != null){
@@ -59,10 +61,6 @@ public class Child extends GraphicObject {
 				pathImg = "Kid3.png";
 		}
 		loadImages(EggHunt.IMGP + pathImg, nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientations
-	}
-
-	public boolean getIsMoving() {
-		return isMoving;
 	}
 
 	/**
@@ -167,20 +165,6 @@ public class Child extends GraphicObject {
 			isMoving = false;
 		}
 	}
-	
-	
-
-	public int getXc() {
-		return xc;
-	}
-
-	public int getYc() {
-		return yc;
-	}
-
-	public Character getOrientation() {
-		return orientation;
-	}
 
 	/**
 	 * renvoie le panier de l'enfant
@@ -211,9 +195,11 @@ public class Child extends GraphicObject {
 		switch (instructions.get(etape)) {
 
 		case 'A':
-			if (move()) // S'il n'y a pas eu de collision
+			if (move()) { // S'il n'y a pas eu de collision
 				isMoving = true;
-			else if (!isPaused)
+				distance += 1;
+				Window.dialog.update();
+			} else if (!isPaused)
 				while (etape + 1 < instructions.size() && instructions.get(etape + 1) == 'A') // On saute les instructions qui font avancer
 					etape++;
 			break;
@@ -262,12 +248,19 @@ public class Child extends GraphicObject {
 			treatInstructions();
 			if (etape < instructions.size() && !isPaused)
 				etape += 1;
+		}else if(etape == instructions.size()){
+			pickupEgg();
 		}
 		if (isMoving)
 			anim();
 		isPaused = false;
 	}
 
+	/**
+	 * Getter etape
+	 * 
+	 * @return etape
+	 */
 	public int getEtape() {
 		return etape;
 	}
@@ -282,15 +275,72 @@ public class Child extends GraphicObject {
 		this.timer = timer;
 	}
 
+	/**
+	 * Getter timer
+	 * 
+	 * @return timer
+	 */
 	public int getTimer() {
 		return timer;
 	}
 
+	/**
+	 * Getter basket
+	 * 
+	 * @return basket
+	 */
 	public ArrayList<Egg> getBasket() {
 		return basket;
 	}
 
+	/**
+	 * Getter name
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
+
+	/**
+	 * Getter isMoving
+	 * 
+	 * @return isMoving
+	 */
+	public boolean getIsMoving() {
+		return isMoving;
+	}
+
+	/**
+	 * Getter xc
+	 * 
+	 * @return xc
+	 */
+	
+
+	/**
+	 * Getter yc
+	 * 
+	 * @return yc
+	 */
+	
+
+	/**
+	 * Getter dec
+	 * 
+	 * @return dec
+	 */
+	public int getDec() {
+		return dec;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public Character getOrientation() {
+		return orientation;
+	}
+	
+	
 }

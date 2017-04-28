@@ -49,6 +49,14 @@ public abstract class GraphicObject {
 	public ArrayList<GraphicObject> getDescendants() {
 		return descendants;
 	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
 
 	/**
 	 * Dessine l'objet et ses enfants
