@@ -18,6 +18,7 @@ public class MapEditorTest extends TestCase {
 		}
 	}
 	
+@SuppressWarnings("deprecation")
 public void testMapEditorJPanelElements(){
 		
 		

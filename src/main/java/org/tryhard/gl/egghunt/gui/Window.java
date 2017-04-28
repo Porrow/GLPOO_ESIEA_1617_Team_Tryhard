@@ -37,7 +37,7 @@ public class Window extends JFrame {
 	public static ResultsDialog dialog = new ResultsDialog();
 	private final JPanel pan;
 	private boolean paused = false; // Indique si le jeu est en pause
-
+	private Son son;
 	private final static String[] selections = {"Curseur par défaut.png", "egg1.png", "egg2.png", "egg3.png", "rock.png", "kidN.png", "kidE.png", "kidS.png", "kidW.png"};
 
 	/**
@@ -101,7 +101,8 @@ public class Window extends JFrame {
 		Cursor c = tk.createCustomCursor( img, new Point( 31, 31 ), selections[i] );
 		cursors[i] = c;
 		}
-		
+		son = new Son("res/snd/globalSound.wav");
+		son.start();
 	}
 
 	/**
