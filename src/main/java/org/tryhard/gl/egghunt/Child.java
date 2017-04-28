@@ -53,10 +53,11 @@ public class Child extends GraphicObject {
 		this.isMoving = false;
 		this.isPaused = false;
 		String pathImg;
-		if (name.length() % 2 == 0)
-			pathImg = "Kid2.png";
-		else
-			pathImg = "Kid3.png";
+		pathImg = "Kid2.png";
+		if(name != null){
+			if (name.length() % 2 != 0)
+				pathImg = "Kid3.png";
+		}
 		loadImages(EggHunt.IMGP + pathImg, nAnimImgs * orientations.length(), Garden.WC, Garden.WC); // orientations.length() : Nombre d'orientations
 	}
 
@@ -80,6 +81,10 @@ public class Child extends GraphicObject {
 	 */
 	public int getYC() {
 		return yc;
+	}
+
+	public void setInstructions(ArrayList<Character> instructions) {
+		this.instructions = instructions;
 	}
 
 	/**
@@ -132,6 +137,14 @@ public class Child extends GraphicObject {
 	public ArrayList<Character> getInstructions() {
 		return instructions;
 	}
+	
+	public String getInstructionsToString(){
+		String str ="";
+		for(Character c : instructions){
+			str += c;
+		}
+		return str;
+	}
 
 	public void anim() {
 		switch (orientation) {
@@ -153,6 +166,20 @@ public class Child extends GraphicObject {
 			y = g.y + yc * Garden.WC;
 			isMoving = false;
 		}
+	}
+	
+	
+
+	public int getXc() {
+		return xc;
+	}
+
+	public int getYc() {
+		return yc;
+	}
+
+	public Character getOrientation() {
+		return orientation;
 	}
 
 	/**
@@ -225,6 +252,8 @@ public class Child extends GraphicObject {
 	 */
 	@Override
 	protected void calculate() {
+		if(EggHunt.getInstance().getViewChoice() != Game.ID)
+		return;
 		timer++;
 		if (timer >= Window.FPS && etape != instructions.size()) { // Limite l'enfant à une action par seconde et à une seule exécution de ses
 																	// instructions
@@ -241,6 +270,12 @@ public class Child extends GraphicObject {
 
 	public int getEtape() {
 		return etape;
+	}
+
+	
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setTimer(int timer) {

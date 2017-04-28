@@ -2,10 +2,14 @@ package org.tryhard.gl.egghunt.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,13 +17,16 @@ import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.GraphicObject;
 import org.tryhard.gl.egghunt.Button;
 import org.tryhard.gl.egghunt.EggHunt;
+import org.tryhard.gl.egghunt.Garden;
 import org.tryhard.gl.egghunt.MapEditor;
+
 /**
  * Classe déssinant la fênetre principale du programme
  *
  */
 public class Window extends JFrame {
-
+	private Toolkit tk = Toolkit.getDefaultToolkit();
+	private static Cursor[] cursors = new Cursor[9];
 	private static final long serialVersionUID = 6725603138216332687L;
 	private static final Logger LOGGER = Logger.getLogger(Window.class);
 	public static final String TITLE = "Egg Hunt - V 0.1 alpha"; // Titre de la fenêtre
@@ -28,6 +35,8 @@ public class Window extends JFrame {
 	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
 	public static final int FPS = 25;
 	private final JPanel pan;
+
+	private final static String[] selections = {"Curseur par défaut.png", "egg1.png", "egg2.png", "egg3.png", "rock.png", "kidN.png", "kidE.png", "kidS.png", "kidW.png"};
 
 	/**
 	 * Constructeur, initialise le gaphisme de la fenêtre, et affiche la fenêtre
@@ -38,7 +47,6 @@ public class Window extends JFrame {
 		setPreferredSize(DIM);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-
 		pan = new JPanel() {
 
 			private static final long serialVersionUID = 9015769097796805166L;
@@ -102,6 +110,13 @@ public class Window extends JFrame {
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null); // Positionne la fenêtre au centre de l'écran
+		cursors[0] = getCursor();
+		for(int i=1; i<selections.length; i++){
+		Image img = GraphicObject.loadImage(EggHunt.IMGP+selections[i]).getSubimage(0, 0, Garden.WC, Garden.WC);
+		Cursor c = tk.createCustomCursor( img, new Point( 31, 31 ), selections[i] );
+		cursors[i] = c;
+		}
+		
 	}
 
 	/**
@@ -128,4 +143,19 @@ public class Window extends JFrame {
 	public JPanel getPan() {
 		return pan;
 	}
+	
+	public void setCursor(String s){
+		MapEditor me = (MapEditor)EggHunt.getInstance().getViews().get(MapEditor.ID);
+		LOGGER.info("set cursor");
+		for(int i = 0; i < selections.length; i++){
+			if(EggHunt.IMGP.concat(selections[i]).equals(s)){
+				if((me.getEtape()==1 && i>0 && i<5) || (me.getEtape()==2 && i>4 && i<9) || i==0)
+				setCursor(cursors[i]);
+			
+			}
+		}
+	}
+
+	
+	
 }

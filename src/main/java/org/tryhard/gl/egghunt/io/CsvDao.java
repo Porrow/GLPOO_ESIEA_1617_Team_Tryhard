@@ -3,12 +3,17 @@ package org.tryhard.gl.egghunt.io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.tryhard.gl.egghunt.Garden;
+import org.tryhard.gl.egghunt.GraphicObject;
+import org.tryhard.gl.egghunt.Obstacle;
 import org.apache.log4j.Logger;
+import org.tryhard.gl.egghunt.Child;
+import org.tryhard.gl.egghunt.Egg;
 import org.tryhard.gl.egghunt.EggHunt;
 
 /**
@@ -86,6 +91,49 @@ public class CsvDao {
 			list.add(str.charAt(i));
 		}
 		return list;
+	}
+	
+	public static void writeCSVsFromGarden(Garden g, String mapName, String childrenName){
+		final String gpath = EggHunt.CSVP.concat(mapName).concat(".csv");
+		final String cpath = EggHunt.CSVP.concat(childrenName).concat(".csv");
+        final File gfile = new File(gpath);
+        final File cfile = new File(cpath);
+        try {
+            // Creation des fichier
+            gfile .createNewFile();
+            cfile .createNewFile();
+            // creation des writer
+            final FileWriter gwriter = new FileWriter(gfile);
+            final FileWriter cwriter = new FileWriter(cfile);
+            try {
+            	String str = "J "+g.getXc()+" "+g.getYc();
+            	gwriter.write(str);
+            	gwriter.write("\n");
+            		for(GraphicObject go : g.getDescendants()){
+            			if(go instanceof Egg){
+            				Egg e = (Egg)go;
+            				str = "C "+ e.getXc()+"-"+e.getYc()+" "+e.getNb();
+            				gwriter.write(str);
+            				gwriter.write("\n");
+            			}else if(go instanceof Obstacle){
+            				Obstacle o = (Obstacle)go;
+            				str = "R "+ o.getXc()+"-"+o.getYc();
+            				gwriter.write(str);
+            				gwriter.write("\n");
+            			}else if(go instanceof Child){
+            				Child c = (Child)go;
+            				str = "E "+c.getXC()+"-"+c.getYC()+" "+c.getOrientation()+" "+c.getInstructionsToString()+" "+c.getName();
+            				cwriter.write(str);
+            				cwriter.write("\n");
+            			}
+            		}
+            } finally {
+                gwriter.close();
+                cwriter.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Impossible de creer un ou plusieurs fichier");
+        }
 	}
 
 	/**

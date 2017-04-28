@@ -81,48 +81,9 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 	}
 
 	private void treatMapEditorButtons() {
-		switch(MapEditor.getEtape()){
-		case 1:
-			switch (path) {
-			case EggHunt.IMGP + "egg1.png":
-				MapEditor.setSelection("egg1");
-				break;
-			case EggHunt.IMGP + "egg2.png":
-				MapEditor.setSelection("egg2");
-				break;
-			case EggHunt.IMGP + "egg3.png":
-				MapEditor.setSelection("egg3");
-				break;
-
-			case EggHunt.IMGP + "rock.png":
-				MapEditor.setSelection("rock");
-				break;
-
-			}
-			break;
-			
-		case 2:
-			switch (path) {
-			case EggHunt.IMGP + "kidN.png":
-				MapEditor.setSelection("kidN");
-				break;
-
-			case EggHunt.IMGP + "kidE.png":
-				MapEditor.setSelection("kidE");
-				break;
-
-			case EggHunt.IMGP + "kidS.png":
-				MapEditor.setSelection("kidS");
-				break;
-
-			case EggHunt.IMGP + "kidW.png":
-				MapEditor.setSelection("kidW");
-				break;
-			
-			}
-			break;
-		}
-		LOGGER.info(MapEditor.getSelection());
+		
+		EggHunt.getInstance().getWin().setCursor(path);
+		
 	}
 
 	private void treatMenuButtons() {

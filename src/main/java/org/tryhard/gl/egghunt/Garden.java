@@ -52,12 +52,35 @@ public class Garden extends GraphicObject {
 		array[yc][xc] = c;
 		addDescendant(c);
 	}
+	
+	public void addChild(Child c) {
+		addDescendant(c);
+	}
 
 	/**
 	 * Renvoie le tableau indiquant les objets dans le jardin
 	 */
 	public GraphicObject[][] getArray() {
 		return array;
+	}
+	
+	public boolean isCaseBusy(int x, int y){
+		if(x < this.yc && y < this.xc){
+			if(array[x][y] == null){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+
+	public int getXc() {
+		return xc;
+	}
+
+	public int getYc() {
+		return yc;
 	}
 
 	@Override

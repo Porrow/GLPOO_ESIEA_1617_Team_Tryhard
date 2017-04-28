@@ -11,7 +11,8 @@ import java.awt.Graphics2D;
 public class Egg extends GraphicObject {
 
 	private int nb;
-
+	private int xc;
+	private int yc;
 	/**
 	 * Constructeur d'un oeuf
 	 * 
@@ -24,6 +25,16 @@ public class Egg extends GraphicObject {
 		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
 		loadImages(EggHunt.IMGP + "eggs.png", 3, Garden.WC, Garden.WC);
 		this.nb = nb;
+		this.xc = xc;
+		this.yc = yc;
+	}
+
+	public int getXc() {
+		return xc;
+	}
+
+	public int getYc() {
+		return yc;
 	}
 
 	public int getNb() {
@@ -50,4 +61,6 @@ public class Egg extends GraphicObject {
 	protected void calculate() {
 
 	}
+	
+	
 }

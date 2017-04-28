@@ -98,7 +98,7 @@ public abstract class GraphicObject {
 	 * @param imgpath
 	 *            Chemin de l'image à charger
 	 */
-	private BufferedImage loadImage(String imgpath) {
+	public static BufferedImage loadImage(String imgpath) {
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File(imgpath));
@@ -109,6 +109,14 @@ public abstract class GraphicObject {
 			System.exit(-1);
 			return img;
 		}
+	}
+
+	public int getW() {
+		return w;
+	}
+
+	public int getH() {
+		return h;
 	}
 
 	/**
@@ -143,4 +151,6 @@ public abstract class GraphicObject {
 		BufferedImage img = loadImage(imgpath);
 		loadImages(imgpath, 1, img.getWidth(), img.getHeight());
 	}
+	
+	
 }
