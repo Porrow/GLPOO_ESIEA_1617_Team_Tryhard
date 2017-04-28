@@ -8,7 +8,7 @@ public class Obstacle extends GraphicObject {
 
 	private int xc;
 	private int yc;
-	
+
 	protected Obstacle(int xc, int yc, Garden g) {
 		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
 		loadImages(EggHunt.IMGP + "obstacles.png", 3, Garden.WC, Garden.WC);

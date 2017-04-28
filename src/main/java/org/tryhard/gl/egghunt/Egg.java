@@ -13,6 +13,7 @@ public class Egg extends GraphicObject {
 	private int nb;
 	private int xc;
 	private int yc;
+
 	/**
 	 * Constructeur d'un oeuf
 	 * 
@@ -29,6 +30,7 @@ public class Egg extends GraphicObject {
 		this.yc = yc;
 	}
 
+	// Getters
 	public int getXc() {
 		return xc;
 	}
@@ -54,13 +56,8 @@ public class Egg extends GraphicObject {
 			g.drawImage(imgs[nb - 1], x, y, null);
 	}
 
-	/**
-	 * 
-	 **/
 	@Override
 	protected void calculate() {
-
 	}
-	
-	
+
 }

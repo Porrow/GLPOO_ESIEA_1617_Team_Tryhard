@@ -39,7 +39,7 @@ public class Selection extends GraphicObject {
 		cLab.setFont(new Font("Serif", Font.BOLD, 20));
 		pan.add(cLab);
 		pan.add(csvCF);
-		
+
 		childrenButton = new Button(1100, 266, 128, 128, EggHunt.IMGP + "kidIcon.png");
 		gardenButton = new Button(900, 266, 128, 128, EggHunt.IMGP + "mapIcon.png");
 		goButton = new Button(Window.WIDTH / 2 + 200, 620, 200, 84, EggHunt.IMGP + "JouerSelect.png");

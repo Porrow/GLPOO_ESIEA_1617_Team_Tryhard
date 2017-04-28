@@ -43,7 +43,7 @@ public class ResultsTableModel extends AbstractTableModel {
 		case 2:
 			return c.getBasket().size();
 		case 3:
-			return c.getDistance() + c.getBasket().size() * 10;
+			return c.getDistance() + c.getBasket().size() * 10; // Un oeuf rapporte 10 points
 		default:
 			throw new IllegalArgumentException("Le numero de colonne indiqué n'est pas valide.");
 

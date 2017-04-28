@@ -11,7 +11,6 @@ public class Menu extends GraphicObject {
 	private Button eButton;
 
 	public Menu() {
-
 		super(0, 0, Window.WIDTH, Window.HEIGHT);
 		loadImages(EggHunt.IMGP + "OeufsMenu.png", 1, Window.WIDTH, Window.HEIGHT);
 		jButton = new Button(Window.WIDTH / 2 - 200, 620, 200, 84, EggHunt.IMGP + "JouerMenu.png");
@@ -24,7 +23,6 @@ public class Menu extends GraphicObject {
 
 	@Override
 	public void paint(Graphics2D g) {
-
 		g.drawImage(imgs[0], 0, 0, null);
 	}
 

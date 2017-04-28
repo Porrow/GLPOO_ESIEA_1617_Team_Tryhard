@@ -3,11 +3,9 @@ package org.tryhard.gl.egghunt.gui;
 import static java.awt.BorderLayout.CENTER;
 
 import java.util.ArrayList;
-
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import org.apache.log4j.Logger;
 import org.tryhard.gl.egghunt.*;
 
@@ -42,7 +40,6 @@ public class ResultsDialog extends JDialog {
 	}
 
 	public void update() {
-		LOGGER.debug("Update");
 		model.setChildren(getChildren());
 		repaint();
 	}
