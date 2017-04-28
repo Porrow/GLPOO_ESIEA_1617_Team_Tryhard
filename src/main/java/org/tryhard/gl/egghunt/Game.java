@@ -28,9 +28,9 @@ public class Game extends GraphicObject {
 		timer = 0;
 		returnButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "QuitGame.png");
 		addDescendant(returnButton);
-		/*pauseButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "PauseGame.png");
+		pauseButton = new Button(250, 100, Garden.WC, Garden.WC, EggHunt.IMGP + "PauseGame.png");
 		addDescendant(pauseButton);
-		scoreButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "ScoreGame.png");
+		/*scoreButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "ScoreGame.png");
 		addDescendant(scoreButton);*/
 		loadImages(EggHunt.IMGP + "background.png");
 	}
