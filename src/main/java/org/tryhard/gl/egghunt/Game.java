@@ -15,7 +15,7 @@ public class Game extends GraphicObject {
 
 	protected static final int ID = 2;
 	private Garden gd;
-	private int timer;
+	private int timer = 0;
 	private Button returnButton;
 	private Button pauseButton;
 	private Button scoreButton;
@@ -25,13 +25,13 @@ public class Game extends GraphicObject {
 		CsvDao cd = new CsvDao();
 		gd = cd.getGardenAndChilds(csv_garden, csv_children);
 		addDescendant(gd);
-		timer = 0;
 		returnButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "QuitGame.png");
 		addDescendant(returnButton);
-		pauseButton = new Button(250, 100, Garden.WC, Garden.WC, EggHunt.IMGP + "PauseGame.png");
+		pauseButton = new Button(30, 30, Garden.WC, Garden.WC, EggHunt.IMGP + "PauseGame.png");
 		addDescendant(pauseButton);
-		/*scoreButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "ScoreGame.png");
-		addDescendant(scoreButton);*/
+		/*
+		 * scoreButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "ScoreGame.png"); addDescendant(scoreButton);
+		 */
 		loadImages(EggHunt.IMGP + "background.png");
 	}
 
