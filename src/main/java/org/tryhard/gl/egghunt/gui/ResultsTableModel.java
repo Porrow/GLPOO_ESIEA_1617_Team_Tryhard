@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import org.tryhard.gl.egghunt.Child;
 
-public class ResultsTable extends AbstractTableModel {
+public class ResultsTableModel extends AbstractTableModel {
 
 	private ArrayList<Child> children;
 	private String[] headers;
 
 	private static final long serialVersionUID = 138651387872134687L;
 
-	public ResultsTable(ArrayList<Child> children) {
+	public ResultsTableModel(ArrayList<Child> children) {
 		super();
 		this.children = children;
 		this.headers = new String[] { "Prénom", "Mètres parcourus", "Œufs ramassés", "Score" };
@@ -39,15 +39,18 @@ public class ResultsTable extends AbstractTableModel {
 		case 0:
 			return c.getName();
 		case 1:
-			return 0;// c.getDistance();
+			return c.getDistance();
 		case 2:
 			return c.getBasket().size();
 		case 3:
-			return /*c.getDistance()*/0 + c.getBasket().size() * 10;
+			return c.getDistance() + c.getBasket().size() * 10;
 		default:
 			throw new IllegalArgumentException("Le numero de colonne indiqué n'est pas valide.");
 
 		}
 	}
 
+	public void setChildren(ArrayList<Child> nChildren) {
+		children = nChildren;
+	}
 }

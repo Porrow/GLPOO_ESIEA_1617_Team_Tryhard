@@ -30,6 +30,7 @@ public class Window extends JFrame {
 	public static final int HEIGHT = 720;
 	private static final Dimension DIM = new Dimension(WIDTH, HEIGHT); // Dimension de la fenêtre : HD
 	public static final int FPS = 25;
+	public static ResultsDialog dialog = new ResultsDialog();
 	private final JPanel pan;
 	private boolean paused = false; // Indique si le jeu est en pause
 

@@ -13,7 +13,7 @@ import org.tryhard.gl.egghunt.io.CsvDao;
  */
 public class Game extends GraphicObject {
 
-	protected static final int ID = 2;
+	public static final int ID = 2;
 	private Garden gd;
 	private int timer = 0;
 	private Button returnButton;
@@ -29,9 +29,8 @@ public class Game extends GraphicObject {
 		addDescendant(returnButton);
 		pauseButton = new Button(30, 30, Garden.WC, Garden.WC, EggHunt.IMGP + "PauseGame.png");
 		addDescendant(pauseButton);
-		/*
-		 * scoreButton = new Button(Window.WIDTH - 250, 620, 200, 84, EggHunt.IMGP + "ScoreGame.png"); addDescendant(scoreButton);
-		 */
+		scoreButton = new Button(50, 620, 200, 84, EggHunt.IMGP + "ScoreGame.png");
+		addDescendant(scoreButton);
 		loadImages(EggHunt.IMGP + "background.png");
 	}
 
@@ -52,14 +51,17 @@ public class Game extends GraphicObject {
 			}
 		}
 	}
-	
-	public int getTimer(){
+
+	public int getTimer() {
 		return timer;
+	}
+	
+	public Garden getGarden() {
+		return gd;
 	}
 
 	@Override
 	protected void calculate() {
 		timer++;
 	}
-
 }

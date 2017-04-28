@@ -28,6 +28,7 @@ public class Child extends GraphicObject {
 	private int timer;
 	private boolean isMoving; // Détermine si l'enfant est actuellement en mouvement
 	private boolean isPaused; // Détermine si l'enfant est en pause
+	private int distance;
 
 	/**
 	 * Constructeur d'un enfant
@@ -52,6 +53,7 @@ public class Child extends GraphicObject {
 		this.timer = 0;
 		this.isMoving = false;
 		this.isPaused = false;
+		this.distance = 0;
 		String pathImg;
 		if (name.length() % 2 == 0)
 			pathImg = "Kid2.png";
@@ -162,9 +164,11 @@ public class Child extends GraphicObject {
 		switch (instructions.get(etape)) {
 
 		case 'A':
-			if (move()) // S'il n'y a pas eu de collision
+			if (move()) { // S'il n'y a pas eu de collision
 				isMoving = true;
-			else if (!isPaused)
+				distance += 1;
+				Window.dialog.update();
+			} else if (!isPaused)
 				while (etape + 1 < instructions.size() && instructions.get(etape + 1) == 'A') // On saute les instructions qui font avancer
 					etape++;
 			break;
@@ -291,5 +295,9 @@ public class Child extends GraphicObject {
 	 */
 	public int getDec() {
 		return dec;
+	}
+
+	public int getDistance() {
+		return distance;
 	}
 }

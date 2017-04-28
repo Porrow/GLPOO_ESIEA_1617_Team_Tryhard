@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.log4j.Logger;
+import org.tryhard.gl.egghunt.gui.Window;
 
 public class Button extends GraphicObject implements MouseListener, MouseMotionListener {
 
@@ -185,7 +186,7 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 			break;
 		case EggHunt.IMGP + "ScoreGame.png":
-
+			Window.dialog.setVisible(true);
 			LOGGER.debug("Affichage des scores");
 			break;
 		default:
