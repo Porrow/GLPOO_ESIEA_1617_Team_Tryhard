@@ -2,6 +2,7 @@ package org.tryhard.gl.egghunt;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -13,7 +14,7 @@ import org.tryhard.gl.egghunt.gui.Window;
 public class Selection extends GraphicObject {
 
 	protected static final int ID = 1;
-	private JPanel pan = new JPanel(new GridLayout(6, 1, 0, 5));
+	private JPanel pan;
 	private JTextField csvGF = new JTextField(EggHunt.GARDENPATH);
 	private JTextField csvCF = new JTextField(EggHunt.CHILDRENPATH);
 	private Button gardenButton;
@@ -28,9 +29,16 @@ public class Selection extends GraphicObject {
 		csvGF.setAlignmentX(100);
 		csvCF.setEditable(false);
 		csvCF.setFont(new Font("Serif", Font.BOLD, 20));
-		pan.setBackground(new Color(0, 160, 255));
+		loadImages(EggHunt.IMGP + "background.png");
 		JLabel gLab = new JLabel("csv Garden:");
 		gLab.setFont(new Font("Serif", Font.BOLD, 20));
+		pan = new JPanel(new GridLayout(6, 1, 0, 5)){
+			@Override
+			protected void paintComponent(Graphics g) {
+			    super.paintComponent(g); 
+			    g.drawImage(imgs[0], 0, 0, null);
+			}
+		};
 		pan.add(new JLabel(""));
 		pan.add(gLab);
 		pan.add(csvGF);
@@ -72,6 +80,7 @@ public class Selection extends GraphicObject {
 
 	@Override
 	protected void paint(Graphics2D g) {
+		g.drawImage(imgs[0], 0, 0, null);
 	}
 
 	@Override

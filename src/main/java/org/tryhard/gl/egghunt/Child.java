@@ -312,20 +312,6 @@ public class Child extends GraphicObject {
 	}
 
 	/**
-	 * Getter xc
-	 * 
-	 * @return xc
-	 */
-	
-
-	/**
-	 * Getter yc
-	 * 
-	 * @return yc
-	 */
-	
-
-	/**
 	 * Getter dec
 	 * 
 	 * @return dec

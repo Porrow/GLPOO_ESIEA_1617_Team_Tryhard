@@ -134,7 +134,7 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 			topPan.add(mapField1);
 			mapField2.setText("kid instructions");
 			topPan.add(mapField2);
-			topPan.add(new JLabel("A:walk, G:left and D:right (ex: ADAAGA)"));
+			topPan.add(new JLabel("A: walk, G: left and D: right (ex: ADAAGA)"));
 			validButton.setText("add");
 			topPan.add(validButton);
 			topPan.add(finishButton);
@@ -252,6 +252,8 @@ public class MapEditor extends GraphicObject implements ActionListener, MouseLis
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		LOGGER.info(EggHunt.getInstance().getWin().getCursor().getName());
+		if(e.getX() > 160 && e.getX() < 200 && e.getY() > 400 && e.getX() < 430 && EggHunt.getInstance().getViewChoice() != Menu.ID)
+		JOptionPane.showMessageDialog(EggHunt.getInstance().getWin(), "Quoi de neuf Docteur ?");
 		String cursorName = EggHunt.getInstance().getWin().getCursor().getName();
 		if(etape != 0 && etape != 3){
 			if(isInGarden(e)){

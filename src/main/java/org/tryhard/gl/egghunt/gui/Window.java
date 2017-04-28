@@ -63,33 +63,13 @@ public class Window extends JFrame {
 			}
 		};
 		setContentPane(pan);
-		ArrayList<GraphicObject> menuButtons = EggHunt.getInstance().getViews().get(0).getDescendants();
-		for (GraphicObject o : menuButtons) {
-			if (o instanceof Button){
-				pan.addMouseListener((Button) o);
-				pan.addMouseMotionListener((Button) o);
-			}
-		}
-		ArrayList<GraphicObject> selectButtons = EggHunt.getInstance().getViews().get(1).getDescendants();
-		for (GraphicObject o : selectButtons) {
-			if (o instanceof Button){
-				pan.addMouseListener((Button) o);
-				pan.addMouseMotionListener((Button) o);
-			}
-		}
-		ArrayList<GraphicObject> gameButtons = EggHunt.getInstance().getViews().get(2).getDescendants();
-		for (GraphicObject o : gameButtons) {
-			if (o instanceof Button){
-				pan.addMouseListener((Button) o);
-				pan.addMouseMotionListener((Button) o);
-			}
-		}
 		
-		ArrayList<GraphicObject> mapEditorButtons = EggHunt.getInstance().getViews().get(3).getDescendants();
-		for (GraphicObject o : mapEditorButtons) {
-			if (o instanceof Button){
-				pan.addMouseListener((Button) o);
-				pan.addMouseMotionListener((Button) o);
+		for(GraphicObject v : EggHunt.getInstance().getViews()){
+			for(GraphicObject b : v.getDescendants()){
+				if (b instanceof Button){
+					pan.addMouseListener((Button) b);
+					pan.addMouseMotionListener((Button) b);
+				}
 			}
 		}
 		MapEditor e = (MapEditor)EggHunt.getInstance().getViews().get(3);

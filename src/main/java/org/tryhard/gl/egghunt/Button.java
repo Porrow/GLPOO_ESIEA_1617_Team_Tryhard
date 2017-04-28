@@ -144,7 +144,6 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 				EggHunt.getInstance().getWin().setPaused(false);
 				LOGGER.debug("Reprise");
 			}
-
 			break;
 		case EggHunt.IMGP + "ScoreGame.png":
 			Window.dialog.setVisible(true);
@@ -187,9 +186,9 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		/*
-		 * if (isInside(e)) { etat = 1; } else { etat = 0; }
-		 */
+		
+		// if (isInside(e)) { etat = 1; } else { etat = 0; }
+		 
 
 	}
 
