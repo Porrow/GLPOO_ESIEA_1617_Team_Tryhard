@@ -76,8 +76,8 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 
 		}
 
-		if (path == EggHunt.IMGP + "kidIcon.png")
-			LOGGER.info(e.getX() + ";" + e.getY());
+		/*if (path == EggHunt.IMGP + "kidIcon.png")
+			LOGGER.info(e.getX() + ";" + e.getY());*/
 
 	}
 
@@ -106,15 +106,12 @@ public class Button extends GraphicObject implements MouseListener, MouseMotionL
 	private void treatSelectionButtons() {
 		switch (path) {
 		case EggHunt.IMGP + "mapIcon.png":
-			LOGGER.info("map button pressed");
 			EggHunt.getInstance().getSelect().getCsvGF().setText(getPath());
 			break;
 		case EggHunt.IMGP + "kidIcon.png":
-			LOGGER.info("kid button pressed");
 			EggHunt.getInstance().getSelect().getCsvCF().setText(getPath());
 			break;
 		case EggHunt.IMGP + "JouerSelect.png":
-			LOGGER.info("play button pressed");
 			EggHunt.getInstance().getViews().remove(Game.ID);
 			EggHunt.getInstance().getViews().add(Game.ID, new Game(EggHunt.getInstance().getSelect().getCsvGF().getText(), EggHunt.getInstance().getSelect().getCsvCF().getText()));
 			EggHunt.getInstance().setViewChoice(Game.ID);

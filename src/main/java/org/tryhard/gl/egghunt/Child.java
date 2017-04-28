@@ -14,7 +14,7 @@ import org.tryhard.gl.egghunt.gui.Window;
 public class Child extends GraphicObject {
 
 	private static final Logger LOGGER = Logger.getLogger(Child.class);
-	private static final String orientations = "NESW";
+	private static final String orientations = "NESW"; // Nord, Est, Sud, Ouest
 	private static final int dec = Garden.WC / Window.FPS; // Indique le nombre de pixel dont se déplace un enfant à chaque frame
 	private static final int nAnimImgs = 8; // Le nombre d'images utilisés pour l'animation d'un déplacement
 	private int xc; // Coordonnée x en case
@@ -56,7 +56,7 @@ public class Child extends GraphicObject {
 		this.distance = 0;
 		String pathImg;
 		pathImg = "Kid2.png";
-		if(name != null){
+		if (name != null) {
 			if (name.length() % 2 != 0)
 				pathImg = "Kid3.png";
 		}
@@ -135,15 +135,18 @@ public class Child extends GraphicObject {
 	public ArrayList<Character> getInstructions() {
 		return instructions;
 	}
-	
-	public String getInstructionsToString(){
-		String str ="";
-		for(Character c : instructions){
+
+	public String getInstructionsToString() {
+		String str = "";
+		for (Character c : instructions) {
 			str += c;
 		}
 		return str;
 	}
 
+	/**
+	 * Déplace de manière fluide l'enfant
+	 */
 	public void anim() {
 		switch (orientation) {
 		case 'N':
@@ -175,6 +178,9 @@ public class Child extends GraphicObject {
 		return basket;
 	}
 
+	/**
+	 * Détermine s'il y a un oeuf à ramasser
+	 */
 	public void pickupEgg() {
 		for (GraphicObject d : g.getDescendants()) {
 			if (d instanceof Egg && d.x == x && d.y == y) {
@@ -183,7 +189,7 @@ public class Child extends GraphicObject {
 					basket.add(e);
 					e.setNb(e.getNb() - 1);
 					g.getDescendants().set(g.getDescendants().indexOf(d), e);
-					LOGGER.info("oeuf trouvé!");
+					LOGGER.info("Oeuf trouvé!");
 					instructions.add(etape, 'R');
 				}
 			}
@@ -238,8 +244,8 @@ public class Child extends GraphicObject {
 	 */
 	@Override
 	protected void calculate() {
-		if(EggHunt.getInstance().getViewChoice() != Game.ID)
-		return;
+		if (EggHunt.getInstance().getViewChoice() != Game.ID)
+			return;
 		timer++;
 		if (timer >= Window.FPS && etape != instructions.size()) { // Limite l'enfant à une action par seconde et à une seule exécution de ses
 																	// instructions
@@ -248,7 +254,7 @@ public class Child extends GraphicObject {
 			treatInstructions();
 			if (etape < instructions.size() && !isPaused)
 				etape += 1;
-		}else if(etape == instructions.size()){
+		} else if (etape == instructions.size()) {
 			pickupEgg();
 		}
 		if (isMoving)
@@ -265,8 +271,6 @@ public class Child extends GraphicObject {
 		return etape;
 	}
 
-	
-	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -327,6 +331,5 @@ public class Child extends GraphicObject {
 	public Character getOrientation() {
 		return orientation;
 	}
-	
-	
+
 }
