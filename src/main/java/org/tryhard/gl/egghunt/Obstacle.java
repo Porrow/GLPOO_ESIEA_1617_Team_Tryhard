@@ -6,7 +6,7 @@ public class Obstacle extends GraphicObject {
 	
 	protected Obstacle(int xc, int yc, Garden g) {
 		super(g.x + xc * Garden.WC, g.y + yc * Garden.WC, Garden.WC, Garden.WC);
-		loadImages(EggHunt.IMGP + "Rock4.png", 1, Garden.WC, Garden.WC);
+		loadImages(EggHunt.IMGP + "rock.png", 1, Garden.WC, Garden.WC);
 	}
 
 	@Override

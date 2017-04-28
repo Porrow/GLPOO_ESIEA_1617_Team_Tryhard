@@ -81,6 +81,10 @@ public class Child extends GraphicObject {
 	public int getYC() {
 		return yc;
 	}
+	
+	public int getDec(){
+		return dec;
+	}
 
 	/**
 	 * Renvoie true si une collision avec la barrière ou avec un obstacle est détectée
